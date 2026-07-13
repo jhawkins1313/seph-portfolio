@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 575" font-family="Inter, system-ui, Arial, sans-serif">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Inter:wght@400;500&amp;family=Space+Mono&amp;display=swap');
+      .serif { font-family: 'Fraunces', Georgia, 'Times New Roman', serif; }
+      .sans  { font-family: 'Inter', system-ui, Arial, sans-serif; }
+      .mono  { font-family: 'Space Mono', ui-monospace, monospace; }
+    </style>
+    <symbol id="leaf" viewBox="0 0 10 9">
+      <path d="M0.5,8.5 C0.5,4 4,0.5 9,0.5 C9,5 5.5,8.5 0.5,8.5 Z" fill="#2E5D43"/>
+      <path d="M2,7 L7.4,1.6" stroke="#F4EEDF" stroke-width="0.9" fill="none"/>
+    </symbol>
+  </defs>
+
+  <!-- paper background -->
+  <rect x="0" y="0" width="1060" height="575" rx="14" fill="#F4EEDF"/>
+
+  <!-- ===== Title ===== -->
+  <text x="530" y="55" text-anchor="middle" class="serif" font-size="22" letter-spacing="1.5" font-weight="600">
+    <tspan fill="#23271E">SPECIAL ATTENTION REVIEW</tspan><tspan fill="#9A6A2C"> · METHOD</tspan>
+  </text>
+  <line x1="468" y1="78" x2="592" y2="78" stroke="rgba(35,39,30,0.30)" stroke-width="1"/>
+  <use href="#leaf" x="524" y="71" width="13" height="12"/>
+
+  <!-- ================= STAGE BOXES ================= -->
+  <!-- Box 1: TRIGGER (x40 w300) -->
+  <rect x="40" y="128" width="300" height="216" rx="11" fill="#F8F2E4" stroke="rgba(35,39,30,0.17)" stroke-width="1.5"/>
+  <text x="64" y="161" class="mono" font-size="10.5" letter-spacing="2" fill="#7B7A61">01 / WHEN</text>
+  <text x="64" y="187" class="serif" font-size="19" letter-spacing="1" font-weight="600" fill="#2E5D43">TRIGGER</text>
+  <line x1="62" y1="201" x2="318" y2="201" stroke="rgba(35,39,30,0.17)" stroke-width="1"/>
+  <use href="#leaf" x="64" y="228" width="11" height="10"/>
+  <text x="82" y="238" class="sans" font-size="14" fill="#23271E">Leads / conversions slip</text>
+  <use href="#leaf" x="64" y="261" width="11" height="10"/>
+  <text x="82" y="271" class="sans" font-size="14" fill="#23271E">KPI or OKR missed</text>
+  <use href="#leaf" x="64" y="294" width="11" height="10"/>
+  <text x="82" y="304" class="sans" font-size="14" fill="#23271E">EEAT or intent gap</text>
+
+  <!-- Box 2: ROOT-CAUSE REVIEW (x380 w300) -->
+  <rect x="380" y="128" width="300" height="216" rx="11" fill="#F8F2E4" stroke="rgba(35,39,30,0.17)" stroke-width="1.5"/>
+  <text x="404" y="161" class="mono" font-size="10.5" letter-spacing="2" fill="#7B7A61">02 / THE WORK</text>
+  <text x="404" y="187" class="serif" font-size="18" letter-spacing="0.5" font-weight="600" fill="#2E5D43">ROOT-CAUSE REVIEW</text>
+  <line x1="402" y1="201" x2="658" y2="201" stroke="rgba(35,39,30,0.17)" stroke-width="1"/>
+  <use href="#leaf" x="404" y="228" width="11" height="10"/>
+  <text x="422" y="238" class="sans" font-size="14" fill="#23271E">You own it</text>
+  <use href="#leaf" x="404" y="261" width="11" height="10"/>
+  <text x="422" y="271" class="sans" font-size="14" fill="#23271E">GSC + conversion data + history</text>
+  <use href="#leaf" x="404" y="294" width="11" height="10"/>
+  <text x="422" y="304" class="sans" font-size="14" fill="#23271E">Find the cause, not the symptom</text>
+
+  <!-- Box 3: FINDINGS (x720 w300) -->
+  <rect x="720" y="128" width="300" height="216" rx="11" fill="#F8F2E4" stroke="rgba(35,39,30,0.17)" stroke-width="1.5"/>
+  <text x="744" y="161" class="mono" font-size="10.5" letter-spacing="2" fill="#7B7A61">03 / OUTPUT</text>
+  <text x="744" y="187" class="serif" font-size="19" letter-spacing="1" font-weight="600" fill="#2E5D43">FINDINGS</text>
+  <line x1="742" y1="201" x2="998" y2="201" stroke="rgba(35,39,30,0.17)" stroke-width="1"/>
+  <use href="#leaf" x="744" y="228" width="11" height="10"/>
+  <text x="762" y="238" class="sans" font-size="14" fill="#23271E">Ranked next steps</text>
+  <use href="#leaf" x="744" y="261" width="11" height="10"/>
+  <text x="762" y="271" class="sans" font-size="14" fill="#23271E">What&#8217;s wrong, why, and</text>
+  <text x="762" y="290" class="sans" font-size="14" fill="#23271E">what to do first</text>
+
+  <!-- arrows between stage boxes -->
+  <g stroke="#9A6A2C" stroke-width="2" fill="none">
+    <path d="M348,236 L372,236"/><path d="M366,231 L373,236 L366,241"/>
+    <path d="M688,236 L712,236"/><path d="M706,231 L713,236 L706,241"/>
+  </g>
+
+  <!-- ================= CONNECTOR to outcomes ================= -->
+  <g stroke="#2E5D43" stroke-width="1.6" fill="none">
+    <path d="M870,344 L870,378"/>
+    <path d="M667,378 L913,378"/>
+    <path d="M667,378 L667,402"/>
+    <path d="M913,378 L913,402"/>
+  </g>
+  <g fill="#2E5D43">
+    <path d="M662,402 L672,402 L667,410 Z"/>
+    <path d="M908,402 L918,402 L913,410 Z"/>
+  </g>
+
+  <!-- ================= OUTCOME BOXES ================= -->
+  <!-- LEADERSHIP (x560 w215 -> center 667.5) -->
+  <rect x="560" y="410" width="215" height="118" rx="11" fill="#2E5D43"/>
+  <text x="667" y="444" text-anchor="middle" class="serif" font-size="14" letter-spacing="2" font-weight="600" fill="#CBA659">LEADERSHIP</text>
+  <line x1="627" y1="456" x2="707" y2="456" stroke="rgba(244,238,223,0.30)" stroke-width="1"/>
+  <text x="667" y="484" text-anchor="middle" class="sans" font-size="14" fill="#F4EEDF">A decision they</text>
+  <text x="667" y="504" text-anchor="middle" class="sans" font-size="14" fill="#F4EEDF">can act on</text>
+
+  <!-- WRITERS (x805 w215 -> center 912.5) -->
+  <rect x="805" y="410" width="215" height="118" rx="11" fill="#2E5D43"/>
+  <text x="912" y="444" text-anchor="middle" class="serif" font-size="14" letter-spacing="2" font-weight="600" fill="#CBA659">WRITERS</text>
+  <line x1="872" y1="456" x2="952" y2="456" stroke="rgba(244,238,223,0.30)" stroke-width="1"/>
+  <text x="912" y="493" text-anchor="middle" class="sans" font-size="14" fill="#F4EEDF">Apply &amp; learn</text>
+
+  <!-- editorial figure tag, bottom-left -->
+  <use href="#leaf" x="50" y="498" width="12" height="11"/>
+  <text x="70" y="508" class="mono" font-size="10.5" letter-spacing="1.5" fill="#7B7A61">FIG. 1 · SAR METHOD</text>
+</svg>

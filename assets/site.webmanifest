@@ -1,0 +1,11 @@
+{
+  "name": "Seph Hawkins — Content & AI Systems",
+  "short_name": "Seph Hawkins",
+  "icons": [
+    { "src": "icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ],
+  "theme_color": "#2E5D43",
+  "background_color": "#F4EEDF",
+  "display": "standalone"
+}

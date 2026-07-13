@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seph Hawkins — Content &amp; AI Systems</title>
+<meta name="description" content="Seph Hawkins is a content strategist and editor who builds the AI systems that scale production. Selected work in editorial, clean energy, and content operations.">
+<meta name="author" content="Joseph (Seph) Hawkins">
+
+<!-- Favicons & app icons -->
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="assets/site.webmanifest">
+<meta name="theme-color" content="#2E5D43" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#11140D" media="(prefers-color-scheme: dark)">
+
+<!-- Open Graph / social preview (fill image when you have one) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Seph Hawkins — Content &amp; AI Systems">
+<meta property="og:description" content="Content strategist and editor who builds the AI systems that scale the work.">
+<!-- <meta property="og:image" content="assets/social-card.jpg"> -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     THEME TOKENS  ·  light = parchment study, dark = candlelit
+     ============================================================ */
+  :root{
+    --paper:#F4EEDF;       /* aged ivory paper */
+    --paper-2:#E9E1CC;
+    --card:#F8F2E4;
+    --ink:#23271E;         /* dark olive ink */
+    --ink-soft:#454A38;
+    --muted:#7B7A61;
+    --rule:rgba(35,39,30,0.17);
+    --rule-soft:rgba(35,39,30,0.09);
+    --accent:#2E5D43;      /* ivy green */
+    --accent-2:#9A6A2C;    /* brass / gold */
+    --brass:#9A6A2C;
+    --mb-teal:#1C8C82;     /* moveBuddha teal, muted for parchment */
+    --highlight:rgba(46,93,67,0.10);
+    --grain:0.05;
+    --shadow:0 1px 0 rgba(35,39,30,0.05);
+  }
+  html[data-theme="dark"]{
+    --paper:#11140D;       /* green-black, candlelit */
+    --paper-2:#191D12;
+    --card:#1B1F14;
+    --ink:#E9E5D1;
+    --ink-soft:#CECCB2;
+    --muted:#8D9076;
+    --rule:rgba(233,229,209,0.16);
+    --rule-soft:rgba(233,229,209,0.08);
+    --accent:#82B98F;      /* leaf green */
+    --accent-2:#CBA659;    /* gold */
+    --brass:#CBA659;
+    --mb-teal:#56C2B4;     /* moveBuddha teal, candlelit */
+    --highlight:rgba(130,185,143,0.13);
+    --grain:0.06;
+    --shadow:0 1px 0 rgba(0,0,0,0.3);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;
+    font-size:18px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    transition:background .4s ease,color .4s ease;
+  }
+  /* warm paper grain + soft light from upper-left */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(115% 80% at 12% -8%, var(--highlight), transparent 52%);
+  }
+  body::after{
+    content:"";position:fixed;inset:-40%;pointer-events:none;z-index:0;
+    opacity:var(--grain);mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  html[data-theme="dark"] body::after{mix-blend-mode:screen}
+
+  ::selection{background:var(--highlight);color:var(--ink)}
+
+  a{color:inherit}
+  img{max-width:100%;display:block}
+
+  /* ----------  typography  ---------- */
+  .serif{font-family:"Fraunces",Georgia,serif}
+  .eyebrow{
+    font-family:"Fraunces",Georgia,serif;
+    font-weight:600;font-size:13px;letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--accent);
+  }
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.05;color:var(--ink)}
+  p{max-width:64ch}
+  .lede{
+    font-family:"Fraunces",Georgia,serif;
+    font-weight:400;font-size:clamp(20px,2.4vw,27px);line-height:1.4;
+    color:var(--ink-soft);max-width:34ch;
+  }
+
+  /* ============================================================
+     NAV BUBBLE  ·  floating, collapsible
+     ============================================================ */
+  .nav{position:fixed;top:22px;left:22px;z-index:60}
+  .nav__toggle{
+    display:inline-flex;align-items:center;gap:11px;
+    height:50px;padding:0 20px 0 16px;border-radius:999px;
+    background:var(--card);color:var(--ink);
+    border:1px solid var(--rule);
+    box-shadow:0 6px 22px rgba(20,16,12,0.18);
+    font-family:"Fraunces",serif;font-weight:600;font-size:15px;letter-spacing:.1em;text-transform:uppercase;
+    cursor:pointer;
+    transition:transform .25s cubic-bezier(.2,.8,.2,1),background .3s,color .3s;
+  }
+  .nav__toggle:hover{transform:translateY(-2px)}
+  .nav__toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  /* hamburger that morphs to an X — a clear open/close signal */
+  .nav__toggle-ico{position:relative;width:18px;height:14px;flex:none}
+  .nav__toggle-ico i{position:absolute;left:0;width:100%;height:2px;border-radius:2px;background:currentColor;
+    transition:transform .3s ease,opacity .2s ease}
+  .nav__toggle-ico i:nth-child(1){top:0}
+  .nav__toggle-ico i:nth-child(2){top:6px}
+  .nav__toggle-ico i:nth-child(3){top:12px}
+  .nav.open .nav__toggle-ico i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  .nav.open .nav__toggle-ico i:nth-child(2){opacity:0}
+  .nav.open .nav__toggle-ico i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+  .nav__toggle .t-close{display:none}
+  .nav.open .nav__toggle .t-open{display:none}
+  .nav.open .nav__toggle .t-close{display:inline}
+
+  .nav__panel{
+    position:absolute;top:62px;left:0;
+    width:min(82vw,290px);
+    background:var(--card);
+    border:1px solid var(--rule);
+    border-radius:18px;
+    box-shadow:0 18px 50px rgba(20,16,12,0.26);
+    padding:14px 16px 18px;
+    opacity:0;visibility:hidden;transform:translateY(-8px) scale(.97);transform-origin:top left;
+    transition:opacity .22s ease,transform .22s cubic-bezier(.2,.8,.2,1),visibility .22s;
+    max-height:min(86vh,760px);overflow:auto;
+  }
+  .nav.open .nav__panel{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+  .nav.open .nav__toggle{background:var(--accent);color:#fff;border-color:transparent}
+
+  .nav__head{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:10px;padding:6px 6px 12px;border-bottom:1px solid var(--rule-soft);margin-bottom:8px;
+  }
+  .nav__name{font-family:"Fraunces",serif;font-weight:600;font-size:17px;line-height:1}
+  .nav__name small{display:block;font-family:"Fraunces",serif;font-style:italic;font-size:12.5px;
+    color:var(--muted);margin-top:4px;font-weight:400}
+  .nav__close{
+    background:none;border:1px solid var(--rule);color:var(--muted);
+    width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:16px;line-height:1;
+    display:grid;place-items:center;transition:.2s;
+  }
+  .nav__close:hover{color:var(--ink);border-color:var(--ink)}
+
+  .nav__group{font-family:"Fraunces",serif;font-weight:600;font-size:11.5px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);padding:14px 8px 5px}
+  .nav a.nav__link{
+    display:flex;align-items:baseline;gap:10px;
+    text-decoration:none;color:var(--ink-soft);
+    font-size:15px;padding:7px 8px;border-radius:9px;
+    transition:background .18s,color .18s;
+  }
+  .nav a.nav__link .num{font-family:"Space Mono",monospace;font-size:11px;color:var(--muted);min-width:22px}
+  .nav a.nav__link:hover{background:var(--paper-2);color:var(--ink)}
+  .nav a.nav__link.active{background:var(--highlight);color:var(--accent);font-weight:500}
+  .nav a.nav__link.active .num{color:var(--accent)}
+
+  .nav__foot{display:flex;align-items:center;justify-content:space-between;
+    margin-top:14px;padding-top:12px;border-top:1px solid var(--rule-soft)}
+  .theme-btn{
+    display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+    background:var(--paper-2);border:1px solid var(--rule);border-radius:999px;
+    color:var(--ink-soft);font-family:"Space Mono",monospace;font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;padding:7px 12px;transition:.2s;
+  }
+  .theme-btn:hover{color:var(--ink);border-color:var(--ink)}
+  .theme-btn svg{width:15px;height:15px;display:block}
+  .theme-btn .moon{display:none}
+  html[data-theme="dark"] .theme-btn .sun{display:none}
+  html[data-theme="dark"] .theme-btn .moon{display:inline}
+
+  .nav__social{display:flex;gap:8px}
+  .icon-link{
+    width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
+    border:1px solid var(--rule);color:var(--ink-soft);transition:.2s;
+  }
+  .icon-link:hover{color:#fff;background:var(--accent-2);border-color:transparent}
+  .icon-link svg{width:16px;height:16px}
+
+  /* ============================================================
+     LAYOUT
+     ============================================================ */
+  .wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:0 clamp(20px,5vw,64px)}
+  section{scroll-margin-top:28px}
+
+  .section{
+    display:grid;grid-template-columns:190px minmax(0,1fr);gap:clamp(20px,4vw,56px);
+    padding:clamp(64px,9vw,120px) 0;border-top:1px solid var(--rule);
+  }
+  .section__aside{position:relative}
+  .section__aside .sticky{position:sticky;top:34px}
+  .secnum{font-family:"Fraunces",serif;font-weight:600;font-size:42px;color:var(--rule);line-height:1}
+  .secnum b{color:var(--accent);font-weight:600}
+  /* ----------  mythological section emblems (replace section numbers)  ---------- */
+  .secsym{width:60px;height:60px;color:var(--accent);display:block;line-height:0;
+    transition:transform .45s cubic-bezier(.2,.8,.2,1),color .3s ease}
+  .secsym:hover{transform:translateY(-2px) scale(1.05);color:var(--brass)}
+  .secsym svg{width:100%;height:100%;display:block;overflow:visible}
+  .secsym .ring{stroke:currentColor;stroke-opacity:.28;fill:none}
+  .secsym .cut{fill:var(--paper)}
+  .secsym .cut-s{stroke:var(--paper)}
+  .section__aside .eyebrow{display:block;margin-top:14px}
+  /* small leaf sprig above every section label — carries the motif throughout */
+  .section__aside .eyebrow::before{
+    content:"";display:block;width:46px;height:16px;margin-bottom:11px;background:var(--accent);
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 46 16'%3E%3Crect x='2' y='7.3' width='42' height='1.4' rx='.7' fill='black'/%3E%3Cpath d='M17 8c-2.6-3.4-6.4-4.7-10.2-4.5C7.2 7.3 11.5 8.9 17 8z' fill='black'/%3E%3Cpath d='M29 8c2.6-3.4 6.4-4.7 10.2-4.5C38.8 7.3 34.5 8.9 29 8z' fill='black'/%3E%3Ccircle cx='23' cy='8' r='1.7' fill='black'/%3E%3C/svg%3E") no-repeat left center/contain;
+    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 46 16'%3E%3Crect x='2' y='7.3' width='42' height='1.4' rx='.7' fill='black'/%3E%3Cpath d='M17 8c-2.6-3.4-6.4-4.7-10.2-4.5C7.2 7.3 11.5 8.9 17 8z' fill='black'/%3E%3Cpath d='M29 8c2.6-3.4 6.4-4.7 10.2-4.5C38.8 7.3 34.5 8.9 29 8z' fill='black'/%3E%3Ccircle cx='23' cy='8' r='1.7' fill='black'/%3E%3C/svg%3E") no-repeat left center/contain;
+  }
+  .marginnote{font-family:"Fraunces",serif;font-style:italic;font-size:15px;color:var(--muted);
+    line-height:1.55;margin-top:18px;max-width:27ch}
+
+  h2.section__title{font-size:clamp(32px,4.6vw,52px);letter-spacing:-0.01em;margin-bottom:6px}
+  .section__dek{font-family:"Fraunces",serif;font-size:clamp(19px,2vw,23px);font-weight:400;
+    color:var(--ink-soft);max-width:48ch;margin-bottom:30px;line-height:1.45}
+  .prose p+p{margin-top:18px}
+  .prose a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;
+    text-decoration-color:var(--rule);transition:.2s}
+  .prose a:hover{text-decoration-color:var(--accent)}
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero{padding:clamp(120px,20vh,220px) 0 clamp(56px,9vw,110px);border-top:none}
+  .hero .eyebrow{margin-bottom:22px}
+  .hero h1{
+    font-size:clamp(54px,11vw,148px);font-weight:700;letter-spacing:-0.025em;line-height:0.92;
+    text-transform:none;
+  }
+  .hero h1 .b{color:var(--muted)}
+  .hero__divider{display:flex;align-items:center;gap:15px;margin:30px 0 24px}
+  .hero__divider .line{height:2px;width:min(210px,32%);background:var(--accent)}
+  .sprig{color:var(--accent);flex:none;display:block}
+  .sprig.lg{width:62px;height:22px}
+  .hero__grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(28px,6vw,72px);align-items:end}
+  .hero__lede{max-width:30ch}
+  .hero__status{margin-top:26px;font-family:"Fraunces",serif;font-style:italic;font-size:16.5px;
+    color:var(--muted);display:flex;align-items:center;gap:11px}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 0 0 var(--accent);animation:pulse 2.8s ease-out infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(46,93,67,.5)}70%{box-shadow:0 0 0 10px rgba(46,93,67,0)}100%{box-shadow:0 0 0 0 rgba(46,93,67,0)}}
+
+  /* headshot slot */
+  .headshot{
+    width:clamp(170px,22vw,250px);aspect-ratio:4/5;border-radius:14px;
+    background:
+      repeating-linear-gradient(45deg,var(--rule-soft) 0 2px,transparent 2px 11px),
+      var(--paper-2);
+    border:1px solid var(--rule);
+    display:grid;place-items:center;text-align:center;color:var(--muted);
+    font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    position:relative;overflow:hidden;
+  }
+  .headshot span{padding:0 16px;line-height:1.7}
+  .headshot img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+
+  /* ============================================================
+     CASE-STUDY ENTRIES (editorial ruled list)
+     ============================================================ */
+  .entries{margin-top:8px}
+  .entry{
+    display:grid;grid-template-columns:128px minmax(0,1fr);gap:clamp(14px,3vw,40px);
+    padding:30px 0;border-top:1px solid var(--rule-soft);
+  }
+  .entry:first-child{border-top:1px solid var(--rule)}
+  .entry__meta{font-family:"Space Mono",monospace;font-size:11.5px;line-height:1.85;color:var(--muted)}
+  .entry__meta .k{display:block;color:var(--ink-soft);font-weight:700}
+  .entry__meta .tag{color:var(--accent-2)}
+  .entry h3{font-size:clamp(21px,2.4vw,27px);margin-bottom:7px;font-weight:600}
+  .entry__dek{color:var(--ink-soft);font-size:16px;line-height:1.5;max-width:60ch;
+    background:var(--card);border:1px solid var(--rule-soft);border-left:3px solid var(--accent);
+    border-radius:8px;padding:11px 16px;margin:3px 0 16px}
+  .entry__todo{
+    margin-top:14px;font-family:"Space Mono",monospace;font-size:12.5px;color:var(--muted);
+    border-left:2px solid var(--accent);padding:4px 0 4px 14px;background:var(--highlight);
+    border-radius:0 6px 6px 0;max-width:60ch;
+  }
+  .entry__todo b{color:var(--accent);font-weight:700}
+
+  /* ----------  media placeholder slots  ---------- */
+  .media{
+    margin-top:18px;border:1.5px dashed var(--rule);border-radius:12px;
+    background:var(--paper-2);
+    display:grid;place-items:center;text-align:center;color:var(--muted);
+    font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+    padding:26px 18px;
+  }
+  .media small{display:block;margin-top:7px;letter-spacing:.04em;text-transform:none;font-size:11px;opacity:.85}
+  .media.ratio-16x9{aspect-ratio:16/9;padding:0;position:relative;overflow:hidden}
+  .media.ratio-1x1{aspect-ratio:1/1;padding:0}
+  .media.is-filled{border:1px solid var(--rule);place-items:stretch;overflow:hidden}
+  .media.is-filled svg{display:block;width:100%;height:100%}
+  .media.is-filled img{display:block;width:100%;height:100%;object-fit:cover;object-position:top center}
+  .media-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:22px}
+  a.card-link{
+    text-decoration:none;border:1px solid var(--rule);border-radius:12px;
+    background:var(--paper-2);display:grid;place-items:stretch;padding:0;overflow:hidden;
+    transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  a.card-link:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 22px rgba(35,39,30,.09)}
+  a.card-link:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .card-link__inner{display:flex;flex-direction:column;gap:9px;padding:18px;text-align:left;height:100%}
+  .card-link__pub{font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .card-link__title{font-family:"Fraunces",Georgia,serif;font-size:16.5px;line-height:1.2;color:var(--ink);font-weight:600}
+  .card-link__note{font-family:"Inter",sans-serif;font-size:12px;line-height:1.5;color:var(--ink-soft);margin-bottom:6px}
+  .card-link__go{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.04em;color:var(--accent);margin-top:auto}
+
+  /* ----------  pull quote  ---------- */
+  .pull{
+    font-family:"Fraunces",serif;font-style:italic;font-weight:400;
+    font-size:clamp(22px,3vw,32px);line-height:1.3;color:var(--ink);
+    border-left:3px solid var(--accent);padding:6px 0 6px 22px;margin:28px 0;max-width:30ch;
+  }
+  .pull cite{display:block;font-style:normal;font-family:"Space Mono",monospace;
+    font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+
+  /* ----------  drop cap  ---------- */
+  .dropcap::first-letter{
+    font-family:"Fraunces",serif;font-weight:700;float:left;font-size:4.6em;line-height:.78;
+    padding:6px 12px 0 0;color:var(--accent);
+  }
+
+  /* ----------  credentials / index list  ---------- */
+  .index{margin-top:36px;border-top:1px solid var(--rule);padding-top:8px}
+  .index__row{display:grid;grid-template-columns:160px minmax(0,1fr);gap:18px;
+    padding:14px 0;border-bottom:1px solid var(--rule-soft);align-items:baseline}
+  .index__row .when{font-family:"Space Mono",monospace;font-size:12px;color:var(--muted)}
+  .index__row .what b{display:block;font-family:"Fraunces",serif;font-size:17px;font-weight:600}
+  .index__row .what span{color:var(--ink-soft);font-size:15px}
+  .index__row a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+
+  /* ----------  interactive CV (education + experience)  ---------- */
+  .cv{margin-top:36px;border-top:1px solid var(--rule);padding-top:22px}
+  .cv__tabs{display:flex;flex-wrap:wrap;gap:8px}
+  .cv__tab{font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:.08em;
+    text-transform:uppercase;cursor:pointer;border:1px solid var(--rule);border-radius:999px;
+    padding:7px 15px;color:var(--muted);background:var(--paper-2);transition:.2s}
+  .cv__tab:hover{color:var(--ink);border-color:var(--ink)}
+  .cv__tab.is-active{background:var(--accent);color:#fff;border-color:transparent}
+  .cv__tab:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .cv__list{margin-top:6px}
+  .cv__row{display:grid;grid-template-columns:160px minmax(0,1fr);gap:18px;
+    padding:14px 0;border-bottom:1px solid var(--rule-soft);align-items:baseline;
+    animation:cvfade .35s ease both}
+  .cv__row .when{font-family:"Space Mono",monospace;font-size:12px;color:var(--muted)}
+  .cv__row .what b{display:block;font-family:"Fraunces",serif;font-size:17px;font-weight:600}
+  .cv__row .what span{color:var(--ink-soft);font-size:15px;line-height:1.45}
+  .cv__row.is-hidden{display:none}
+  @keyframes cvfade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  /* ----------  tag chips  ---------- */
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+  .chip{font-family:"Inter",sans-serif;font-size:13.5px;letter-spacing:.01em;
+    border:1px solid var(--rule);border-radius:999px;padding:6px 14px;color:var(--ink-soft);background:var(--paper-2)}
+
+  /* ============================================================
+     CONTACT + FOOTER
+     ============================================================ */
+  .contact h2{font-size:clamp(36px,6vw,72px);letter-spacing:-0.02em;margin-bottom:18px}
+  .contact__big{font-family:"Fraunces",serif;font-size:clamp(22px,3vw,30px);font-weight:500}
+  .contact__big a{color:var(--accent);text-decoration:none;border-bottom:2px solid var(--rule);
+    padding-bottom:2px;transition:.2s}
+  .contact__big a:hover{border-color:var(--accent)}
+  .contact__meta{margin-top:30px;display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;
+    font-family:"Inter",sans-serif;font-size:14px;letter-spacing:.01em;color:var(--muted)}
+  .contact__meta .icon-link{width:40px;height:40px}
+
+  footer.foot{
+    position:relative;z-index:1;border-top:1px solid var(--rule);
+    padding:30px clamp(20px,5vw,64px);max-width:1120px;margin:0 auto;
+    display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;
+    font-family:"Fraunces",serif;font-style:italic;font-size:14.5px;letter-spacing:.01em;color:var(--muted);
+  }
+  footer.foot a{color:var(--ink-soft);text-decoration:none}
+  footer.foot a:hover{color:var(--accent)}
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width:820px){
+    body{font-size:17px}
+    .section{grid-template-columns:1fr;gap:16px;padding:56px 0}
+    .section__aside .sticky{position:static}
+    .secnum{font-size:34px}
+    .secsym{width:48px;height:48px}
+    .entry{grid-template-columns:1fr;gap:8px}
+    .entry__meta{display:flex;flex-wrap:wrap;gap:6px 18px}
+    .entry__meta .k{display:inline}
+    .hero__grid{grid-template-columns:1fr;align-items:start}
+    .headshot{order:-1}
+    .index__row{grid-template-columns:1fr}
+    .cv__row{grid-template-columns:1fr;gap:4px}
+  }
+  @media (max-width:560px){
+    .nav{top:14px;left:14px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV BUBBLE
+     ============================================================ -->
+<nav class="nav" id="nav">
+  <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navPanel" aria-label="Open the contents menu">
+    <span class="nav__toggle-ico" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="nav__toggle-txt"><span class="t-open">Contents</span><span class="t-close">Close</span></span>
+  </button>
+  <div class="nav__panel" id="navPanel" role="dialog" aria-label="Site navigation">
+    <div class="nav__head">
+      <div class="nav__name">Seph Hawkins<small>Content · AI Systems</small></div>
+      <button class="nav__close" id="navClose" aria-label="Close menu">&times;</button>
+    </div>
+
+    <a class="nav__link" href="#home"><span class="num">00</span>Home</a>
+    <a class="nav__link" href="#about"><span class="num">01</span>About</a>
+
+    <div class="nav__group">Practice</div>
+    <a class="nav__link" href="#content-producer"><span class="num">02</span>Content Strategist</a>
+    <a class="nav__link" href="#ai-systems"><span class="num">03</span>AI Systems Builder</a>
+    <a class="nav__link" href="#project-management"><span class="num">04</span>Project Manager</a>
+
+    <div class="nav__group">Projects</div>
+    <a class="nav__link" href="#youtube"><span class="num">05</span>YouTube</a>
+    <a class="nav__link" href="#blacforje"><span class="num">06</span>Blacforje</a>
+    <a class="nav__link" href="#mypollenpal"><span class="num">07</span>MyPollenPal</a>
+
+    <a class="nav__link" href="#contact" style="margin-top:8px"><span class="num">08</span>Contact</a>
+
+    <div class="nav__foot">
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle light or dark theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <span class="lbl">Theme</span>
+      </button>
+      <div class="nav__social">
+        <a class="icon-link" href="https://www.linkedin.com/in/joseph-hawkins-197ab398/" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.12 2.49 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.1c0-1.7-.03-3.9-2.38-3.9-2.39 0-2.75 1.86-2.75 3.78V24h-4V8z"/></svg>
+        </a>
+        <a class="icon-link" href="mailto:alex.hawkinsbhs@gmail.com" aria-label="Email Seph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m3 6 9 7 9-7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+
+    <!-- ===========================  HOME  =========================== -->
+    <section id="home" class="hero">
+      <p class="eyebrow">Newnan, GA &nbsp;·&nbsp; Editorial &amp; Content Operations</p>
+      <h1 class="serif">Seph<br><span class="b">Hawkins</span></h1>
+      <div class="hero__divider">
+        <span class="line"></span>
+        <svg class="sprig lg" viewBox="0 0 64 22" fill="currentColor" aria-hidden="true">
+          <rect x="31.2" y="4" width="1.6" height="16" rx=".8"/>
+          <path d="M32 12c-5.6 0-9.6-2.8-10.8-7.6 5.6 0 9.6 2.8 10.8 7.6z"/>
+          <path d="M32 12c5.6 0 9.6-2.8 10.8-7.6-5.6 0-9.6 2.8-10.8 7.6z"/>
+          <path d="M32 16.5c-4 0-6.9-2-7.8-5.6 4 0 6.9 2 7.8 5.6z" opacity=".72"/>
+          <path d="M32 16.5c4 0 6.9-2 7.8-5.6-4 0-6.9 2-7.8 5.6z" opacity=".72"/>
+          <circle cx="32" cy="4.4" r="1.7"/>
+        </svg>
+      </div>
+      <div class="hero__grid">
+        <div>
+          <p class="lede">I turn complicated work into clear writing, then build the AI systems that help a team make more of it.</p>
+          <p class="hero__status"><span class="dot"></span> Open to content, editorial &amp; project roles</p>
+        </div>
+        <figure class="headshot">
+          <img src="assets/headshot.jpg" alt="Seph Hawkins" width="320" height="400" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===========================  ABOUT  =========================== -->
+    <section id="about" class="section">
+      <div class="section__aside"><div class="sticky">
+        <div class="secsym" role="img" aria-label="Laurel wreath — the poet's crown (Dante)" title="I · Laurel wreath — the poet's crown (Dante)"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle class="ring" cx="32" cy="32" r="29" stroke-width="1.3"/><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M32 53 C 23 51 17 44 16 33 C 15.3 27 16 22 18 17"/><path d="M32 53 C 41 51 47 44 48 33 C 48.7 27 48 22 46 17"/></g><g fill="currentColor"><ellipse rx="5.2" ry="2.3" transform="translate(13.5 41) rotate(205)"/><ellipse rx="5.2" ry="2.3" transform="translate(12.8 32) rotate(168)"/><ellipse rx="4.8" ry="2.2" transform="translate(14 23.5) rotate(143)"/><ellipse rx="4.4" ry="2.1" transform="translate(17.3 17) rotate(120)"/><ellipse rx="5.2" ry="2.3" transform="translate(50.5 41) rotate(-25)"/><ellipse rx="5.2" ry="2.3" transform="translate(51.2 32) rotate(12)"/><ellipse rx="4.8" ry="2.2" transform="translate(50 23.5) rotate(37)"/><ellipse rx="4.4" ry="2.1" transform="translate(46.7 17) rotate(60)"/><circle cx="32" cy="53.5" r="1.7"/></g></svg></div>
+        <span class="eyebrow">About</span>      </div></div>
+      <div>
+        <h2 class="section__title serif">An editor who builds his own tools.</h2>
+        <p class="section__dek">Seven years of editorial work, plus a newer habit: building the automations that take the busywork out of content.</p>
+        <div class="prose">
+          <p class="dropcap">I live to create. I'm Joseph Hawkins, and I go by Seph. I'm a content strategist and editor in Newnan, Georgia, and for seven years I've done two jobs at once. One is editorial: find the story, get the facts right, write it so a real person wants to read it. The other is operational: build the tools that let a small team ship more of that work without burning out.</p>
+          <p>The editorial side runs deep. I've led content strategy at moveBuddha as Senior Editor and produced hundreds of home-services pieces through media partnerships at Home Solutions / Three Ships. In fact, I was so successful at growing the home services verticals that Home Solutions was spun out of Three Ships as a separate company to manage the revenue and performance we created. I like teaching, so I run a personal YouTube channel where I take academic theories and present them to a general audience that wants to become conscious media consumers. I also keep my analytical eye going as I review black metal and dungeon synth albums for Blacforje.</p>
+          <p>The systems side is rarer for a writer. I build agentic Claude workflows and n8n automations that handle the repeatable parts of production, so the hours go to the work that needs a human.</p>
+          <p>Before any of it, I taught college writing and finished a 4.0 master's in English at Texas Tech University. That training still drives how I work. I love to take a dense idea, break it down to find its spine and inner workings, and rebuild it for a reader in plain words they can use.</p>
+        </div>
+
+        <div class="chips" aria-label="Core skills">
+          <span class="chip">Editorial strategy</span>
+          <span class="chip">Agentic Claude systems</span>
+          <span class="chip">n8n automation</span>
+          <span class="chip">SEO / CRO</span>
+          <span class="chip">OKR planning</span>
+          <span class="chip">WordPress / Liquid CMS</span>
+          <span class="chip">Cohort analysis</span>
+          <span class="chip">Prompt engineering</span>
+        </div>
+
+        <!-- Education & experience -->
+        <div class="cv" aria-label="Education and experience">
+          <div class="cv__tabs" role="tablist" aria-label="Filter by type">
+            <button class="cv__tab is-active" type="button" role="tab" aria-selected="true" data-filter="exp">Experience</button>
+            <button class="cv__tab" type="button" role="tab" aria-selected="false" data-filter="edu">Education</button>
+            <button class="cv__tab" type="button" role="tab" aria-selected="false" data-filter="add">Additional</button>
+          </div>
+          <div class="cv__list">
+            <div class="cv__row" data-cat="exp">
+              <div class="when">Sep 2025 – Jun 2026</div>
+              <div class="what"><b>Senior Editor</b><span>moveBuddha · Remote</span></div>
+            </div>
+            <div class="cv__row" data-cat="add">
+              <div class="when">Feb 2024 – Present</div>
+              <div class="what"><b>Contributing Writer</b><span>Blacforje Magazine · Remote</span></div>
+            </div>
+            <div class="cv__row" data-cat="exp">
+              <div class="when">Feb 2023 – Aug 2025</div>
+              <div class="what"><b>Senior Content Producer</b><span>Home Solutions · Remote</span></div>
+            </div>
+            <div class="cv__row" data-cat="exp">
+              <div class="when">Nov 2020 – Feb 2023</div>
+              <div class="what"><b>Content Producer</b><span>Three Ships · Remote</span></div>
+            </div>
+            <div class="cv__row" data-cat="add">
+              <div class="when">May 2020 – Present</div>
+              <div class="what"><b>Founder</b><span>Seph Hawkins YouTube Channel</span></div>
+            </div>
+            <div class="cv__row" data-cat="add">
+              <div class="when">Aug 2018 – May 2020</div>
+              <div class="what"><b>Graduate Teaching Assistant</b><span>Texas Tech University</span></div>
+            </div>
+            <div class="cv__row" data-cat="edu">
+              <div class="when">2018 – 2020</div>
+              <div class="what"><b>MA, English Language &amp; Literature</b><span>Texas Tech University · 4.0 GPA</span></div>
+            </div>
+            <div class="cv__row" data-cat="edu">
+              <div class="when">2014 – 2018</div>
+              <div class="what"><b>BA, English Language &amp; Literature</b><span>University of West Georgia · George D. Walker English Scholarship</span></div>
+            </div>
+            <div class="cv__row" data-cat="add">
+              <div class="when">2014 – 2020</div>
+              <div class="what"><b>Earlier experience</b><span>Copywriter, Elevate Counseling Center (2020) · Copywriter, The Bronx Community Foundation (2020) · ESL Instructor, VIPKid (2019) · Research Assistant, Univ. of West Georgia (2017–2018) · Junior Editor, Gamnesia (2014–2016) · Writer, Odyssey (2016–2017)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================  CONTENT PRODUCER  =========================== -->
+    <section id="content-producer" class="section">
+      <div class="section__aside"><div class="sticky">
+        <div class="secsym" role="img" aria-label="Sandworm — Dune" title="II · Sandworm — Dune"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle class="ring" cx="32" cy="32" r="29" stroke-width="1.3"/><path fill="currentColor" d="M18 51 C 14 44 14 35 19 28 C 22 23 28 20 34 21 L 41 28 C 35 29 30 32 28 38 C 26 43 27 48 31 51 Z"/><g fill="none" stroke="var(--paper)" stroke-width="1.1" opacity="0.75" stroke-linecap="round"><path d="M18 45 C 21 44 25 44 28 45"/><path d="M18.5 39 C 22 38 26 38 29 40"/><path d="M22 33 C 25 32 29 32 32 34"/></g><circle cx="39" cy="22" r="10.6" fill="currentColor"/><circle class="cut" cx="39" cy="22" r="8.6"/><g fill="currentColor"><path d="M36.9 13.1 L41.1 13.1 L39.0 18.8 Z"/><path d="M43.8 14.2 L46.8 17.2 L41.3 19.7 Z"/><path d="M47.9 19.9 L47.9 24.1 L42.2 22.0 Z"/><path d="M46.8 26.8 L43.8 29.8 L41.3 24.3 Z"/><path d="M41.1 30.9 L36.9 30.9 L39.0 25.2 Z"/><path d="M34.2 29.8 L31.2 26.8 L36.7 24.3 Z"/><path d="M30.1 24.1 L30.1 19.9 L35.8 22.0 Z"/><path d="M31.2 17.2 L34.2 14.2 L36.7 19.7 Z"/></g><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M9 50 C 18 46 26 47 33 50 C 40 52 47 51 55 48"/><path fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.45" d="M12 54 C 16 52 21 52 25 54"/></svg></div>
+        <span class="eyebrow">Practice</span>      </div></div>
+      <div>
+        <h2 class="section__title serif">Content Strategist</h2>
+        <p class="section__dek">Reported, search-aware writing that reads like a person made it — and built to perform. Words, structure, the facts underneath, and the search and conversion goals they're written to move.</p>
+
+        <div class="entries">
+          <article class="entry">
+            <div class="entry__meta"><span class="k">moveBuddha</span>Senior Editor<br>2025–2026<br><span class="tag">#editorial</span></div>
+            <div>
+              <h3 class="serif">Editorial Consistency System</h3>
+              <p class="entry__dek">Quarterly blog health checks and shared Claude Cowork plug-ins that kept voice, facts, and pricing aligned across the whole site.</p>
+              <div class="prose">
+                <p>I inherited a static, blog-first site with real technical debt and editorial drift. Pricing and company details didn't match from one page to the next. That cost us a weaker Google rank, fewer and fuzzier mentions in AI Overviews, and a softer conversion rate.</p>
+                <p>I fixed it on two tracks. First came quarterly blog health checks in ClickUp, focused on the highest-value pages. I picked these by reading Google Search Console data against each page's SEO history. Second, I rewrote moveBuddha's internal style guide and turned its rules into four Claude Cowork plug-ins the whole team could run. Each one handled a single check: voice consistency, subject-matter expert (SME) input, conversion best practices (CRO), and data accuracy. Prices and company facts finally lined up across the site.</p>
+                <p>The brand reads as one clear authority on moving again. It now shows up more often, and more clearly, in AI search for both LLM chatbots and Google's AI Overviews, roughly from 0&ndash;1 average AIO appearances to 7+. Priority pages climbed in Google rank, increasing approximately 5 positions on average within a week. Consistent facts and one voice are what readers and AI engines trust, and trust is what lifts rank and conversions.</p>
+              </div>
+              <div class="media ratio-16x9 is-filled" role="img" aria-label="moveBuddha editorial consistency system: blog pages routed through four Claude Cowork plug-in checks to a single aligned, published standard.">
+                <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                  <title>moveBuddha editorial consistency system</title>
+                  <desc>A route diagram: blog pages, drawn from Google Search Console and SEO history, pass through four Claude Cowork checks — voice, SME, CRO, and data — to one aligned, published standard.</desc>
+                  <!-- header -->
+                  <text x="42" y="46" style="fill:var(--muted)" font-family="'Space Mono',monospace" font-size="11" letter-spacing="1.5">QUARTERLY BLOG HEALTH CHECK</text>
+                  <text x="42" y="86" font-family="Inter,sans-serif" font-weight="800" font-size="30" letter-spacing="-0.5"><tspan style="fill:var(--ink)">move</tspan><tspan style="fill:var(--mb-teal)">Buddha</tspan></text>
+                  <line x1="44" y1="101" x2="104" y2="101" style="stroke:var(--mb-teal)" stroke-width="2.5"/>
+                  <text x="42" y="127" style="fill:var(--ink-soft)" font-family="Inter,sans-serif" font-size="12.5">Google Search Console + SEO history &#8594; highest-value pages</text>
+                  <!-- moving-box stack (brand motif) -->
+                  <g style="fill:var(--paper);stroke:var(--mb-teal)" stroke-width="1.4">
+                    <rect x="520" y="62" width="34" height="30" rx="3"/>
+                    <line x1="520" y1="72" x2="554" y2="72"/><line x1="537" y1="62" x2="537" y2="72"/>
+                    <rect x="556" y="70" width="30" height="26" rx="3"/>
+                    <line x1="556" y1="79" x2="586" y2="79"/><line x1="571" y1="70" x2="571" y2="79"/>
+                    <rect x="540" y="42" width="30" height="24" rx="3"/>
+                    <line x1="540" y1="51" x2="570" y2="51"/><line x1="555" y1="42" x2="555" y2="51"/>
+                  </g>
+                  <line x1="42" y1="152" x2="598" y2="152" style="stroke:var(--rule-soft)" stroke-width="1"/>
+                  <!-- route -->
+                  <line x1="86" y1="232" x2="554" y2="232" style="stroke:var(--mb-teal)" stroke-width="2" stroke-dasharray="2 7" stroke-linecap="round"/>
+                  <!-- start: blog page -->
+                  <g style="fill:var(--paper);stroke:var(--ink-soft)" stroke-width="1.4">
+                    <rect x="73" y="216" width="26" height="32" rx="3"/>
+                  </g>
+                  <g style="stroke:var(--ink-soft)" stroke-width="1.3" stroke-linecap="round">
+                    <line x1="79" y1="225" x2="93" y2="225"/><line x1="79" y1="232" x2="93" y2="232"/><line x1="79" y1="239" x2="89" y2="239"/>
+                  </g>
+                  <text x="86" y="272" text-anchor="middle" style="fill:var(--muted)" font-family="Inter,sans-serif" font-size="11.5">Blog page</text>
+                  <!-- four checks -->
+                  <g>
+                    <circle cx="180" cy="232" r="19" style="fill:var(--paper);stroke:var(--mb-teal)" stroke-width="1.6"/>
+                    <polyline points="173,232 178,238 188,225" style="fill:none;stroke:var(--mb-teal)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <text x="180" y="272" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">Voice</text>
+                  </g>
+                  <g>
+                    <circle cx="273" cy="232" r="19" style="fill:var(--paper);stroke:var(--mb-teal)" stroke-width="1.6"/>
+                    <polyline points="266,232 271,238 281,225" style="fill:none;stroke:var(--mb-teal)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <text x="273" y="272" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">SME</text>
+                  </g>
+                  <g>
+                    <circle cx="367" cy="232" r="19" style="fill:var(--paper);stroke:var(--mb-teal)" stroke-width="1.6"/>
+                    <polyline points="360,232 365,238 375,225" style="fill:none;stroke:var(--mb-teal)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <text x="367" y="272" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">CRO</text>
+                  </g>
+                  <g>
+                    <circle cx="460" cy="232" r="19" style="fill:var(--paper);stroke:var(--mb-teal)" stroke-width="1.6"/>
+                    <polyline points="453,232 458,238 468,225" style="fill:none;stroke:var(--mb-teal)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <text x="460" y="272" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">Data</text>
+                  </g>
+                  <!-- end: aligned destination pin -->
+                  <path d="M554 210 a16 16 0 0 1 16 16 c0 12 -16 24 -16 24 c0 0 -16 -12 -16 -24 a16 16 0 0 1 16 -16 z" style="fill:var(--mb-teal)"/>
+                  <circle cx="554" cy="226" r="6" style="fill:var(--paper)"/>
+                  <text x="554" y="272" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">Aligned</text>
+                  <!-- caption -->
+                  <text x="320" y="322" text-anchor="middle" style="fill:var(--ink-soft)" font-family="Fraunces,serif" font-style="italic" font-size="13.5">Every page takes the same route to consistent voice, facts, and pricing.</text>
+                </svg>
+              </div>
+            </div>
+          </article>
+
+          <article class="entry">
+            <div class="entry__meta"><span class="k">Home Solutions</span>Senior Content Producer<br>2023–2025<br><span class="tag">#clean-energy</span></div>
+            <div>
+              <h3 class="serif">Solar &amp; Clean-Energy Explainers</h3>
+              <p class="entry__dek">Plain-language guides on installation, costs, tax credits, and SRECs — built around real search demand and written to convert — that helped grow solar into a pillar category.</p>
+              <div class="prose">
+                <p>I built residential solar from a minor topic into a flagship vertical. Over my time here I wrote hundreds of solar pieces across five-plus media partner websites, including guides on installation, costs, federal and state tax credits, and SRECs, and grew the category into one of the top three we supplied to those partners.</p>
+                <p>Getting there meant turning dense, scattered information into something a homeowner could act on. I synthesized solar industry and incentive data that was technically public but hard to parse, ran surveys of 3,000+ residential solar customers, and interviewed 10+ subject-matter experts to ground every recommendation. I also helped develop programmatic local campaigns that adapted the category to specific markets and search demand.</p>
+                <p>The vertical drove enough qualified leads to our solar partners to stand on its own as a flagship category. Clear, trustworthy explainers are what turn a curious homeowner into a lead, and that's what moved solar from a side topic to a pillar of what we delivered.</p>
+                <p>Here are a few representative pieces:</p>
+              </div>
+              <div class="media-row">
+                <a class="card-link" href="https://www.thisoldhouse.com/solar-alternative-energy/best-solar-companies" target="_blank" rel="noopener">
+                  <span class="card-link__inner">
+                    <span class="card-link__pub">This Old House</span>
+                    <span class="card-link__title">Best Solar Companies of 2026</span>
+                    <span class="card-link__note">The category's top-of-funnel anchor &mdash; a national installer comparison and buyer's guide.</span>
+                    <span class="card-link__go">Read &rarr;</span>
+                  </span>
+                </a>
+                <a class="card-link" href="https://www.thisoldhouse.com/solar-alternative-energy/sunrun-review" target="_blank" rel="noopener">
+                  <span class="card-link__inner">
+                    <span class="card-link__pub">This Old House</span>
+                    <span class="card-link__title">Sunrun Solar Review</span>
+                    <span class="card-link__note">A methodology-backed company review covering cost, warranty, financing, and real customer sentiment.</span>
+                    <span class="card-link__go">Read &rarr;</span>
+                  </span>
+                </a>
+                <a class="card-link" href="https://www.thisoldhouse.com/solar-alternative-energy/federal-solar-tax-credit" target="_blank" rel="noopener">
+                  <span class="card-link__inner">
+                    <span class="card-link__pub">This Old House</span>
+                    <span class="card-link__title">Federal Solar Tax Credit Guide</span>
+                    <span class="card-link__note">A plain-language walkthrough of the 30% ITC &mdash; how it works, who qualifies, and how to claim it.</span>
+                    <span class="card-link__go">Read &rarr;</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="entry">
+            <div class="entry__meta"><span class="k">Three Ships</span>Content Producer<br>2020–2023<br><span class="tag">#reviews</span></div>
+            <div>
+              <h3 class="serif">Reviews &amp; Roundups at Scale</h3>
+              <p class="entry__dek">Brand-aligned, SEO-optimized articles across consumer verticals, with visual sourcing and QA.</p>
+              <div class="prose">
+                <p>This is where I learned to produce at volume. I wrote articles, reviews, and round-ups across consumer verticals. Each one was accurate, search-optimized, on brand, on time, tied to a real question a reader was already asking, and built to perform once it shipped. To hit that bar piece after piece, I built a tight, repeatable production process and held myself to it.</p>
+                <p>I took constructive feedback to learn each brand's standard, then revised until the work met it. I brainstormed copy and visual ideas with the editorial team and our digital marketing partners, and made the case for which new ideas were worth building. From there I sourced the supporting images, charts, graphs, and infographics, loaded everything onto the sites, and QA'd every asset before it went live. I also kept older pieces current as the facts moved, such as pricing, promotions, and retail partnerships, and helped with outreach to media, brands, and influencers.</p>
+                <p>The home-services verticals grew faster than anything else we ran. They grew enough that Home Solutions was spun out of Three Ships as its own company, built to manage the revenue and performance this content created. A disciplined line: write, revise, illustrate, publish, QA, and update. This is what turned a content program into a business.</p>
+                <p>Here's a representative piece:</p>
+              </div>
+              <div class="media ratio-16x9 is-filled" role="img" aria-label="Three Ships editorial production line: a brief moves through write, revise, source, and publish-and-QA stages, with an update loop, ending in a flag marking the result: one million-plus dollars in revenue.">
+                <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                  <title>Three Ships editorial production line</title>
+                  <desc>A production line: a content brief passes through write, revise, source visuals, and publish-and-QA stages, with an update loop keeping older pieces current, ending in a flag marking the result: one million-plus dollars in revenue.</desc>
+                  <!-- header -->
+                  <text x="42" y="46" style="fill:var(--muted)" font-family="'Space Mono',monospace" font-size="11" letter-spacing="1.5">EDITORIAL PRODUCTION LINE</text>
+                  <text x="42" y="86" font-family="Inter,sans-serif" font-weight="800" font-size="30" letter-spacing="-0.5"><tspan style="fill:var(--ink)">Three </tspan><tspan style="fill:var(--accent)">Ships</tspan></text>
+                  <line x1="44" y1="101" x2="104" y2="101" style="stroke:var(--accent)" stroke-width="2.5"/>
+                  <text x="42" y="127" style="fill:var(--ink-soft)" font-family="Inter,sans-serif" font-size="12.5">Reviews, round-ups &amp; buyer's guides &#8594; produced at scale</text>
+                  <!-- three-sails motif -->
+                  <g style="fill:var(--paper);stroke:var(--accent)" stroke-width="1.4" stroke-linejoin="round">
+                    <path d="M572 44 l0 34 l-15 0 z"/>
+                    <path d="M556 54 l0 24 l-13 0 z"/>
+                    <path d="M588 54 l0 24 l13 0 z"/>
+                  </g>
+                  <path d="M538 84 q34 12 68 0" style="fill:none;stroke:var(--accent)" stroke-width="1.4" stroke-linecap="round"/>
+                  <line x1="42" y1="152" x2="598" y2="152" style="stroke:var(--rule-soft)" stroke-width="1"/>
+                  <!-- update feedback loop -->
+                  <path d="M520 212 C 520 182, 120 182, 110 208" style="fill:none;stroke:var(--accent)" stroke-width="1.4" stroke-dasharray="2 6" stroke-linecap="round"/>
+                  <polyline points="104,199 110,209 120,205" style="fill:none;stroke:var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="316" y="180" text-anchor="middle" style="fill:var(--muted)" font-family="Inter,sans-serif" font-size="11">Update &#8212; pricing, promos &amp; retail partners kept current</text>
+                  <!-- production line -->
+                  <line x1="92" y1="232" x2="566" y2="232" style="stroke:var(--accent)" stroke-width="2" stroke-dasharray="2 7" stroke-linecap="round"/>
+                  <!-- start: brief (stacked pages = volume) -->
+                  <g style="fill:var(--paper);stroke:var(--ink-soft)" stroke-width="1.3">
+                    <rect x="66" y="219" width="24" height="30" rx="3" opacity="0.5"/>
+                    <rect x="71" y="216" width="24" height="30" rx="3"/>
+                  </g>
+                  <g style="stroke:var(--ink-soft)" stroke-width="1.2" stroke-linecap="round">
+                    <line x1="76" y1="225" x2="90" y2="225"/><line x1="76" y1="231" x2="90" y2="231"/><line x1="76" y1="237" x2="86" y2="237"/>
+                  </g>
+                  <text x="82" y="272" text-anchor="middle" style="fill:var(--muted)" font-family="Inter,sans-serif" font-size="11.5">Brief</text>
+                  <!-- node 1: write -->
+                  <g>
+                    <circle cx="176" cy="232" r="19" style="fill:var(--paper);stroke:var(--accent)" stroke-width="1.6"/>
+                    <line x1="169" y1="240" x2="182" y2="227" style="stroke:var(--accent)" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M182 227 l4 -2 l-2 4 z" style="fill:var(--accent);stroke:var(--accent)" stroke-width="1" stroke-linejoin="round"/>
+                    <line x1="168" y1="241" x2="172" y2="240" style="stroke:var(--accent)" stroke-width="2" stroke-linecap="round"/>
+                    <text x="176" y="272" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">Write</text>
+                  </g>
+                  <!-- node 2: revise -->
+                  <g>
+                    <circle cx="272" cy="232" r="19" style="fill:var(--paper);stroke:var(--accent)" stroke-width="1.6"/>
+                    <path d="M265 226 a9 9 0 1 1 -1 8" style="fill:none;stroke:var(--accent)" stroke-width="1.8" stroke-linecap="round"/>
+                    <polyline points="261,221 266,225 270,220" style="fill:none;stroke:var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <text x="272" y="272" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">Revise</text>
+                  </g>
+                  <!-- node 3: source visuals -->
+                  <g>
+                    <circle cx="368" cy="232" r="19" style="fill:var(--paper);stroke:var(--accent)" stroke-width="1.6"/>
+                    <rect x="359" y="225" width="18" height="14" rx="2" style="fill:none;stroke:var(--accent)" stroke-width="1.6"/>
+                    <circle cx="364" cy="230" r="1.8" style="fill:var(--accent)"/>
+                    <polyline points="360,238 366,233 371,237 376,231" style="fill:none;stroke:var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <text x="368" y="272" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">Source</text>
+                  </g>
+                  <!-- node 4: publish & QA -->
+                  <g>
+                    <circle cx="464" cy="232" r="19" style="fill:var(--paper);stroke:var(--accent)" stroke-width="1.6"/>
+                    <line x1="464" y1="239" x2="464" y2="226" style="stroke:var(--accent)" stroke-width="2" stroke-linecap="round"/>
+                    <polyline points="459,231 464,225 469,231" style="fill:none;stroke:var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <text x="464" y="272" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">Publish &amp; QA</text>
+                  </g>
+                  <!-- end: spin-out flag -->
+                  <line x1="580" y1="248" x2="580" y2="206" style="stroke:var(--accent)" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M580 207 l24 7 l-24 7 z" style="fill:var(--accent)"/>
+                  <text x="580" y="272" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">$1,000,000+</text>
+                </svg>
+              </div>
+              <div class="media-row">
+                <a class="card-link" href="https://www.thisoldhouse.com/windows/best-window-brands" target="_blank" rel="noopener">
+                  <span class="card-link__inner">
+                    <span class="card-link__pub">This Old House</span>
+                    <span class="card-link__title">Best Window Replacement Brands of 2026</span>
+                    <span class="card-link__note">A multi-brand buyer's guide &mdash; picks, costs, window types, and homeowner survey data across the top national brands.</span>
+                    <span class="card-link__go">Read &rarr;</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================  AI SYSTEMS BUILDER  =========================== -->
+    <section id="ai-systems" class="section">
+      <div class="section__aside"><div class="sticky">
+        <div class="secsym" role="img" aria-label="The One Ring — The Lord of the Rings" title="III · The One Ring — The Lord of the Rings"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle class="ring" cx="32" cy="32" r="29" stroke-width="1.3"/><circle cx="32" cy="32" r="14.5" fill="none" stroke="currentColor" stroke-width="5.5"/><circle class="cut-s" cx="32" cy="32" r="14.5" fill="none" stroke-width="1.7" stroke-dasharray="1.6 3.2" opacity="0.8"/><path class="cut-s" d="M23 26 C 25 23 28 21 31 20.4" fill="none" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/></svg></div>
+        <span class="eyebrow">Practice</span>      </div></div>
+      <div>
+        <h2 class="section__title serif">AI Systems Builder</h2>
+        <p class="section__dek">Agentic Claude workflows and n8n automations that take the repeatable work off the team's plate — and turn performance data into action the team can take.</p>
+
+        <p class="pull serif">Don't just write the content. Build the thing that helps you write more of it.<cite>Working principle</cite></p>
+
+        <div class="entries">
+          <article class="entry">
+            <div class="entry__meta"><span class="k">moveBuddha</span>Built &amp; deployed<br>2025–2026<br><span class="tag">#claude #n8n</span></div>
+            <div>
+              <h3 class="serif">Agentic Content Pipeline</h3>
+              <p class="entry__dek">Claude agents and an n8n pipeline that turn reader-survey data into publishable rough drafts in minutes.</p>
+              <div class="prose">
+                <p>Some editorial work is judgment. A lot of it is assembly. It's the same shape of article, built from the same kinds of inputs, over and over. I built agents to take the assembly off people's plates so the judgment got more time and effort.</p>
+                <p>Two systems came out of this at moveBuddha. The first sits behind the Editorial Consistency System in Content Producer above: Claude agents standing in for fixed points in our review process, which is what let us push roughly twice the volume of revised pages per week during the site recovery. The second is the one drawn here. It's an n8n pipeline for our Better Moves project. Readers submit their move details through a survey that lands in a Google Sheet. The automation pulls each submission, runs consistency checks across the fields, and hands the data to a set of Claude agents that draft against a fixed article outline and our style guide in markdown. A few minutes later there's a rough draft. A writer takes it from there, with a human read, QA, and the visual elements.</p>
+                <p>The point was never to publish on autopilot. It was to skip the blank page. With the structure, the survey data, and the checks doing the first pass, we turned out Better Moves articles at two to three a week, up from one every couple of weeks. The writer still owns the final piece. They just start from a real draft instead of a blank document.</p>
+                <p>Here's a representative piece:</p>
+              </div>
+              <div class="media ratio-16x9 is-filled" role="img" aria-label="moveBuddha Better Moves pipeline: a reader survey lands in a Google Sheet, n8n pulls each submission, consistency checks run across the fields, Claude agents draft against a style guide and fixed outline in minutes, then a writer QAs and the piece is published — two to three articles a week, up from one every couple of weeks.">
+                <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                  <title>moveBuddha Better Moves agentic pipeline</title>
+                  <desc>A pipeline: a reader survey lands in a Google Sheet; n8n pulls each submission; consistency checks run across the fields; Claude agents assemble a rough draft in minutes against a style guide and a fixed outline; a writer QAs; the article is published — two to three a week, up from one every couple of weeks.</desc>
+                  <!-- header -->
+                  <text x="42" y="46" style="fill:var(--muted)" font-family="'Space Mono',monospace" font-size="11" letter-spacing="1.5">BETTER MOVES &#183; AGENTIC DRAFTING PIPELINE</text>
+                  <text x="42" y="86" font-family="Inter,sans-serif" font-weight="800" font-size="30" letter-spacing="-0.5"><tspan style="fill:var(--ink)">move</tspan><tspan style="fill:var(--mb-teal)">Buddha</tspan></text>
+                  <line x1="44" y1="101" x2="104" y2="101" style="stroke:var(--mb-teal)" stroke-width="2.5"/>
+                  <text x="42" y="127" style="fill:var(--ink-soft)" font-family="Inter,sans-serif" font-size="12.5">Reader survey in a Google Sheet &#8594; n8n + Claude agents &#8594; rough draft in minutes</text>
+                  <!-- moving-box motif (brand) -->
+                  <g style="fill:var(--paper);stroke:var(--mb-teal)" stroke-width="1.4">
+                    <rect x="520" y="62" width="34" height="30" rx="3"/>
+                    <line x1="520" y1="72" x2="554" y2="72"/><line x1="537" y1="62" x2="537" y2="72"/>
+                    <rect x="556" y="70" width="30" height="26" rx="3"/>
+                    <line x1="556" y1="79" x2="586" y2="79"/><line x1="571" y1="70" x2="571" y2="79"/>
+                    <rect x="540" y="42" width="30" height="24" rx="3"/>
+                    <line x1="540" y1="51" x2="570" y2="51"/><line x1="555" y1="42" x2="555" y2="51"/>
+                  </g>
+                  <line x1="42" y1="152" x2="598" y2="152" style="stroke:var(--rule-soft)" stroke-width="1"/>
+                  <!-- reference inputs feeding the draft node -->
+                  <rect x="289" y="166" width="156" height="28" rx="6" style="fill:var(--paper);stroke:var(--rule)" stroke-width="1"/>
+                  <text x="367" y="184" text-anchor="middle" style="fill:var(--ink-soft)" font-family="Inter,sans-serif" font-size="11">Style guide .md + fixed outline</text>
+                  <line x1="367" y1="195" x2="367" y2="209" style="stroke:var(--mb-teal)" stroke-width="1.4" stroke-dasharray="2 4" stroke-linecap="round"/>
+                  <polyline points="363,205 367,210 371,205" style="fill:none;stroke:var(--mb-teal)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <!-- pipeline -->
+                  <line x1="100" y1="232" x2="540" y2="232" style="stroke:var(--mb-teal)" stroke-width="2" stroke-dasharray="2 7" stroke-linecap="round"/>
+                  <!-- trigger: survey in a Google Sheet -->
+                  <g style="fill:var(--paper);stroke:var(--ink-soft)" stroke-width="1.4">
+                    <rect x="73" y="216" width="26" height="32" rx="3"/>
+                  </g>
+                  <g style="stroke:var(--ink-soft)" stroke-width="1.1" stroke-linecap="round">
+                    <line x1="73" y1="226" x2="99" y2="226"/><line x1="73" y1="237" x2="99" y2="237"/>
+                    <line x1="86" y1="216" x2="86" y2="248"/>
+                  </g>
+                  <text x="86" y="270" text-anchor="middle" style="fill:var(--muted)" font-family="Inter,sans-serif" font-size="11.5">Survey</text>
+                  <text x="86" y="284" text-anchor="middle" style="fill:var(--muted)" font-family="Inter,sans-serif" font-size="11.5">&#8594; Sheet</text>
+                  <!-- node 1: pull (n8n) -->
+                  <g>
+                    <circle cx="180" cy="232" r="19" style="fill:var(--paper);stroke:var(--mb-teal)" stroke-width="1.6"/>
+                    <line x1="180" y1="223" x2="180" y2="237" style="stroke:var(--mb-teal)" stroke-width="2" stroke-linecap="round"/>
+                    <polyline points="174,231 180,238 186,231" style="fill:none;stroke:var(--mb-teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="171" y1="242" x2="189" y2="242" style="stroke:var(--mb-teal)" stroke-width="2" stroke-linecap="round"/>
+                    <text x="180" y="270" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">Pull</text>
+                    <text x="180" y="284" text-anchor="middle" style="fill:var(--muted)" font-family="Inter,sans-serif" font-size="10.5">n8n</text>
+                  </g>
+                  <!-- node 2: consistency checks -->
+                  <g>
+                    <circle cx="273" cy="232" r="19" style="fill:var(--paper);stroke:var(--mb-teal)" stroke-width="1.6"/>
+                    <g style="stroke:var(--mb-teal)" stroke-width="1.5" stroke-linecap="round">
+                      <line x1="265" y1="227" x2="277" y2="227"/><line x1="265" y1="233" x2="277" y2="233"/><line x1="265" y1="239" x2="272" y2="239"/>
+                    </g>
+                    <polyline points="276,239 280,243 286,233" style="fill:none;stroke:var(--mb-teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <text x="273" y="270" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">Checks</text>
+                  </g>
+                  <!-- node 3: agents draft -->
+                  <g>
+                    <circle cx="367" cy="232" r="19" style="fill:var(--paper);stroke:var(--mb-teal)" stroke-width="1.6"/>
+                    <rect x="360" y="223" width="14" height="18" rx="1.5" style="fill:var(--paper);stroke:var(--mb-teal)" stroke-width="1.5"/>
+                    <g style="stroke:var(--mb-teal)" stroke-width="1.1" stroke-linecap="round">
+                      <line x1="363" y1="228" x2="371" y2="228"/><line x1="363" y1="232" x2="371" y2="232"/><line x1="363" y1="236" x2="368" y2="236"/>
+                    </g>
+                    <g style="stroke:var(--mb-teal)" stroke-width="1.3" stroke-linecap="round">
+                      <line x1="378" y1="220" x2="378" y2="228"/><line x1="374" y1="224" x2="382" y2="224"/>
+                    </g>
+                    <text x="367" y="270" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">Draft</text>
+                    <text x="367" y="284" text-anchor="middle" style="fill:var(--muted)" font-family="Inter,sans-serif" font-size="10.5">agents &#183; minutes</text>
+                  </g>
+                  <!-- node 4: writer QA -->
+                  <g>
+                    <circle cx="460" cy="232" r="19" style="fill:var(--paper);stroke:var(--mb-teal)" stroke-width="1.6"/>
+                    <path d="M450 232 q10 -9 20 0 q-10 9 -20 0 z" style="fill:none;stroke:var(--mb-teal)" stroke-width="1.5" stroke-linejoin="round"/>
+                    <circle cx="460" cy="232" r="3.2" style="fill:var(--mb-teal)"/>
+                    <text x="460" y="270" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">Writer QA</text>
+                    <text x="460" y="284" text-anchor="middle" style="fill:var(--muted)" font-family="Inter,sans-serif" font-size="10.5">+ visuals</text>
+                  </g>
+                  <!-- output: published pin -->
+                  <path d="M554 210 a16 16 0 0 1 16 16 c0 12 -16 24 -16 24 c0 0 -16 -12 -16 -24 a16 16 0 0 1 16 -16 z" style="fill:var(--mb-teal)"/>
+                  <circle cx="554" cy="226" r="6" style="fill:var(--paper)"/>
+                  <text x="554" y="270" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">Published</text>
+                  <!-- caption -->
+                  <text x="320" y="328" text-anchor="middle" style="fill:var(--ink-soft)" font-family="Fraunces,serif" font-style="italic" font-size="13.5">2&#8211;3 Better Moves articles a week &#8212; up from one every couple of weeks.</text>
+                </svg>
+              </div>
+              <div class="media-row">
+                <a class="card-link" href="https://www.movebuddha.com/blog/coleman-william-ne-co/" target="_blank" rel="noopener">
+                  <span class="card-link__inner">
+                    <span class="card-link__pub">moveBuddha &middot; Better Moves</span>
+                    <span class="card-link__title">I Got $500 to Share About My Move from Nebraska to Colorado</span>
+                    <span class="card-link__note">A Better Moves piece &mdash; the as-told story of William B.'s 512-mile move from Nebraska to Colorado, with his own quotes, real costs, and mover ratings.</span>
+                    <span class="card-link__go">Read &rarr;</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="entry">
+            <div class="entry__meta"><span class="k">Home Solutions</span>Designed<br>2023–2025<br><span class="tag">#custom-models</span></div>
+            <div>
+              <h3 class="serif">Custom Claude &amp; GPT Models</h3>
+              <p class="entry__dek">Purpose-built models and prompt workflows that scaled content production and cut manual overhead.</p>
+              <div class="prose">
+                <p>Good home-services content lives or dies on numbers most writers can't get: what a solar install actually runs, what people really pay movers, what a window replacement costs once the quote is in. We worked to get those numbers. They sat in a database of more than 5,000 consumer survey responses across solar, moving, and replacement windows. The problem was using them fast enough to matter.</p>
+                <p>So I built custom GPT and Claude models that read straight from that survey data. A writer could ask for the average cost in a category, run the formulas behind it, and pull real, defensible pricing in the time it used to take to track down a single figure. That last part is the hard part in home services, where honest pricing is tough to source at all. The models did the synthesis, such as calculating averages, breakdowns, and scaled cost data, and the prompt workflows behind them turned a slow manual research slog into something close to instant. They replaced hours of digging through spreadsheets for one stat.</p>
+                <p>Two things came out of it. The data-backed pages were the kind that Google's E-E-A-T guidelines reward. We could rapidly share first-hand experience and numbers a reader can trust, and we saw it in the rankings and in higher conversion, as readers believed what they read. The second was that a new writer could open a category and get an immediate, grounded read on where each customer cohort actually sits — their needs, their budgets, and their pain points. They could get straight to work rather than guessing their way in. Here's a published piece built on that synthesized survey data:</p>
+              </div>
+              <div class="media ratio-16x9 is-filled" role="img" aria-label="Custom models at Home Solutions: a database of more than 5,000 consumer survey responses across solar, moving, and replacement windows feeds custom GPT and Claude models that synthesize averages, formulas, and hard-to-source cost data. The output is data-backed pages that earn Google E-E-A-T trust signals, lifting rankings and conversion, plus a fast, grounded baseline for new writers entering a category.">
+                <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                  <title>Home Solutions custom-model survey-data synthesis</title>
+                  <desc>More than 5,000 consumer survey responses across solar, moving, and replacement windows feed custom GPT and Claude models; the models synthesize averages, formulas, and scaled cost data; the output is data-backed pages that earn E-E-A-T trust and lift rank and conversion, and a fast baseline for new writers.</desc>
+                  <!-- header -->
+                  <text x="42" y="46" style="fill:var(--muted)" font-family="'Space Mono',monospace" font-size="11" letter-spacing="1.5">CUSTOM MODELS &#183; SURVEY-DATA SYNTHESIS</text>
+                  <text x="42" y="86" font-family="Inter,sans-serif" font-weight="800" font-size="30" letter-spacing="-0.5"><tspan style="fill:var(--ink)">Home </tspan><tspan style="fill:var(--accent)">Solutions</tspan></text>
+                  <line x1="44" y1="101" x2="104" y2="101" style="stroke:var(--accent)" stroke-width="2.5"/>
+                  <text x="42" y="127" style="fill:var(--ink-soft)" font-family="Inter,sans-serif" font-size="12.5">5,000+ survey responses &#8594; custom AI models &#8594; real cost data, fast</text>
+                  <!-- home + windows motif (brand) -->
+                  <g style="fill:var(--paper);stroke:var(--accent)" stroke-width="1.4">
+                    <polygon points="528,66 556,46 584,66"/>
+                    <rect x="533" y="66" width="46" height="30" rx="1.5"/>
+                  </g>
+                  <g style="stroke:var(--accent)" stroke-width="1.1">
+                    <line x1="556" y1="66" x2="556" y2="96"/>
+                    <line x1="533" y1="81" x2="579" y2="81"/>
+                  </g>
+                  <line x1="42" y1="152" x2="598" y2="152" style="stroke:var(--rule-soft)" stroke-width="1"/>
+                  <!-- reference callout feeding the synthesis node -->
+                  <rect x="208" y="166" width="164" height="28" rx="6" style="fill:var(--paper);stroke:var(--rule)" stroke-width="1"/>
+                  <text x="290" y="184" text-anchor="middle" style="fill:var(--ink-soft)" font-family="Inter,sans-serif" font-size="11">Proprietary cost data, scaled</text>
+                  <line x1="290" y1="195" x2="290" y2="209" style="stroke:var(--accent)" stroke-width="1.4" stroke-dasharray="2 4" stroke-linecap="round"/>
+                  <polyline points="286,205 290,210 294,205" style="fill:none;stroke:var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <!-- spine -->
+                  <line x1="118" y1="232" x2="492" y2="232" style="stroke:var(--accent)" stroke-width="2" stroke-dasharray="2 7" stroke-linecap="round"/>
+                  <!-- input: survey-response database -->
+                  <g style="fill:var(--paper);stroke:var(--accent)" stroke-width="1.4">
+                    <rect x="79" y="220" width="26" height="32" rx="2.5"/>
+                  </g>
+                  <g style="stroke:var(--accent)" stroke-width="1.1" stroke-linecap="round">
+                    <line x1="84" y1="228" x2="100" y2="228"/>
+                    <line x1="84" y1="234" x2="100" y2="234"/>
+                    <line x1="84" y1="240" x2="95" y2="240"/>
+                  </g>
+                  <text x="92" y="270" text-anchor="middle" style="fill:var(--muted)" font-family="Inter,sans-serif" font-size="11.5">5,000+</text>
+                  <text x="92" y="284" text-anchor="middle" style="fill:var(--muted)" font-family="Inter,sans-serif" font-size="11.5">responses</text>
+                  <!-- node 1: model -->
+                  <g>
+                    <circle cx="190" cy="232" r="19" style="fill:var(--paper);stroke:var(--accent)" stroke-width="1.6"/>
+                    <g style="stroke:var(--accent)" stroke-width="1.8" stroke-linecap="round">
+                      <line x1="190" y1="224" x2="190" y2="240"/>
+                      <line x1="182" y1="232" x2="198" y2="232"/>
+                      <line x1="185" y1="227" x2="195" y2="237"/>
+                      <line x1="195" y1="227" x2="185" y2="237"/>
+                    </g>
+                    <text x="190" y="270" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">Model</text>
+                    <text x="190" y="284" text-anchor="middle" style="fill:var(--muted)" font-family="Inter,sans-serif" font-size="10.5">GPT + Claude</text>
+                  </g>
+                  <!-- node 2: synthesize -->
+                  <g>
+                    <circle cx="290" cy="232" r="19" style="fill:var(--paper);stroke:var(--accent)" stroke-width="1.6"/>
+                    <g style="stroke:var(--accent)" stroke-width="2" stroke-linecap="round">
+                      <line x1="284" y1="238" x2="284" y2="233"/>
+                      <line x1="290" y1="238" x2="290" y2="227"/>
+                      <line x1="296" y1="238" x2="296" y2="230"/>
+                    </g>
+                    <line x1="281" y1="241" x2="299" y2="241" style="stroke:var(--accent)" stroke-width="1.4" stroke-linecap="round"/>
+                    <text x="290" y="270" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">Synthesize</text>
+                    <text x="290" y="284" text-anchor="middle" style="fill:var(--muted)" font-family="Inter,sans-serif" font-size="10.5">averages</text>
+                  </g>
+                  <!-- node 3: cost data (gold) -->
+                  <g>
+                    <circle cx="390" cy="232" r="19" style="fill:var(--paper);stroke:var(--accent-2)" stroke-width="1.6"/>
+                    <rect x="383" y="223" width="14" height="18" rx="1.5" style="fill:var(--paper);stroke:var(--accent-2)" stroke-width="1.5"/>
+                    <text x="390" y="236" text-anchor="middle" style="fill:var(--accent-2)" font-family="Inter,sans-serif" font-size="11" font-weight="700">$</text>
+                    <text x="390" y="270" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">Cost data</text>
+                    <text x="390" y="284" text-anchor="middle" style="fill:var(--muted)" font-family="Inter,sans-serif" font-size="10.5">+ baselines</text>
+                  </g>
+                  <!-- output: E-E-A-T pin -->
+                  <path d="M510 210 a16 16 0 0 1 16 16 c0 12 -16 24 -16 24 c0 0 -16 -12 -16 -24 a16 16 0 0 1 16 -16 z" style="fill:var(--accent)"/>
+                  <circle cx="510" cy="226" r="6" style="fill:var(--paper)"/>
+                  <text x="510" y="270" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">E-E-A-T</text>
+                  <text x="510" y="284" text-anchor="middle" style="fill:var(--muted)" font-family="Inter,sans-serif" font-size="10.5">rank + conv. &#8593;</text>
+                </svg>
+              </div>
+              <div class="media-row">
+                <a class="card-link" href="https://www.thisoldhouse.com/moving/moving-survey" target="_blank" rel="noopener">
+                  <span class="card-link__inner">
+                    <span class="card-link__pub">This Old House &middot; Survey study</span>
+                    <span class="card-link__title">2025 Moving Survey Results</span>
+                    <span class="card-link__note">Consumer survey data turned into published guidance &mdash; 1,000 movers, real cost benchmarks, and the pain points behind the numbers.</span>
+                    <span class="card-link__go">Read &rarr;</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="entry">
+            <div class="entry__meta"><span class="k">Home Solutions</span>Built<br>2024&ndash;2025<br><span class="tag">#zapier #reporting</span></div>
+            <div>
+              <h3 class="serif">Reporting Automations</h3>
+              <p class="entry__dek">Zapier flows that turn GSC and CRO performance data into a plain-language synthesis email — KPI movement, personalized per team, built on the automation tooling that powers lifecycle email.</p>
+              <div class="prose">
+                <p>Performance data for a vertical never lives in one place. Search numbers sit in Google Search Console, conversion numbers sit in a stack of CRO tables, and the vertical-specific teams who need to act on them don't have time to stitch it all together every week. By the time a trend was obvious enough to notice on its own, the best moment to react to it had often already passed.</p>
+                <p>Toward the end of my time at Home Solutions I learned Zapier and built a set of vertical-specific reporting automations to close that gap. Each one pulled from a sheet linked to GSC data, plus the CRO tables, and pushed everything into a fresh working sheet. There a ChatGPT step synthesized the raw rows into a handful of clear datapoints, and a Claude model translated those datapoints one step further, into a precise, plain-language read on what had changed and what to do about it. The finished synthesis went out as a scheduled email to each vertical's team.</p>
+                <p>The point was speed of reaction. Instead of a dashboard nobody opened, each team got a short written brief that told them where performance was moving and handed them a concrete starting place, so they could devise plans and respond to trends in the same week the data surfaced them rather than a month later. It's the analytics-and-reporting layer of a marketing team (KPI tracking, week-over-week reads, and A/B-test calls), wired to run on automation instead of a manual weekly pull. Here's a simulated, anonymized example of what landed in a team's inbox:</p>
+              </div>
+              <div class="media ratio-16x9 is-filled" role="img" aria-label="A simulated, anonymized weekly performance synthesis email for one vertical. It reports organic clicks up 12 percent week over week and average position up 1.8 spots on priority pages, both from Google Search Console, and quote-form conversion rate down 0.4 points from the CRO tables. A Claude-written 'what it means, do this' panel adds two actions: double down on the three pages driving the click lift and refresh their internal links, and A/B test the new hero CTA before spend ramps up because the quote form slipped. The flow runs Zapier into GSC and CRO sheets, ChatGPT synthesis, Claude actions, then the team inbox.">
+                <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                  <title>Sample anonymized synthesis report emailed to a vertical team</title>
+                  <desc>A simulated weekly performance synthesis email for an anonymized vertical. It pulls organic clicks and average position from Google Search Console and quote-form conversion rate from the CRO tables, then a Claude step adds a plain-language what-it-means and do-this set of actions. Produced by a Zapier flow into GSC and CRO sheets, synthesized by ChatGPT, translated by Claude, and sent to the team inbox.</desc>
+                  <!-- report card -->
+                  <rect x="40" y="30" width="560" height="294" rx="11" style="fill:var(--paper);stroke:var(--rule)" stroke-width="1.2"/>
+                  <!-- eyebrow -->
+                  <text x="62" y="58" style="fill:var(--muted)" font-family="'Space Mono',monospace" font-size="11" letter-spacing="1.5">SAMPLE OUTPUT &#183; ANONYMIZED</text>
+                  <!-- envelope glyph (it's emailed) -->
+                  <g style="fill:var(--paper);stroke:var(--accent)" stroke-width="1.4" stroke-linejoin="round">
+                    <rect x="548" y="44" width="30" height="21" rx="2"/>
+                    <polyline points="548,47 563,58 578,47" style="fill:none"/>
+                  </g>
+                  <!-- title + subline -->
+                  <text x="62" y="88" font-family="Inter,sans-serif" font-weight="800" font-size="21" letter-spacing="-0.3" style="fill:var(--ink)">Weekly Performance Synthesis</text>
+                  <text x="62" y="108" font-family="Inter,sans-serif" font-size="12" style="fill:var(--ink-soft)">Vertical A &#183; auto-sent every Monday &#183; Source: GSC + CRO sheets</text>
+                  <line x1="62" y1="121" x2="578" y2="121" style="stroke:var(--rule-soft)" stroke-width="1"/>
+                  <!-- datapoints -->
+                  <text x="62" y="144" style="fill:var(--muted)" font-family="'Space Mono',monospace" font-size="10" letter-spacing="1.2">SYNTHESIZED DATAPOINTS</text>
+                  <!-- row 1 -->
+                  <circle cx="66" cy="160" r="2" style="fill:var(--accent)"/>
+                  <text x="78" y="164" font-family="Inter,sans-serif" font-size="12.5" style="fill:var(--ink-soft)">Organic clicks &#183; GSC</text>
+                  <polygon points="498,164 508,164 503,155" style="fill:var(--accent)"/>
+                  <text x="515" y="164" font-family="Inter,sans-serif" font-size="11.5" font-weight="600" style="fill:var(--accent)">+12% WoW</text>
+                  <!-- row 2 -->
+                  <circle cx="66" cy="184" r="2" style="fill:var(--accent)"/>
+                  <text x="78" y="188" font-family="Inter,sans-serif" font-size="12.5" style="fill:var(--ink-soft)">Avg. position &#183; priority pages</text>
+                  <polygon points="498,188 508,188 503,179" style="fill:var(--accent)"/>
+                  <text x="515" y="188" font-family="Inter,sans-serif" font-size="11.5" font-weight="600" style="fill:var(--accent)">+1.8 spots</text>
+                  <!-- row 3 -->
+                  <circle cx="66" cy="208" r="2" style="fill:var(--accent-2)"/>
+                  <text x="78" y="212" font-family="Inter,sans-serif" font-size="12.5" style="fill:var(--ink-soft)">Quote-form CVR &#183; CRO</text>
+                  <polygon points="498,203 508,203 503,212" style="fill:var(--accent-2)"/>
+                  <text x="515" y="212" font-family="Inter,sans-serif" font-size="11.5" font-weight="600" style="fill:var(--accent-2)">&#8722;0.4 pts</text>
+                  <!-- Claude actionable callout -->
+                  <rect x="62" y="226" width="516" height="86" rx="8" style="fill:var(--rule-soft);stroke:var(--rule)" stroke-width="1"/>
+                  <rect x="62" y="226" width="4" height="86" rx="2" style="fill:var(--accent)"/>
+                  <text x="80" y="248" style="fill:var(--accent)" font-family="'Space Mono',monospace" font-size="10" letter-spacing="1">WHAT IT MEANS &#8594; DO THIS</text>
+                  <text x="250" y="248" style="fill:var(--muted)" font-family="'Space Mono',monospace" font-size="10" letter-spacing="1">&#183; Claude</text>
+                  <polygon points="80,266 86,269 80,272" style="fill:var(--accent)"/>
+                  <text x="94" y="272" font-family="Inter,sans-serif" font-size="11.5" style="fill:var(--ink)">Double down on the 3 pages driving the click lift &#8212; refresh&#8230;</text>
+                  <polygon points="80,290 86,293 80,296" style="fill:var(--accent)"/>
+                  <text x="94" y="296" font-family="Inter,sans-serif" font-size="11.5" style="fill:var(--ink)">Quote form slipped &#8212; A/B test the new hero CTA before spend&#8230;</text>
+                  <!-- footer caption -->
+                  <text x="320" y="346" text-anchor="middle" style="fill:var(--muted)" font-family="Inter,sans-serif" font-size="11">Zapier &#183; GSC + CRO sheets &#8594; ChatGPT synthesis &#8594; Claude actions &#8594; team inbox</text>
+                </svg>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================  PROJECT MANAGER  =========================== -->
+    <section id="project-management" class="section">
+      <div class="section__aside"><div class="sticky">
+        <div class="secsym" role="img" aria-label="Conch shell — Lord of the Flies" title="IV · Conch shell — Lord of the Flies"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle class="ring" cx="32" cy="32" r="29" stroke-width="1.3"/><path fill="currentColor" d="M40 9 C 43 10 44 13 42 15 C 46 16 47 20 45 22 C 51 24 54 30 53 37 C 52 46 45 52 36 54 C 34 49 33 44 32 39 C 25 44 17 42 12 36 C 8 31 10 22 17 17 C 24 12 34 9 40 9 Z"/><path fill="none" stroke="var(--paper)" stroke-width="1" stroke-linecap="round" opacity="0.5" d="M44 21 C 40 22 36 25 33 29"/><path fill="none" stroke="var(--paper)" stroke-width="1.5" stroke-linecap="round" opacity="0.9" d="M36 53 C 34 45 31 38 26 34 C 21 30 16 29 12 31"/><path class="cut" d="M32 39 C 30 34 26 31 21 30 C 28 30 34 33 36 39 C 35 40 33 40 32 39 Z"/></svg></div>
+        <span class="eyebrow">Practice</span>      </div></div>
+      <div>
+        <h2 class="section__title serif">Project Manager</h2>
+        <p class="section__dek">Plans that survive contact with a real team. OKR planning, editorial calendars, and cross-functional coordination — every piece tied to the KPIs and conversion goals it's meant to move.</p>
+
+        <div class="entries">
+          <article class="entry">
+            <div class="entry__meta"><span class="k">Planning</span>Quarterly cadence<br>2023&ndash;2026<br><span class="tag">#okr #scrum</span></div>
+            <div>
+              <h3 class="serif">Editorial Calendar &amp; OKR Planning</h3>
+              <p class="entry__dek">Quarterly calendars mapped to business OKRs, with weekly tracking and structured A/B tests against measurable KPIs.</p>
+              <div class="prose">
+                <p>Most editorial calendars are just a list of due dates. They tell you what publishes and when, not whether any of it moves the business. I plan the other way around. The calendar starts from the goals leadership actually measures, and every planned piece has to earn its slot.</p>
+                <p>At Home Solutions the operating rhythm was OKRs, the objectives and key results a team commits to for a quarter. I proposed a set each quarter, then built the editorial calendar to serve them. A pillar refresh mapped to a ranking goal. A conversion test mapped to a lead goal. Each week I tracked progress against those numbers instead of against publish dates, so a piece that wasn't pulling its weight got caught early. I carried the same method into moveBuddha, where the planning ran across thousands of programmatic pages rather than a handful of posts.</p>
+                <p>Run this way, the calendar becomes a decision tool instead of a wish list. Weekly tracking shows what's off target while there's still time to fix it. Quarterly review keeps the team pointed at what leadership cares about, and any work that doesn't ladder up to an objective gets cut or rethought. That's how content stops being busywork and starts being accountable.</p>
+              </div>
+              <div class="media ratio-16x9 is-filled" role="img" aria-label="A sanitized sample planning board. One objective sits at the top with two key results, color-coded ivy green for the ranking goal and gold for the conversion goal. Below, a three-month quarter grid lays out four content initiatives as horizontal timeline bars, each colored to the key result it serves, over light weekly gridlines that stand for weekly tracking.">
+                <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                  <title>Quarterly editorial calendar mapped to OKRs</title>
+                  <desc>A sanitized sample planning board. One objective at the top has two key results, ivy for the ranking goal and gold for the conversion goal. A three-month grid shows four content initiatives as timeline bars colored to the key result each serves, over light weekly gridlines.</desc>
+                  <text x="40" y="34" style="fill:var(--muted)" font-family="'Space Mono',monospace" font-size="11" letter-spacing="1.5">SAMPLE &#183; SANITIZED PLANNING BOARD</text>
+                  <text x="40" y="64" font-family="Inter,sans-serif" font-weight="800" font-size="21" letter-spacing="-0.3" style="fill:var(--ink)">Quarterly Calendar &#8594; OKRs</text>
+                  <rect x="40" y="80" width="560" height="30" rx="6" style="fill:var(--rule-soft);stroke:var(--rule)" stroke-width="1"/>
+                  <text x="54" y="99" style="fill:var(--accent)" font-family="'Space Mono',monospace" font-size="10" letter-spacing="1.2">OBJECTIVE</text>
+                  <text x="128" y="99" font-family="Inter,sans-serif" font-size="12.5" style="fill:var(--ink)">Grow qualified organic leads in the priority vertical</text>
+                  <circle cx="46" cy="128" r="4" style="fill:var(--accent)"/>
+                  <text x="56" y="132" font-family="Inter,sans-serif" font-size="11.5" style="fill:var(--ink-soft)">KR1 &#183; Lift priority-page rankings</text>
+                  <circle cx="320" cy="128" r="4" style="fill:var(--accent-2)"/>
+                  <text x="330" y="132" font-family="Inter,sans-serif" font-size="11.5" style="fill:var(--ink-soft)">KR2 &#183; Improve lead-form conversion</text>
+                  <text x="275" y="160" text-anchor="middle" style="fill:var(--muted)" font-family="'Space Mono',monospace" font-size="10" letter-spacing="1.2">MONTH 1</text>
+                  <text x="405" y="160" text-anchor="middle" style="fill:var(--muted)" font-family="'Space Mono',monospace" font-size="10" letter-spacing="1.2">MONTH 2</text>
+                  <text x="535" y="160" text-anchor="middle" style="fill:var(--muted)" font-family="'Space Mono',monospace" font-size="10" letter-spacing="1.2">MONTH 3</text>
+                  <g style="stroke:var(--rule-soft)" stroke-width="1">
+                    <line x1="242.5" y1="168" x2="242.5" y2="298"/>
+                    <line x1="275" y1="168" x2="275" y2="298"/>
+                    <line x1="307.5" y1="168" x2="307.5" y2="298"/>
+                    <line x1="372.5" y1="168" x2="372.5" y2="298"/>
+                    <line x1="405" y1="168" x2="405" y2="298"/>
+                    <line x1="437.5" y1="168" x2="437.5" y2="298"/>
+                    <line x1="502.5" y1="168" x2="502.5" y2="298"/>
+                    <line x1="535" y1="168" x2="535" y2="298"/>
+                    <line x1="567.5" y1="168" x2="567.5" y2="298"/>
+                  </g>
+                  <g style="stroke:var(--rule)" stroke-width="1">
+                    <line x1="210" y1="168" x2="210" y2="298"/>
+                    <line x1="340" y1="168" x2="340" y2="298"/>
+                    <line x1="470" y1="168" x2="470" y2="298"/>
+                    <line x1="600" y1="168" x2="600" y2="298"/>
+                    <line x1="40" y1="168" x2="600" y2="168"/>
+                    <line x1="40" y1="298" x2="600" y2="298"/>
+                  </g>
+                  <text x="44" y="194" font-family="Inter,sans-serif" font-size="11.5" style="fill:var(--ink-soft)">Pillar page refresh</text>
+                  <rect x="214" y="186" width="252" height="12" rx="3" style="fill:var(--accent)"/>
+                  <text x="44" y="222" font-family="Inter,sans-serif" font-size="11.5" style="fill:var(--ink-soft)">Programmatic local pages</text>
+                  <rect x="214" y="214" width="382" height="12" rx="3" style="fill:var(--accent)"/>
+                  <text x="44" y="250" font-family="Inter,sans-serif" font-size="11.5" style="fill:var(--ink-soft)">Conversion test: hero CTA</text>
+                  <rect x="344" y="242" width="122" height="12" rx="3" style="fill:var(--accent-2)"/>
+                  <text x="44" y="278" font-family="Inter,sans-serif" font-size="11.5" style="fill:var(--ink-soft)">SME explainer series</text>
+                  <rect x="344" y="270" width="252" height="12" rx="3" style="fill:var(--accent)"/>
+                  <text x="320" y="344" text-anchor="middle" style="fill:var(--ink-soft)" font-family="Fraunces,serif" font-style="italic" font-size="13.5">Every planned piece maps to a Key Result; progress is checked weekly.</text>
+                </svg>
+              </div>
+            </div>
+          </article>
+
+          <article class="entry">
+            <div class="entry__meta"><span class="k">Home Solutions</span>Owned<br>2023&ndash;2025<br><span class="tag">#process</span></div>
+            <div>
+              <h3 class="serif">Special Attention Reviews (SARs)</h3>
+              <p class="entry__dek">A review process to find the root cause of underperformance and hand leadership clear next steps.</p>
+              <div class="prose">
+                <p>A Special Attention Review (SAR) is the process I ran at Home Solutions when a page or vertical stopped performing. Something specific set it off: leads or conversions slipping, a KPI or OKR target getting missed, or content losing ground because it no longer matched search intent or showed enough first-hand experience and expertise (EEAT). Rather than patch the symptom, I opened a review.</p>
+                <p>I owned the review end to end. First I pulled the data: Search Console numbers, the conversion tables, and the page's own history. From there I traced the drop to a root cause instead of stopping at the surface number. Then I brought in the writers whose pages were in scope, because the people who made the content know things the analytics don't. The result was never a list of complaints. It was a clear read on what went wrong, why, and what to do first.</p>
+                <p>Leadership got something they could act on the same day: the cause, the fix, and the order to do it in. Because every SAR traced back to a real root cause, whether an intent mismatch, thin expertise, a conversion problem, or a gap in the process, the fixes addressed the actual issue and the same failure was less likely to return. The reviews did double duty, too. They taught the team how to spot the warning signs on their own.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="entry">
+            <div class="entry__meta"><span class="k">Cross-functional</span>Coordinated<br>2023&ndash;2025<br><span class="tag">#vendors</span></div>
+            <div>
+              <h3 class="serif">Launch Coordination</h3>
+              <p class="entry__dek">Work across product, SEO, analytics, and vendors to land messaging and CRO goals together.</p>
+              <div class="prose">
+                <p>Building a new vertical isn't a writing problem. It's a coordination problem. When Home Solutions made clean energy a priority, the work touched content, SEO, analytics, subject-matter experts, and more than five media partner sites. If those groups don't point the same direction, the launch ships as a pile of disconnected pages.</p>
+                <p>My job was to get everyone aligned before anything published. We settled the positioning and the conversion goals up front, so SEO, content, and the partner sites were all building toward the same targets. Then I gave every team one shared foundation of facts: dense public data on solar costs and incentives, more than 3,000 customer survey responses, and over ten interviews with installers and other experts. From there the rollout had a clear order. Lock the message and the KPIs, build the content and the programmatic local campaigns, ship across the partner sites, then measure against the lead and conversion goals.</p>
+                <p>Because the functions were aligned first, clean energy launched as one coherent push instead of scattered posts. It grew into one of Home Solutions' top three verticals across the partner network and brought in enough qualified leads to become a pillar of the business. The lesson stuck with me. The hard part of a launch is rarely the content. It's getting every team to agree on what "done" looks like before the work starts.</p>
+              </div>
+              <div class="media ratio-16x9 is-filled" role="img" aria-label="A coordination diagram for the clean-energy vertical launch. Five functions on the left (content, SEO, analytics, subject-matter experts and vendors, and five-plus partner sites) feed converging lines into a shared align point. A shared brief built from public data, more than 3,000 surveys, and over ten expert interviews feeds the same point. From there a single timeline runs through four phases: align on the message and KPIs, build content and local campaigns, ship across partner sites, and measure against lead and conversion goals, ending in a flag marking the flagship vertical.">
+                <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                  <title>Cross-functional coordination for the clean-energy vertical launch</title>
+                  <desc>Five functions on the left feed converging lines into a shared align point, joined by a shared brief of public data, 3,000-plus surveys, and 10-plus expert interviews. A single timeline then runs through align, build, ship, and measure, ending in a flag for the flagship vertical.</desc>
+                  <text x="40" y="34" style="fill:var(--muted)" font-family="'Space Mono',monospace" font-size="11" letter-spacing="1.5">CLEAN-ENERGY VERTICAL &#183; LAUNCH COORDINATION</text>
+                  <text x="42" y="78" style="fill:var(--accent)" font-family="'Space Mono',monospace" font-size="10" letter-spacing="1.2">ALIGNED</text>
+                  <g style="fill:var(--accent)">
+                    <circle cx="46" cy="100" r="3"/><circle cx="46" cy="130" r="3"/><circle cx="46" cy="160" r="3"/><circle cx="46" cy="190" r="3"/><circle cx="46" cy="220" r="3"/>
+                  </g>
+                  <g font-family="Inter,sans-serif" font-size="11.5" style="fill:var(--ink-soft)">
+                    <text x="58" y="104">Content</text>
+                    <text x="58" y="134">SEO</text>
+                    <text x="58" y="164">Analytics</text>
+                    <text x="58" y="194">SME / vendors</text>
+                    <text x="58" y="224">Partner sites (5+)</text>
+                  </g>
+                  <g style="stroke:var(--accent)" stroke-width="1.2" fill="none" opacity="0.6">
+                    <line x1="150" y1="100" x2="220" y2="182"/>
+                    <line x1="150" y1="130" x2="220" y2="182"/>
+                    <line x1="150" y1="160" x2="220" y2="182"/>
+                    <line x1="150" y1="190" x2="220" y2="182"/>
+                    <line x1="150" y1="220" x2="220" y2="182"/>
+                  </g>
+                  <rect x="262" y="92" width="318" height="36" rx="7" style="fill:var(--rule-soft);stroke:var(--rule)" stroke-width="1"/>
+                  <text x="278" y="108" style="fill:var(--accent-2)" font-family="'Space Mono',monospace" font-size="9" letter-spacing="1">SHARED BRIEF</text>
+                  <text x="278" y="122" font-family="Inter,sans-serif" font-size="11" style="fill:var(--ink-soft)">Public Data + Proprietary Research</text>
+                  <path d="M300 128 C 272 148 248 162 232 172" style="stroke:var(--accent-2)" stroke-width="1.3" stroke-dasharray="2 5" fill="none" stroke-linecap="round"/>
+                  <line x1="230" y1="182" x2="582" y2="182" style="stroke:var(--accent)" stroke-width="2"/>
+                  <circle cx="230" cy="182" r="15" style="fill:var(--paper);stroke:var(--accent)" stroke-width="2"/>
+                  <circle cx="230" cy="182" r="4" style="fill:var(--accent)"/>
+                  <circle cx="345" cy="182" r="8" style="fill:var(--paper);stroke:var(--accent)" stroke-width="1.8"/>
+                  <circle cx="450" cy="182" r="8" style="fill:var(--paper);stroke:var(--accent)" stroke-width="1.8"/>
+                  <circle cx="540" cy="182" r="8" style="fill:var(--paper);stroke:var(--accent)" stroke-width="1.8"/>
+                  <line x1="585" y1="160" x2="585" y2="204" style="stroke:var(--accent)" stroke-width="2"/>
+                  <path d="M585 160 L 609 167 L 585 174 Z" style="fill:var(--accent)"/>
+                  <text x="585" y="150" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" style="fill:var(--accent)">Flagship</text>
+                  <g font-family="Inter,sans-serif" font-size="12" font-weight="600" style="fill:var(--ink)" text-anchor="middle">
+                    <text x="230" y="226">Align</text>
+                    <text x="345" y="226">Build</text>
+                    <text x="450" y="226">Ship</text>
+                    <text x="540" y="226">Measure</text>
+                  </g>
+                  <g font-family="Inter,sans-serif" font-size="9.5" style="fill:var(--muted)" text-anchor="middle">
+                    <text x="230" y="242">message + KPIs</text>
+                    <text x="345" y="242">build + campaigns</text>
+                    <text x="450" y="242">partner sites</text>
+                    <text x="540" y="242">vs. CRO goals</text>
+                  </g>
+                  <text x="320" y="316" text-anchor="middle" style="fill:var(--ink-soft)" font-family="Fraunces,serif" font-style="italic" font-size="13.5">Five functions, one message and one set of CRO goals, shipped together.</text>
+                </svg>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================  YOUTUBE  =========================== -->
+    <section id="youtube" class="section">
+      <div class="section__aside"><div class="sticky">
+        <div class="secsym" role="img" aria-label="Skull of Yorick — Hamlet" title="V · Skull of Yorick — Hamlet"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle class="ring" cx="32" cy="32" r="29" stroke-width="1.3"/><path fill="currentColor" d="M32 12 C 42 12 49 19 49 30 C 49 35 47 39 44 41 C 44 45 43 48 40 49 C 40 46 38 45 36 45 L 36 49 L 34 49 L 34 45 L 30 45 L 30 49 L 28 49 L 28 45 C 26 45 24 46 24 49 C 21 48 20 45 20 41 C 17 39 15 35 15 30 C 15 19 22 12 32 12 Z"/><path class="cut" d="M20 28 C 20 24 23 22 26 23 C 28 24 28 28 27 31 C 26 34 22 34 21 31 Z"/><path class="cut" d="M44 28 C 44 24 41 22 38 23 C 36 24 36 28 37 31 C 38 34 42 34 43 31 Z"/><path class="cut" d="M32 33 l 2.6 5.5 h -5.2 Z"/><g stroke="var(--paper)" stroke-width="1.1" stroke-linecap="round"><line x1="32" y1="44" x2="32" y2="49"/><line x1="29" y1="44" x2="29" y2="45"/><line x1="35" y1="44" x2="35" y2="45"/></g></svg></div>
+        <span class="eyebrow">Project</span>      </div></div>
+      <div>
+        <h2 class="section__title serif">YouTube</h2>
+        <p class="section__dek">The Seph Hawkins channel, running since 2020. Owned end to end, from script to upload.</p>
+        <div class="prose">
+          <p>Two formats share the channel: scripted video essays that make dense topics easy to follow, and book reviews that weigh a title's entertainment value against what it reaches for artistically. The thread tying them together is translation, taking research most people won't dig up on their own and shaping it into something a general audience will actually sit through.</p>
+          <p>One person does all of it: research, script, filming, editing in Adobe Creative Suite, thumbnails built to earn the click, and publishing on a cadence I set. The channel has grown to <b>1,400+</b> subscribers since 2020.</p>
+        </div>
+
+        <div class="media-row">
+          <div class="media ratio-16x9"><iframe style="position:absolute;inset:0;width:100%;height:100%;border:0" src="https://www.youtube.com/embed/fNxDV8atg74" title="Seph Hawkins video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          <div class="media ratio-16x9"><iframe style="position:absolute;inset:0;width:100%;height:100%;border:0" src="https://www.youtube.com/embed/mcxDBITNlOU" title="Seph Hawkins video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        </div>
+        <div class="media-row">
+          <div class="media ratio-16x9"><iframe style="position:absolute;inset:0;width:100%;height:100%;border:0" src="https://www.youtube.com/embed/IJeNxQFXXlc" title="Seph Hawkins video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          <div class="media ratio-16x9"><div>Watch more on the channel<br><small><a href="https://www.youtube.com/@SephHawkins" target="_blank" rel="noopener">youtube.com/@SephHawkins&nbsp;→</a></small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================  BLACFORJE  =========================== -->
+    <section id="blacforje" class="section">
+      <div class="section__aside"><div class="sticky">
+        <div class="secsym" role="img" aria-label="The Raven — Edgar Allan Poe" title="VI · The Raven — Edgar Allan Poe"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle class="ring" cx="32" cy="32" r="29" stroke-width="1.3"/><path fill="currentColor" d="M23 16 C 24 13 28 13 29 16 C 35 15 40 18 43 25 C 46 32 47 40 45 47 L 40 42 C 41 39 40 37 38 36 C 39 41 37 46 34 49 C 33 45 31 43 29 42 C 28 44 28 45 28 47 C 26 44 25 39 25 34 C 22 32 21 28 21 24 C 21 21 21 18 23 16 Z"/><path fill="currentColor" d="M23 17.5 L 12 20 L 23 22 Z"/><circle class="cut" cx="26" cy="18" r="1"/><line x1="19" y1="51" x2="45" y2="51" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="29" y1="47" x2="29" y2="51"/><line x1="33" y1="46" x2="33" y2="51"/></g></svg></div>
+        <span class="eyebrow">Project</span>      </div></div>
+      <div>
+        <h2 class="section__title serif">Blacforje</h2>
+        <p class="section__dek">Contributing writer since 2024. Black metal and dungeon synth — interviews, reviews, and features.</p>
+        <div class="prose">
+          <p>This is the writing I do because I want to. It shows range a content résumé can't: a real beat, real opinions, and a voice that holds up next to other critics.</p>
+          <p>It's a beat that rewards people who actually know it. The pieces run on real familiarity with the genre's aesthetic, its lineage, and the ethos underneath the music, which is the line between writing about underground metal and writing for the people already inside it.</p>
+        </div>
+        <div class="index">
+          <div class="index__row">
+            <div class="when">Jun 2026</div>
+            <div class="what"><b>Interview: Moonglow</b><span>Interview · the LA dungeon synth project on world-building, Dark Souls, and taking <em>The Wanderer</em> to the stage · <a href="https://www.blacforjemagazine.com/interviews/nq2vi8mp5hfg0h3b5ca33t9hf1s6vf" target="_blank" rel="noopener">Read&nbsp;→</a></span></div>
+          </div>
+          <div class="index__row">
+            <div class="when">Jan 2026</div>
+            <div class="what"><b>Top 20 Albums of 2025</b><span>Year-end feature · ten black metal and ten dungeon synth records worth keeping · <a href="https://www.blacforjemagazine.com/reviews/x6outj2hve7x00qz9l1bvbyhv9pm6k" target="_blank" rel="noopener">Read&nbsp;→</a></span></div>
+          </div>
+          <div class="index__row">
+            <div class="when">Nov 2025</div>
+            <div class="what"><b>‘Dawn of the Iron Shadow’ by One of Nine</b><span>Review · Tolkien-steeped atmospheric black metal that finds light in Middle-earth’s darker corners · <a href="https://www.blacforjemagazine.com/reviews/vr7zeyb4de6z00la8iyngs35u8szr6" target="_blank" rel="noopener">Read&nbsp;→</a></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================  MYPOLLENPAL  =========================== -->
+    <section id="mypollenpal" class="section">
+      <div class="section__aside"><div class="sticky">
+        <div class="secsym" role="img" aria-label="Mockingbird — To Kill a Mockingbird" title="VII · Mockingbird — To Kill a Mockingbird"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle class="ring" cx="32" cy="32" r="29" stroke-width="1.3"/><path fill="currentColor" d="M9 45 L 18 39 C 13 35 15 29 21 26 C 26 24 31 25 34 28 C 36 26 40 25 44 26 L 38 31 C 41 35 40 41 35 43 C 30 45 22 46 17 43 L 9 45 Z"/><path class="cut-s" d="M24 31 C 28 32 31 35 31 39" fill="none" stroke-width="1.2" opacity="0.55"/><circle class="cut" cx="39" cy="29" r="1"/><path d="M12 51 C 22 49 34 49 46 51" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path fill="currentColor" d="M30 50 C 32 46.5 36 45.5 39 47 C 37 50 33.5 51 30 50 Z"/><g fill="currentColor" opacity="0.7"><circle cx="49" cy="30" r="1"/><circle cx="52" cy="34" r="0.8"/><circle cx="47" cy="36" r="0.8"/></g></svg></div>
+        <span class="eyebrow">Project</span>      </div></div>
+      <div>
+        <h2 class="section__title serif">MyPollenPal</h2>
+        <p class="section__dek">Built with Shawn Hill and live at <a href="https://www.mypollenpal.com/" target="_blank" rel="noopener">mypollenpal.com</a>. Hyperlocal pollen counts and daily allergy alerts, covering every US state.</p>
+
+        <div class="entries">
+          <article class="entry">
+            <div class="entry__meta"><span class="k">What it does</span>Live · web + email<br><span class="tag">#product</span></div>
+            <div>
+              <h3 class="serif">The idea</h3>
+              <div class="prose">
+                <p>Allergy sufferers make the same calls every day: whether to go out, whether to medicate, whether to open the windows. Most of them do it on guesswork or a forecast that flattens a whole metro into one number. MyPollenPal, built with Shawn Hill, gives them a local read instead, today's tree, grass, and weed pollen for their exact ZIP, in plain language, with clear guidance on what to do about it.</p>
+                <p>Every reading routes to an action. The site turns raw counts into "stay in this morning," "take your medication before you head out," or "this afternoon is a safe window," and points people who need more help to a hand-picked directory of board-certified allergists. Seasonal guides, daily worst-city rankings, and per-city pages round it out for anyone managing a real allergy problem, not just checking a number.</p>
+                <p>The second half of the product is the alert. A free daily email fires only when it matters, warning subscribers before tree, grass, or weed pollen spikes in their area. More than <b>1,500</b> people are signed up for it.</p>
+              </div>
+              <div class="media ratio-16x9 is-filled"><img src="assets/mypollenpal-home.png" alt="MyPollenPal home page: today's pollen count by ZIP code with location detection and an email-alert signup." loading="lazy"></div>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="entry__meta"><span class="k">Why &amp; how</span>Claude agents · GitHub · daily automation<br><span class="tag">#stack</span></div>
+            <div>
+              <h3 class="serif">Why you built it &amp; how</h3>
+              <div class="prose">
+                <p>The bet was simple: allergy sufferers deserve better than a forecast number buried three taps deep, and a two-person team could ship something more useful if the daily busywork ran itself.</p>
+                <p>So the site is largely run by a system of Claude agents wired to a GitHub repository. Each day the agents pull fresh data, pollen counts from Google's Pollen API plus weather and air-quality readings from WeatherAPI, NOAA, and the EPA, then update every city and state page, refresh the worst-pollen rankings, and send the alert emails, with no manual step in between. New surface area gets built the same way: I use Claude Code against the repo to stand up new sections, seasonal guides, the allergist directory, per-city pages, then hand them to the agents to keep current.</p>
+                <p>It is live and growing, with more than 1,500 alert subscribers and coverage across all 50 states and hundreds of cities. What is next is depth: more guides, a fuller allergist directory, and tighter, more personal alerts, most of which the agent system can roll out without rebuilding the site by hand.</p>
+              </div>
+              <div class="media-row">
+                <div class="media ratio-1x1 is-filled"><img src="assets/mypollenpal-rankings.png" alt="MyPollenPal explore section: today's worst pollen cities updated live, plus browse by city and state." loading="lazy"></div>
+                <div class="media ratio-1x1 is-filled"><img src="assets/mypollenpal-guides.png" alt="MyPollenPal allergy guides and resources page with seasonal breakdowns and daily city rankings." loading="lazy"></div>
+                <div class="media ratio-1x1 is-filled"><img src="assets/mypollenpal-allergists.png" alt="MyPollenPal allergist directory: the five best board-certified allergists in Georgia, hand-picked." loading="lazy"></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================  CONTACT  =========================== -->
+    <section id="contact" class="section contact">
+      <div class="section__aside"><div class="sticky">
+        <div class="secsym" role="img" aria-label="Green light — The Great Gatsby" title="VIII · Green light — The Great Gatsby"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle class="ring" cx="32" cy="32" r="29" stroke-width="1.3"/><circle cx="32" cy="22" r="5.5" fill="currentColor"/><g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="32" cy="22" r="9.5" stroke-width="1.4" opacity="0.45"/><circle cx="32" cy="22" r="13.5" stroke-width="1.2" opacity="0.22"/></g><path d="M32 33 q -2.5 4 0 8 q 2.5 4 0 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.5"/><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 46 q 4.5 -3.5 9 0 t 9 0 t 9 0"/><path d="M17 51 q 4.5 -3.5 9 0 t 9 0"/></g></svg></div>
+        <span class="eyebrow">Contact</span>      </div></div>
+      <div>
+        <h2 class="serif">Let's talk.</h2>
+        <p class="contact__big">Email is the fastest way to reach me — <a href="mailto:alex.hawkinsbhs@gmail.com">alex.hawkinsbhs@gmail.com</a></p>
+        <div class="contact__meta">
+          <a class="icon-link" href="https://www.linkedin.com/in/joseph-hawkins-197ab398/" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.12 2.49 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.1c0-1.7-.03-3.9-2.38-3.9-2.39 0-2.75 1.86-2.75 3.78V24h-4V8z"/></svg>
+          </a>
+          <span>LinkedIn — Joseph Hawkins</span>
+          <span style="color:var(--rule)">/</span>
+          <span>Open to content, editorial &amp; project roles</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="foot">
+  <span>© <span id="yr">2026</span> Seph Hawkins</span>
+  <span>Built by hand in Newnan, GA</span>
+  <span><a href="mailto:alex.hawkinsbhs@gmail.com">Say hello →</a></span>
+</footer>
+
+<script>
+(function(){
+  var root   = document.documentElement;
+  var nav    = document.getElementById('nav');
+  var toggle = document.getElementById('navToggle');
+  var closeBtn = document.getElementById('navClose');
+  var panel  = document.getElementById('navPanel');
+  var links  = Array.prototype.slice.call(document.querySelectorAll('.nav__link'));
+
+  /* ---- theme ---- */
+  function applyTheme(t){ root.setAttribute('data-theme', t); }
+  try {
+    var saved = localStorage.getItem('seph-theme');
+    if (saved) applyTheme(saved);
+    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+  } catch(e){}
+  var themeBtn = document.getElementById('themeBtn');
+  if (themeBtn){
+    themeBtn.addEventListener('click', function(){
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      try { localStorage.setItem('seph-theme', next); } catch(e){}
+    });
+  }
+
+  /* ---- nav open / close ---- */
+  function openNav(){ nav.classList.add('open'); toggle.setAttribute('aria-expanded','true'); }
+  function closeNav(){ nav.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+  if (toggle){
+    toggle.addEventListener('click', function(e){
+      e.stopPropagation();
+      nav.classList.contains('open') ? closeNav() : openNav();
+    });
+  }
+  if (closeBtn) closeBtn.addEventListener('click', closeNav);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeNav(); });
+  document.addEventListener('click', function(e){
+    if (nav.classList.contains('open') && !nav.contains(e.target)) closeNav();
+  });
+  links.forEach(function(l){
+    l.addEventListener('click', function(){ if (window.innerWidth < 820) closeNav(); });
+  });
+
+  /* ---- active section highlight ---- */
+  var map = {};
+  links.forEach(function(l){ map[l.getAttribute('href').slice(1)] = l; });
+  var sections = document.querySelectorAll('main section[id]');
+  if ('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){
+          links.forEach(function(l){ l.classList.remove('active'); });
+          if (map[en.target.id]) map[en.target.id].classList.add('active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    sections.forEach(function(s){ obs.observe(s); });
+  }
+
+  var yrEl = document.getElementById('yr');
+  if (yrEl) yrEl.textContent = new Date().getFullYear();
+
+  /* ---- CV filter (experience + education + additional) ---- */
+  var cv = document.querySelector('.cv');
+  if (cv){
+    var cvTabs = Array.prototype.slice.call(cv.querySelectorAll('.cv__tab'));
+    var cvRows = Array.prototype.slice.call(cv.querySelectorAll('.cv__row'));
+    function applyFilter(filter){
+      cvRows.forEach(function(row){
+        var show = filter === 'all' || row.getAttribute('data-cat') === filter;
+        row.classList.toggle('is-hidden', !show);
+        if (show){ row.style.animation = 'none'; void row.offsetWidth; row.style.animation = ''; }
+      });
+    }
+    cvTabs.forEach(function(tab){
+      tab.addEventListener('click', function(){
+        cvTabs.forEach(function(t){
+          t.classList.remove('is-active');
+          t.setAttribute('aria-selected','false');
+        });
+        tab.classList.add('is-active');
+        tab.setAttribute('aria-selected','true');
+        applyFilter(tab.getAttribute('data-filter'));
+      });
+    });
+    /* match the default active tab (Experience) on load */
+    var initial = cv.querySelector('.cv__tab.is-active');
+    applyFilter(initial ? initial.getAttribute('data-filter') : 'exp');
+  }
+})();
+</script>
+</body>
+</html>
