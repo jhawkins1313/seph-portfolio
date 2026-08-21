@@ -15,7 +15,7 @@ Flag every hard-ban: delve, dive into, navigate (as metaphor), landscape, realm,
 
 ### 2. Structural AI tells (Section 7)
 - Monotone rhythm: are sentences all 15–20 words? Flag it.
-- Em-dash crutch: more than one per paragraph? Flag it.
+- Em dashes: any at all? Flag every one. Check `—`, `&mdash;`, and `&#8212;`; en dashes in ranges (`2018–2020`) are fine and stay.
 - Vagueness: any section without a specific number, date, name, or result? Flag it.
 - Identical openers: three sentences in a row starting with This/It/The? Flag it.
 - Summary echo: does the close repeat the open? Flag it.

@@ -1,6 +1,6 @@
 # Content Style Guide: Human Voice, LLM Extraction, and GEO
 
-**Scope:** All reader-facing content — articles, landing pages, FAQs, product copy, emails, and UI text.  
+**Scope:** All reader-facing content: articles, landing pages, FAQs, product copy, emails, and UI text.  
 **Who reads this:** Anyone writing, editing, or prompting content. Read it before you draft.
 
 The voice has two jobs, equal weight:
@@ -10,7 +10,7 @@ The voice has two jobs, equal weight:
 
 A third goal runs underneath both: **be extractable.** LLMs and search engines now surface content directly in answers, summaries, and cited results. Content that is specific, well-structured, and clearly attributed is the content that gets pulled. Section 9 covers the mechanics.
 
-*Last updated June 2026. Synthesized from research on AI writing patterns, generative engine optimization (GEO), and LLM extraction behavior.*
+*Last updated August 2026. Synthesized from research on AI writing patterns, generative engine optimization (GEO), and LLM extraction behavior.*
 
 ---
 
@@ -21,7 +21,7 @@ The voice is plain-spoken, confident, and expert. It gives readers a straight an
 **We are:**
 
 - **Direct and useful.** Every section leaves the reader with something to act on. Even FAQ answers close with a tip, not just a fact.
-- **Plain.** Aim for a 6th–8th grade reading level. Short sentences. Common words. Plain does not mean vague — explain the mechanism, just do it the way you'd explain it to a smart colleague over lunch.
+- **Plain.** Aim for a 6th–8th grade reading level. Short sentences. Common words. Plain does not mean vague. Explain the mechanism, just do it the way you'd explain it to a smart colleague over lunch.
 - **Confident.** State things plainly. No mushy hedges ("may possibly," "could potentially"). When uncertainty is real, name it specifically: "This pattern holds in most cases. Regional variation is common."
 - **Concrete.** Numbers, dates, names, and places. Specific claims are credible. Vague ones are not, and LLMs won't cite them.
 - **Lightly human, never performed.** A little personality is welcome; drop it in sections where precision matters most.
@@ -98,14 +98,15 @@ Save the full form for emphasis: "This is not a workaround. It is the method."
 
 - **Sentences:** short to medium, point first, varied length (section 3).
 - **Paragraphs:** 2–4 sentences in long-form content, one idea each. A one-sentence paragraph is a tool. Use it.
-- **Headings:** Title Case for page titles and H2s. Questions make good headings when the section answers one. Never a row of matching gerunds ("Understanding X," "Managing Y," "Exploring Z") — that pattern reads AI.
+- **Headings:** Title Case for page titles and H2s. Questions make good headings when the section answers one. Never a row of matching gerunds ("Understanding X," "Managing Y," "Exploring Z"). That pattern reads AI.
 - **Numbers:** use numerals for data, counts, thresholds, and ranges. Specific numbers build trust and get cited by LLMs.
 - **Lists:** bullets for true lists only. If the list reads fine as a sentence, write the sentence. Bullets aren't prose shortcuts.
-- **Tables:** the right format for reference data — comparisons, timelines, specs, tiers. Keep cell text short and scannable.
+- **Tables:** the right format for reference data: comparisons, timelines, specs, tiers. Keep cell text short and scannable.
 
 ### Punctuation
 
-- **Em dashes: ration them.** At most one per paragraph, and zero is fine. Heavy em-dash use is one of the strongest AI tells. A comma, a colon, a period, or parentheses usually does the job.
+- **Em dashes: never.** Zero, not one per paragraph. Heavy em-dash use is one of the strongest AI tells, and nothing is lost without it: a colon sets up a list or an explanation, parentheses hold a true aside, a comma makes a light pause, and a period works when the clause wants to be its own sentence. Check every encoding, not just the character: `—`, `&mdash;`, `&#8212;`.
+- **En dashes: ranges only.** `2018–2020`, `6–8`, `0–1`. An en dash is not an em dash. It stays.
 - **Parentheses: yes, in moderation.** A quick aside (like this one) reads human.
 - **Semicolons: almost never.** A period is almost always easier to read.
 - **Oxford comma: keep it.** Clarity wins over pattern-avoidance.
@@ -138,7 +139,7 @@ Link related content with descriptive anchor text, never "click here": "see our 
 Banned words (section 8) are the surface. These structural habits are the deeper tells. Check for all of them before publishing.
 
 1. **Monotone rhythm.** Every sentence 15–20 words, every paragraph three sentences. Fix: vary on purpose (section 3).
-2. **Em-dash crutch.** Three dashes in a paragraph, each adding a dramatic aside. Fix: one per paragraph, max.
+2. **Em-dash crutch.** The dramatic aside set off by dashes, two or three times a paragraph. Fix: cut every em dash, no exceptions (section 5).
 3. **Vagueness.** "Many factors can affect outcomes in various contexts" says nothing. Fix: **every section needs at least one specific number, date, name, place, or result.** Specifics can't be mistaken for filler.
 4. **Formulaic frame.** Grand intro → list-shaped body → long summary conclusion. Fix: guide anatomy in section 6. LLMs also learn to deprioritize formulaic structures.
 5. **Bullet-itis.** Bullet lists where prose belongs. Fix: bullets only for true lists.
@@ -164,24 +165,24 @@ Three tiers. **Hard bans** never ship in reader-facing copy. **Watch words** are
 | delve / dive into | dig into, get into, look at |
 | navigate (a challenge, a process) | get through, plan around, handle |
 | landscape / realm (as metaphor) | name the actual thing |
-| journey (as metaphor) | process, path, season — or cut it |
+| journey (as metaphor) | process, path, season, or cut it |
 | embark | start |
 | tapestry / symphony / kaleidoscope | cut; say what it is |
 | a testament to | proof of, shows |
 | robust | strong, reliable |
-| seamless / seamlessly | smooth, easy — or cut |
+| seamless / seamlessly | smooth, easy, or cut |
 | harness / leverage / utilize | use |
-| unlock / unleash | get, start — or cut |
+| unlock / unleash | get, start, or cut |
 | foster | help, build |
 | empower | help, let you |
 | elevate (as metaphor) | improve, raise |
 | enhance | improve, ease, sharpen |
 | ensure | make sure |
-| crucial / pivotal / paramount | important — or show why it matters |
-| vital / essential (as filler) | needed — or name the consequence |
+| crucial / pivotal / paramount | important, or show why it matters |
+| vital / essential (as filler) | needed, or name the consequence |
 | comprehensive | complete, full |
 | meticulous / meticulously | careful / carefully |
-| intricate / multifaceted / nuanced | complicated, detailed — or cut |
+| intricate / multifaceted / nuanced | complicated, detailed, or cut |
 | vibrant / dynamic (as filler) | cut |
 | transformative / groundbreaking / revolutionary | cut; state the result |
 | invaluable | useful |
@@ -194,7 +195,7 @@ Three tiers. **Hard bans** never ship in reader-facing copy. **Watch words** are
 | boasts (subject boasts a feature) | has |
 | nestled / bustling | cut; describe plainly |
 | stark reminder | just state the fact |
-| stands at the intersection | works at the junction of — or cut |
+| stands at the intersection | works at the junction of, or cut |
 | cutting-edge | say what it actually does |
 | state-of-the-art | same |
 | game-changer / game-changing | say what changed |
@@ -218,7 +219,7 @@ Three tiers. **Hard bans** never ship in reader-facing copy. **Watch words** are
 | "look no further" | cut |
 | "paving the way" | leads to |
 | "at the end of the day" | cut |
-| "here are some [things]" | "Here are the five [things]" — count them |
+| "here are some [things]" | "Here are the five [things]" (count them) |
 | "such as" (as a habit) | like |
 | "step-by-step" | show the steps ("Step 1: ...") |
 | "well-being" / "quality of life" | health, comfort, daily life |
@@ -271,7 +272,7 @@ GEO is not SEO with a new name. The ranking signals are different. What LLMs rew
 
 **FAQs:** One direct answer in the first sentence. One or two supporting sentences. End with a concrete tip or next step. This matches how LLMs pull featured snippets and QA pairs.
 
-**How-to content:** Numbered steps. Each step starts with an action verb. The step is complete in one to three sentences. LLMs extract steps individually — write them so each one stands alone.
+**How-to content:** Numbered steps. Each step starts with an action verb. The step is complete in one to three sentences. LLMs extract steps individually. Write each one so it stands alone.
 
 **Definitions:** Lead with the term, then define it in one sentence. "A [term] is [definition]." Do not bury definitions inside paragraphs.
 
@@ -297,7 +298,7 @@ These are decisions for developers, but writers should know what they support:
 - **Article schema** signals article type, author, datePublished, and publisher to crawlers and LLMs.
 - **FAQ schema** marks up Q&A pairs so they can be extracted individually.
 - **HowTo schema** marks up numbered steps for the same reason.
-- **Breadcrumbs and clear hierarchy** help LLMs understand where a page sits within a larger body of content — which affects how much authority they assign it.
+- **Breadcrumbs and clear hierarchy** help LLMs understand where a page sits within a larger body of content, which affects how much authority they assign it.
 
 ### Freshness and authority signals
 
@@ -333,7 +334,7 @@ Run this on every new or edited piece of reader-facing copy. All boxes, every ti
 - [ ] The first paragraph states the core fact. No warm-up.
 - [ ] Reading level is 6th–8th grade: short sentences, common words, active voice.
 - [ ] Sentence lengths actually vary. At least a few sentences under eight words.
-- [ ] Em dashes: one per paragraph at most. Semicolons: nearly none.
+- [ ] Zero em dashes, in any encoding (`—`, `&mdash;`, `&#8212;`). Semicolons: nearly none.
 - [ ] Zero hard-ban words or phrases (section 8). Watch words are earning their place.
 - [ ] No two consecutive sentences start the same way.
 - [ ] It ends with next steps. No "In conclusion."
@@ -362,7 +363,7 @@ Run this on every new or edited piece of reader-facing copy. All boxes, every ti
 
 ## Appendix A: AI-Frequency Word and Phrase Lists
 
-These lists come from research on words and phrases that appear far more often in AI-generated text than in human writing. They are **signals, not bans** — the hard bans live in section 8. A word here is fine when it is literal, specific, and alone. A cluster of them in one passage means rewrite the passage.
+These lists come from research on words and phrases that appear far more often in AI-generated text than in human writing. They are **signals, not bans**. The hard bans live in section 8. A word here is fine when it is literal, specific, and alone. A cluster of them in one passage means rewrite the passage.
 
 ### Nouns
 
@@ -386,4 +387,4 @@ about the potential; additionally, we; advancements; adversity; advocate for; am
 
 ---
 
-*This guide is a working document. Update it when new patterns emerge. The AI-frequency lists in Appendix A should be reviewed quarterly — the distribution of overused words shifts as LLMs evolve.*
+*This guide is a working document. Update it when new patterns emerge. The AI-frequency lists in Appendix A should be reviewed quarterly, because the distribution of overused words shifts as LLMs evolve.*

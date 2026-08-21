@@ -7,13 +7,13 @@ How the site is organized, in what order, and why. Last updated August 21, 2026.
 One page, but not one scroll. A hero and a contact block frame a **deck of five tabbed panels**. Only one panel is visible at a time, so no reader ever faces the whole site at once.
 
 ```
-Hero  (always visible — name, pitch, headshot, availability)
+Hero  (always visible: name, pitch, headshot, availability)
 Deck  ── 01 Overview          → About, skills, career timeline
       ── 02 Content Strategy  → moveBuddha, Home Solutions, Three Ships
       ── 03 AI Systems        → agentic pipeline, custom models, reporting
       ── 04 Project Management→ OKR planning, SARs, launch coordination
       ── 05 Projects          → YouTube, Blacforje, MyPollenPal
-Contact (always visible — one email, one LinkedIn link)
+Contact (always visible: one email, one LinkedIn link)
 ```
 
 The nav bubble still lists every section. Clicking any entry opens the panel that owns it and scrolls there, so the nav works as a table of contents across the whole site rather than one panel.
@@ -24,7 +24,7 @@ The same material has to serve three readers. Rather than write three versions, 
 
 | Layer | Component | Who it's for | What it holds |
 | :-- | :--- | :--- | :--- |
-| 1 | `.glance` — `.stats` + `ul.keys` | **Recruiter.** Skimming, 30 seconds. | Hard numbers and five bulleted outcomes. Always visible. |
+| 1 | `.glance` (`.stats` + `ul.keys`) | **Recruiter.** Skimming, 30 seconds. | Hard numbers and five bulleted outcomes. Always visible. |
 | 2 | `<details class="layer">` | **Specialist.** Wants the mechanics. | The full narrative case study plus diagrams. Collapsed by default. |
 | 3 | `.impact` | **Decision-maker.** Wants the business result. | One sentence: what it was worth. Always visible. |
 
@@ -36,13 +36,13 @@ Published clips and artifacts sit **outside** the collapsed layer, under a "Sele
 
 | # | Panel | Sections | Job it does |
 | :-- | :--- | :--- | :--- |
-| — | Hero | `#home` | Name, pitch, headshot, availability. The first five seconds. |
+| n/a | Hero | `#home` | Name, pitch, headshot, availability. The first five seconds. |
 | 01 | Overview | `#about` | The through-line, career stats, skills, and the full timeline. |
 | 02 | Content Strategy | `#content-producer` | Editorial range and search performance. |
 | 03 | AI Systems | `#ai-systems` | The rare differentiator. Agentic Claude and n8n work. |
 | 04 | Project Management | `#project-management` | OKRs, root-cause reviews, cross-functional delivery. |
 | 05 | Projects | `#youtube`, `#blacforje`, `#mypollenpal` | Range and initiative outside the day job. |
-| — | Contact | `#contact` | One email, one LinkedIn link, no form to fill out. |
+| n/a | Contact | `#contact` | One email, one LinkedIn link, no form to fill out. |
 
 ## Why a capability spine, not an employer spine
 

@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Publish only the site surface — same set the Dockerfile serves —
+      # Publish only the site surface, the same set the Dockerfile serves,
       # plus two unreferenced root images kept for their existing public URLs.
       # Source docs (docs/, tooling/, *.md) stay in the repo, off the site.
       - name: Stage site files

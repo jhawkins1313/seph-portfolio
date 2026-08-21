@@ -1,4 +1,4 @@
-# Joseph (Seph) Hawkins — Professional Profile
+# Joseph (Seph) Hawkins: Professional Profile
 > Portfolio baseline document. Last updated: 2026-06-25.
 > Sources: Resume (Groundswell 2026), Cover Letter (Groundswell 2026), LinkedIn (pulled 2026-06-25).
 
@@ -19,7 +19,7 @@
 **Open to work (LinkedIn):** Content Specialist, Content Manager, Writer, Project Manager, Senior Editor
 
 **One-line pitch:**  
-Marketing and communications professional with 7+ years of experience translating complex work into compelling narratives — and building the AI systems that scale production of that work.
+Marketing and communications professional with 7+ years of experience translating complex work into compelling narratives, and building the AI systems that scale production of that work.
 
 ---
 
@@ -90,16 +90,16 @@ Equally comfortable leading strategic planning and executing hands-on content cr
 
 ## Work Experience
 
-### Contributing Writer — Blacforje Magazine
+### Contributing Writer, Blacforje Magazine
 **Feb 2024 – Present | Remote**
 
-Writes engaging, well-researched articles, interviews, and reviews covering **black metal and dungeon** [synth/related genres — beat not fully captured in pull]. Running gig alongside professional content work; represents personal investment in arts and culture writing.
+Writes engaging, well-researched articles, interviews, and reviews covering **black metal and dungeon** [synth/related genres: beat not fully captured in pull]. Running gig alongside professional content work; represents personal investment in arts and culture writing.
 
 *Note: Link published pieces for portfolio when available.*
 
 ---
 
-### Senior Editor — moveBuddha
+### Senior Editor, moveBuddha
 **Sep 2025 – Jun 2026 | Athens, GA (Remote)**
 
 Led integrated content strategies across the full user journey (onboarding, engagement, reactivation), driving measurable gains in organic traffic and content quality.
@@ -116,7 +116,7 @@ Key contributions:
 
 ---
 
-### Senior Content Producer — Home Solutions
+### Senior Content Producer, Home Solutions
 **Feb 2023 – Aug 2025 | Raleigh, NC (Remote)**
 
 Developed and executed multi-channel content and communications strategies in the home energy/clean energy space. Served as internal subject-matter resource for content strategy, SEO, and marketing automation.
@@ -129,13 +129,13 @@ Key contributions:
 - Mentored writers and onboarded new team members on communications standards and workflows.
 - Helped grow the solar panel category into a VIP pillar category; produced content educating homeowners on installation, costs, long-term savings, energy tax credits, and SRECs.
 
-*Notable domain depth:* Clean energy — solar adoption, home energy efficiency, policy-adjacent topics (tax credits, SRECs). Fluent translating technical/policy information into accessible guidance for everyday readers.
+*Notable domain depth:* Clean energy, covering solar adoption, home energy efficiency, and policy-adjacent topics (tax credits, SRECs). Fluent translating technical/policy information into accessible guidance for everyday readers.
 
 **Skills tagged on LinkedIn:** Project Management, SEO, +20 more
 
 ---
 
-### Content Producer — Three Ships
+### Content Producer, Three Ships
 **Nov 2020 – Mar 2023 | Raleigh, NC (Remote)**
 
 - Wrote accurate, brand-aligned, SEO-optimized articles, reviews, and roundups across consumer verticals.
@@ -146,7 +146,7 @@ Key contributions:
 
 ---
 
-### Copywriter — The Bronx Community Foundation *(Internship)*
+### Copywriter, The Bronx Community Foundation *(Internship)*
 **Oct 2020 – Dec 2020 | Remote**
 
 - Wrote, proofread, and supervised scripts for public service announcements.
@@ -157,10 +157,10 @@ Key contributions:
 
 ## Additional Experience
 
-**Founder — Seph Hawkins YouTube Channel** | May 2020 – Present  
+**Founder, Seph Hawkins YouTube Channel** | May 2020 – Present  
 *(Details to add: niche, subscriber count, notable videos)*
 
-**Graduate Teaching Assistant — Texas Tech University** | Aug 2018 – May 2020  
+**Graduate Teaching Assistant, Texas Tech University** | Aug 2018 – May 2020  
 Taught undergraduate writing courses while completing MA.
 
 ---
@@ -185,7 +185,7 @@ Texas Tech University | 2018–2020
 University of West Georgia | 2014–2018  
 **GPA: 3.5+** | Full-Time
 
-*(LinkedIn shows 3 education entries — one more beyond these two to confirm)*
+*(LinkedIn shows 3 education entries: one more beyond these two to confirm)*
 
 ---
 
@@ -199,19 +199,19 @@ https://clayjar.review/issues/quiescence/god-enters-my-house
 As Surely As The Sun Literary Journal | Dec 15, 2023 | Poetry  
 https://surelyasthesun.weebly.com/issue-3.html
 
-*(LinkedIn lists 4 total publications — 2 more to surface)*
+*(LinkedIn lists 4 total publications: 2 more to surface)*
 
 ---
 
 ## Honors & Awards
 
 **DR. George D. Walker English Scholarship** | Jan 2017  
-University of West Georgia — Awarded by English faculty for outstanding student in the department.
+University of West Georgia. Awarded by English faculty for outstanding student in the department.
 
 **UWG First Year Writing Award** | Jan 2014  
 Awarded by Dr. Melanie Jordan for superior writing during freshman year.
 
-*(LinkedIn lists 3 total awards — 1 more to surface)*
+*(LinkedIn lists 3 total awards: 1 more to surface)*
 
 ---
 
@@ -219,27 +219,27 @@ Awarded by Dr. Melanie Jordan for superior writing during freshman year.
 
 **UWG English & Philosophy Undergraduate Research Conference** | 2018  
 **National Undergraduate Research Conference** | 2017  
-*(LinkedIn lists 4 projects total — 2 more to surface)*
+*(LinkedIn lists 4 projects total: 2 more to surface)*
 
 ---
 
 ## Volunteering
 
-- **Boy Scouts** — participated in various volunteering opportunities throughout scouting career (trash pick-up and others)
-- **Elevate Counseling Center** — wrote copy for a donor letter announcing changes in typical fundraising practices
+- **Boy Scouts:** participated in various volunteering opportunities throughout scouting career (trash pick-up and others)
+- **Elevate Counseling Center:** wrote copy for a donor letter announcing changes in typical fundraising practices
 - *(1 more volunteer entry on LinkedIn)*
 
 ---
 
 ## Recommendations (Received)
 
-**Rebekah Young** — Editorial Expertise | Editing, Content Development, Writer Coaching  
-*Aug 15, 2025 — Senior to Joseph but did not manage directly*  
-"I've worked with Alex on and off over several years as he was in a writer and then senior writer rol..." *(truncated — full text on LinkedIn)*
+**Rebekah Young:** Editorial Expertise | Editing, Content Development, Writer Coaching  
+*Aug 15, 2025. Senior to Joseph but did not manage directly*  
+"I've worked with Alex on and off over several years as he was in a writer and then senior writer rol..." *(truncated: full text on LinkedIn)*
 
-**Allison Rosa** — Senior Editor | Writer  
-*Aug 12, 2025 — Managed Joseph directly*  
-"I had the pleasure of working with Alex on the same content team for nearly three years, including s..." *(truncated — full text on LinkedIn)*
+**Allison Rosa:** Senior Editor | Writer  
+*Aug 12, 2025. Managed Joseph directly*  
+"I had the pleasure of working with Alex on the same content team for nearly three years, including s..." *(truncated: full text on LinkedIn)*
 
 *(1 more recommendation not shown)*
 
@@ -255,17 +255,17 @@ Awarded by Dr. Melanie Jordan for superior writing during freshman year.
 
 ## Key Themes & Angles for Portfolio Narrative
 
-These are the through-lines that define Seph's professional case — strong candidates for "About" copy, hero headlines, and project framing:
+These are the through-lines that define Seph's professional case, and strong candidates for "About" copy, hero headlines, and project framing:
 
-1. **The translator:** Converts complex, technical, or data-heavy material into clear, human narratives. This spans clean energy policy, moving industry data, academic research — domain-agnostic.
+1. **The translator:** Converts complex, technical, or data-heavy material into clear, human narratives. This spans clean energy policy, moving industry data, and academic research. It's domain-agnostic.
 
-2. **The systems builder:** Doesn't just produce content — builds the infrastructure (AI agents, automations, CMS workflows) that makes content production faster and smarter. Rare combination in a writer/strategist.
+2. **The systems builder:** Doesn't just produce content. Builds the infrastructure (AI agents, automations, CMS workflows) that makes content production faster and smarter. Rare combination in a writer/strategist.
 
 3. **The mission-driven communicator:** Drawn to organizations doing work that matters (clean energy access, community-centered orgs). The cover letter makes this explicit and it's worth leaning into on the portfolio.
 
-4. **The full-stack content operator:** Comfortable at every layer — strategy (OKRs, editorial calendars, stakeholder messaging) through execution (writing, CMS, publishing, QA) through analysis (cohort analysis, KPI tracking, reporting).
+4. **The full-stack content operator:** Comfortable at every layer: strategy (OKRs, editorial calendars, stakeholder messaging) through execution (writing, CMS, publishing, QA) through analysis (cohort analysis, KPI tracking, reporting).
 
-5. **The educator-turned-strategist:** 4.0 MA in English Lit, GTA background, ESL teaching — a consistent thread of breaking ideas down for audiences and making complex things accessible.
+5. **The educator-turned-strategist:** 4.0 MA in English Lit, GTA background, and ESL teaching, all one consistent thread of breaking ideas down for audiences and making complex things accessible.
 
 6. **The writer-writer:** The poetry publications and black metal/dungeon music coverage at Blacforje reveal that the craft runs deeper than the professional stack. This can humanize the portfolio and distinguish it from generic content-strategist sites.
 
@@ -273,12 +273,12 @@ These are the through-lines that define Seph's professional case — strong cand
 
 ## Portfolio Project Ideas
 
-- **AI workflow case study:** Document one of the agentic Claude or n8n systems built at moveBuddha or Home Solutions — problem, architecture, outcome.
-- **Content strategy case study:** The moveBuddha editorial calendar system — OKR alignment, lifecycle stages, performance metrics.
+- **AI workflow case study:** Document one of the agentic Claude or n8n systems built at moveBuddha or Home Solutions: problem, architecture, outcome.
+- **Content strategy case study:** The moveBuddha editorial calendar system: OKR alignment, lifecycle stages, performance metrics.
 - **Clean energy content samples:** Solar/SREC/tax credit explainers from Home Solutions (if shareable).
-- **YouTube channel:** Embed or showcase video work from the Seph Hawkins channel.
-- **Blacforje writing samples:** Link published pieces — black metal / dungeon coverage.
-- **Poetry publications:** Link "God Enters My House" and "Three Poems" — shows range.
+- **YouTube channel:** Embed or feature video work from the Seph Hawkins channel.
+- **Blacforje writing samples:** Link published pieces: black metal / dungeon coverage.
+- **Poetry publications:** Link "God Enters My House" and "Three Poems" to show range.
 - **Data storytelling:** Any pieces where you translated research or data into narrative.
 - **Academic presentations:** Conference work from UWG (2017, 2018).
 
@@ -286,13 +286,13 @@ These are the through-lines that define Seph's professional case — strong cand
 
 ## Open Questions / Gaps to Fill
 
-- [ ] Blacforje: full genre scope (confirmed black metal — is it dungeon synth too?), sample article links
+- [ ] Blacforje: full genre scope (confirmed black metal, but is it dungeon synth too?), sample article links
 - [ ] YouTube channel: niche, subscriber count, notable videos
 - [ ] Third education entry (LinkedIn shows 3 total)
 - [ ] Third honor/award (LinkedIn shows 3 total)
 - [ ] Third and fourth publications (LinkedIn shows 4 total)
 - [ ] Third and fourth LinkedIn projects
 - [ ] Full recommendation text from Rebekah Young and Allison Rosa (truncated in pull)
-- [ ] Specific metrics from moveBuddha or Home Solutions (traffic numbers, engagement lifts, etc.) — make case studies much stronger
+- [ ] Specific metrics from moveBuddha or Home Solutions (traffic numbers, engagement lifts, etc.) to make case studies much stronger
 - [ ] Portfolio site visual direction: tone/aesthetic? (Professional-minimal? Creative? Personal brand?)
-- [ ] Any work samples, writing clips, or case study assets to showcase
+- [ ] Any work samples, writing clips, or case study assets to feature

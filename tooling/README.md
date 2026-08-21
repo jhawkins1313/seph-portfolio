@@ -1,4 +1,4 @@
-# Project Tooling — Agents & Skills
+# Project Tooling: Agents & Skills
 
 Two agents and two skills built for this project. They keep new content consistent with the site's voice and structure.
 
@@ -13,7 +13,7 @@ Two agents and two skills built for this project. They keep new content consiste
 
 These files live in `tooling/` because the `.claude/` directory is locked in the current session. To make them active, do one of the following.
 
-**For Claude Code in this folder** — copy the definitions into the project's `.claude/` directory:
+**For Claude Code in this folder:** copy the definitions into the project's `.claude/` directory:
 
 ```bash
 mkdir -p .claude/agents .claude/skills
@@ -23,7 +23,7 @@ cp -r tooling/skills/* .claude/skills/
 
 Claude Code picks up agents from `.claude/agents/` and skills from `.claude/skills/<name>/SKILL.md` automatically.
 
-**For Cowork** — install the skills through Settings → Capabilities. The files here give you the content to paste or import; Cowork can't register them from inside a session.
+**For Cowork:** install the skills through Settings → Capabilities. The files here give you the content to paste or import; Cowork can't register them from inside a session.
 
 ## Using them
 

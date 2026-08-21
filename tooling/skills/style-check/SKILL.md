@@ -18,16 +18,22 @@ Catch the AI tells and banned words before copy goes live. This is the pre-publi
    grep -niE 'leverage|utiliz|harness|seamless|robust|foster|empower|elevate|enhance|ensure|delve|dive into|navigate|landscape|realm|journey|embark|tapestry|testament|crucial|pivotal|comprehensive|meticulous|intricate|multifaceted|vibrant|transformative|in conclusion|in summary' index.html
    ```
 
+   Em dashes get their own pass, because they hide in three encodings and a plain
+   character search misses the last two:
+   ```bash
+   grep -n '—\|&mdash;\|&#8212;' index.html
+   ```
+
 3. **Check the structural tells.**
    - Sentence rhythm: are they all the same length? There should be some under eight words.
-   - Em dashes: at most one per paragraph.
+   - Em dashes: zero. Every hit is a fix, no exceptions.
    - Specifics: every section needs at least one number, date, name, or result.
    - Openers: no three sentences in a row starting This/It/The.
    - Close: ends on a result or next step, not a summary.
 
 4. **Check specificity.** Flag any claim too vague to quote. Push for the number, or confirm it's marked `[TODO]`.
 
-5. **Return a verdict.** Lead with **PASS** or **NEEDS WORK**, then a numbered list: phrase, problem, fix. Don't rewrite whole passages — point precisely so the voice stays Seph's.
+5. **Return a verdict.** Lead with **PASS** or **NEEDS WORK**, then a numbered list: phrase, problem, fix. Don't rewrite whole passages. Point precisely so the voice stays Seph's.
 
 ## Output format
 ```

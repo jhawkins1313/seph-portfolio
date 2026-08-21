@@ -28,7 +28,7 @@ Still unresolved from `professional-profile.md`. None of these block anything.
 
 Check these whenever the work changes:
 
-- [ ] The **career timeline** in `#about` — add or close roles as they change.
+- [ ] The **career timeline** in `#about`: add or close roles as they change.
 - [ ] The **stat figures** in each `.glance`. They're the first thing a recruiter reads, so a stale number is worse than no number.
 - [ ] The **availability line** in the hero and in `#contact`. Both say the same thing; change both together.
 

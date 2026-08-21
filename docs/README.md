@@ -1,4 +1,4 @@
-# Portfolio Site — Seph Hawkins
+# Portfolio Site: Seph Hawkins
 
 A single-page portfolio for Joseph "Seph" Hawkins. One HTML file, no build step, no dependencies. Open `index.html` in a browser and it runs.
 

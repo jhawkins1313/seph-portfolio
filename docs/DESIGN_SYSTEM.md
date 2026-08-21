@@ -6,7 +6,7 @@ The look is a professor's study: aged ivory paper, dark olive ink, ivy green and
 
 All colors are CSS custom properties on `:root`, with a dark override under `html[data-theme="dark"]`. Change a value once and it updates everywhere.
 
-### Light (default — parchment study)
+### Light (default: parchment study)
 
 | Token | Value | Used for |
 | :--- | :--- | :--- |
@@ -30,28 +30,28 @@ Three families, each with a clear job:
 
 | Family | Role | Notes |
 | :--- | :--- | :--- |
-| **Fraunces** | Display, headings, and labels | A literary serif with optical sizing. Now carries the eyebrows, nav groups, and margin notes too — letter-spaced caps for an engraved, collegiate feel. |
+| **Fraunces** | Display, headings, and labels | A literary serif with optical sizing. Now carries the eyebrows, nav groups, and margin notes too, in letter-spaced caps for an engraved, collegiate feel. |
 | **Inter** | Body copy and chips | Clean, readable sans. Carries the reading load. |
-| **Space Mono** | Small catalog data only | Pulled back from labels. It survives only in tiny spots — entry meta, media specs, section numbers — where it reads like a library card, not a terminal. |
+| **Space Mono** | Small catalog data only | Pulled back from labels. It survives only in tiny spots (entry meta, media specs, section numbers) where it reads like a library card, not a terminal. |
 
 Body runs 18px at a 1.65 line height. Prose measure caps near 64 characters so lines stay readable. Headings use tight tracking and a short line height for a printed feel.
 
 ## Components
 
-- **Nav bubble** — a rounded "Contents" pill with a hamburger icon that morphs into an X when open, so the collapse is obvious. It expands into a grouped menu and holds the theme toggle and social links in its footer.
-- **Leaf sprig** — a small botanical mark in the accent green. It sits above every section label and at the end of the hero divider, tying the green motif through the whole page. Drawn with `mask-image` so it recolors with the theme.
-- **Section block** — a two-column grid: a sticky aside (number, eyebrow, margin note) and the content column. Collapses to one column under 820px.
-- **Entry** — the case-study row. Meta column plus content column, separated by hairline rules.
-- **Media slot** — a dashed box marking where an image, video, or embed goes. Labeled with its job and target size.
-- **Pull quote** — a serif italic block with a green rule. One per section at most.
-- **Index row** — a two-column reference list for credentials, publications, and article links.
-- **Chip** — a mono pill for skills. Quiet, not loud.
-- **Deck** — the five-tab strip that splits the page into panels. Fraunces small caps on a hairline rule, with a 2px accent underline marking the active tab. Deliberately not a pill row or a button group: it reads as a printed contents rule. Scrolls sideways on phones.
-- **Glance** — the scannable layer that opens every case study. A `.stats` row of figures plus a `ul.keys` bullet list.
-- **Stats** — figures set like a printed statistical table: hairline-separated cells, Fraunces numerals in accent green, an Inter caption beneath each. Not dashboard cards, and never three-across-in-a-row by default; the grid auto-fits.
-- **Keys** — the bulleted skim. A short accent dash instead of a disc, `--ink-soft` text, bold lead-ins where a label helps.
-- **Layer** — a `<details>` disclosure holding the full case study. Serif summary in accent green, a chevron that turns on open, and a mono caption on the right naming who the depth is for.
-- **Impact** — the one-sentence business result. Serif on a `--highlight` wash with an accent left rule. At most one per case study, always visible.
+- **Nav bubble:** a rounded "Contents" pill with a hamburger icon that morphs into an X when open, so the collapse is obvious. It expands into a grouped menu and holds the theme toggle and social links in its footer.
+- **Leaf sprig:** a small botanical mark in the accent green. It sits above every section label and at the end of the hero divider, tying the green motif through the whole page. Drawn with `mask-image` so it recolors with the theme.
+- **Section block:** a two-column grid, with a sticky aside (number, eyebrow, margin note) and the content column. Collapses to one column under 820px.
+- **Entry:** the case-study row. Meta column plus content column, separated by hairline rules.
+- **Media slot:** a dashed box marking where an image, video, or embed goes. Labeled with its job and target size.
+- **Pull quote:** a serif italic block with a green rule. One per section at most.
+- **Index row:** a two-column reference list for credentials, publications, and article links.
+- **Chip:** a mono pill for skills. Quiet, not loud.
+- **Deck:** the five-tab strip that splits the page into panels. Fraunces small caps on a hairline rule, with a 2px accent underline marking the active tab. Deliberately not a pill row or a button group: it reads as a printed contents rule. Scrolls sideways on phones.
+- **Glance:** the scannable layer that opens every case study. A `.stats` row of figures plus a `ul.keys` bullet list.
+- **Stats:** figures set like a printed statistical table: hairline-separated cells, Fraunces numerals in accent green, an Inter caption beneath each. Not dashboard cards, and never three-across-in-a-row by default; the grid auto-fits.
+- **Keys:** the bulleted skim. A short accent dash instead of a disc, `--ink-soft` text, bold lead-ins where a label helps.
+- **Layer:** a `<details>` disclosure holding the full case study. Serif summary in accent green, a chevron that turns on open, and a mono caption on the right naming who the depth is for.
+- **Impact:** the one-sentence business result. Serif on a `--highlight` wash with an accent left rule. At most one per case study, always visible.
 
 ### Colour rule for inverted surfaces
 
