@@ -1,0 +1,47 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one deployment at a time; don't cancel a run that's mid-publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # Publish only the site surface — same set the Dockerfile serves —
+      # plus the root images, which are already live at public URLs.
+      # Source docs (docs/, tooling/, *.md) stay in the repo, off the site.
+      - name: Stage site files
+        run: |
+          mkdir -p _site
+          cp index.html favicon.ico _site/
+          cp -r assets _site/assets
+          cp seph-hawkins-linkedin-banner.png \
+             special-attention-review-method.png \
+             special-attention-review-method.svg \
+             _site/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
