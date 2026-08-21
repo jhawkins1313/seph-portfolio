@@ -15,9 +15,9 @@ All colors are CSS custom properties on `:root`, with a dark override under `htm
 | `--card` | `#F8F2E4` | Nav bubble surface |
 | `--ink` | `#23271E` | Primary text (dark olive) |
 | `--ink-soft` | `#454A38` | Secondary text |
-| `--muted` | `#7B7A61` | Labels, captions, marginalia |
+| `--muted` | `#666551` | Labels, captions, marginalia |
 | `--accent` | `#2E5D43` | Ivy green. Links, labels, active state, rules, leaf motif |
-| `--accent-2` | `#9A6A2C` | Brass / gold. Tags, icon hovers |
+| `--accent-2` | `#845B26` | Brass / gold. Tags, icon hovers |
 | `--rule` | `rgba(35,39,30,0.17)` | Hairlines and borders |
 
 ### Dark (candlelit library)
@@ -46,6 +46,16 @@ Body runs 18px at a 1.65 line height. Prose measure caps near 64 characters so l
 - **Pull quote** — a serif italic block with a green rule. One per section at most.
 - **Index row** — a two-column reference list for credentials, publications, and article links.
 - **Chip** — a mono pill for skills. Quiet, not loud.
+- **Deck** — the five-tab strip that splits the page into panels. Fraunces small caps on a hairline rule, with a 2px accent underline marking the active tab. Deliberately not a pill row or a button group: it reads as a printed contents rule. Scrolls sideways on phones.
+- **Glance** — the scannable layer that opens every case study. A `.stats` row of figures plus a `ul.keys` bullet list.
+- **Stats** — figures set like a printed statistical table: hairline-separated cells, Fraunces numerals in accent green, an Inter caption beneath each. Not dashboard cards, and never three-across-in-a-row by default; the grid auto-fits.
+- **Keys** — the bulleted skim. A short accent dash instead of a disc, `--ink-soft` text, bold lead-ins where a label helps.
+- **Layer** — a `<details>` disclosure holding the full case study. Serif summary in accent green, a chevron that turns on open, and a mono caption on the right naming who the depth is for.
+- **Impact** — the one-sentence business result. Serif on a `--highlight` wash with an accent left rule. At most one per case study, always visible.
+
+### Colour rule for inverted surfaces
+
+Anything sitting on `--accent` or `--accent-2` takes `color:var(--paper)`, never a hard-coded `#fff`. The accents invert between themes (ivy green becomes leaf green), so white text fails contrast in dark mode while `--paper` stays correct in both.
 
 ## The anti-AI rules
 
@@ -65,11 +75,14 @@ Every word goes through `STYLE_GUIDE_GENERAL.md`. The short version: plain langu
 
 ## Accessibility
 
-- Color contrast meets WCAG AA in both themes for body and heading text.
+- **Every piece of text on the page meets WCAG AA in both themes**, marginalia included. Audited across 476 elements with the nav open, all disclosures expanded, and all panels shown: zero failures in light, zero in dark. `--muted` and `--accent-2` were darkened from `#7B7A61` and `#9A6A2C` to reach this; both keep their original hue.
+- A skip link is the first focusable element. It is `position:fixed`, so it reveals into view at any scroll position.
+- The deck is a real ARIA tablist: `role="tab"`/`role="tabpanel"`, `aria-controls`/`aria-labelledby` wiring, roving `tabindex`, and arrow/`Home`/`End` keys. The CV filter follows the same pattern.
 - Every interactive control has an `aria-label` and a visible focus ring.
 - The nav closes on `Escape` and traps nothing the keyboard can't reach.
-- `prefers-reduced-motion` turns off animation and smooth scrolling.
-- Images need real `alt` text when you add them. The headshot frame is decorative until you do.
+- `prefers-reduced-motion` turns off animation and smooth scrolling, including the tab and layer transitions.
+- Every image carries real `alt` text. The SAR diagram's alt describes all three stages rather than naming the file.
+- Nothing depends on JavaScript: `<noscript>` shows every panel, and the print stylesheet does the same while expanding all layers.
 
 ## Adding to it
 
