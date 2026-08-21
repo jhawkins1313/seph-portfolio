@@ -248,14 +248,17 @@
   /* ============================================================
      HERO
      ============================================================ */
-  .hero{padding:clamp(120px,20vh,220px) 0 clamp(56px,9vw,110px);border-top:none}
+  /* Sized so the tab strip clears the fold on a laptop. The vertical padding
+     is vh-based so a short viewport compresses the hero rather than burying
+     the navigation below it. */
+  .hero{padding:clamp(48px,7.5vh,92px) 0 clamp(24px,3.5vw,54px);border-top:none}
   .hero .eyebrow{margin-bottom:22px}
   .hero h1{
-    font-size:clamp(54px,11vw,148px);font-weight:700;letter-spacing:-0.025em;line-height:0.92;
+    font-size:clamp(46px,8vw,112px);font-weight:700;letter-spacing:-0.025em;line-height:0.92;
     text-transform:none;
   }
   .hero h1 .b{color:var(--muted)}
-  .hero__divider{display:flex;align-items:center;gap:15px;margin:30px 0 24px}
+  .hero__divider{display:flex;align-items:center;gap:15px;margin:18px 0 16px}
   .hero__divider .line{height:2px;width:min(210px,32%);background:var(--accent)}
   .sprig{color:var(--accent);flex:none;display:block}
   .sprig.lg{width:62px;height:22px}
@@ -269,7 +272,7 @@
 
   /* headshot slot */
   .headshot{
-    width:clamp(170px,22vw,250px);aspect-ratio:4/5;border-radius:14px;
+    width:clamp(140px,14.5vw,182px);aspect-ratio:4/5;border-radius:14px;
     background:
       repeating-linear-gradient(45deg,var(--rule-soft) 0 2px,transparent 2px 11px),
       var(--paper-2);
