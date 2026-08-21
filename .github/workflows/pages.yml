@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v4
 
       # Publish only the site surface — same set the Dockerfile serves —
-      # plus the root images, which are already live at public URLs.
+      # plus two unreferenced root images kept for their existing public URLs.
       # Source docs (docs/, tooling/, *.md) stay in the repo, off the site.
       - name: Stage site files
         run: |
@@ -33,9 +33,30 @@ jobs:
           cp index.html favicon.ico _site/
           cp -r assets _site/assets
           cp seph-hawkins-linkedin-banner.png \
-             special-attention-review-method.png \
              special-attention-review-method.svg \
              _site/
+
+      # The site is served two ways: this artifact, and the nginx image built
+      # by deploy.yml, which only copies index.html, favicon.ico and assets/.
+      # Anything index.html references must live inside that set or it 404s on
+      # the container host while working fine here. Fail loudly instead.
+      - name: Check every referenced file is deployable
+        run: |
+          fail=0
+          refs=$(grep -oE '(href|src)="[^"#][^"]*"' index.html \
+                 | sed 's/.*="//; s/"$//' \
+                 | grep -vE '^(https?:|mailto:|#)' | sort -u)
+          for f in $refs; do
+            case "$f" in
+              assets/*|index.html|favicon.ico) ;;
+              *) echo "::error::$f is referenced by index.html but is not copied by the Dockerfile; move it into assets/"; fail=1 ;;
+            esac
+            if [ ! -f "_site/$f" ]; then
+              echo "::error::$f is referenced by index.html but is missing from the build"; fail=1
+            fi
+          done
+          [ "$fail" -eq 0 ] && echo "All referenced files are present and deployable on both targets."
+          exit $fail
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
