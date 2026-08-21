@@ -37,12 +37,12 @@
     --card:#F8F2E4;
     --ink:#23271E;         /* dark olive ink */
     --ink-soft:#454A38;
-    --muted:#7B7A61;
+    --muted:#666551;       /* darkened from #7B7A61 for WCAG AA on parchment */
     --rule:rgba(35,39,30,0.17);
     --rule-soft:rgba(35,39,30,0.09);
     --accent:#2E5D43;      /* ivy green */
-    --accent-2:#9A6A2C;    /* brass / gold */
-    --brass:#9A6A2C;
+    --accent-2:#845B26;    /* brass / gold — darkened from #9A6A2C for AA */
+    --brass:#845B26;
     --mb-teal:#1C8C82;     /* moveBuddha teal, muted for parchment */
     --highlight:rgba(46,93,67,0.10);
     --grain:0.05;
@@ -154,7 +154,7 @@
     max-height:min(86vh,760px);overflow:auto;
   }
   .nav.open .nav__panel{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
-  .nav.open .nav__toggle{background:var(--accent);color:#fff;border-color:transparent}
+  .nav.open .nav__toggle{background:var(--accent);color:var(--paper);border-color:transparent}
 
   .nav__head{
     display:flex;align-items:center;justify-content:space-between;
@@ -202,7 +202,7 @@
     width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
     border:1px solid var(--rule);color:var(--ink-soft);transition:.2s;
   }
-  .icon-link:hover{color:#fff;background:var(--accent-2);border-color:transparent}
+  .icon-link:hover{color:var(--paper);background:var(--accent-2);border-color:transparent}
   .icon-link svg{width:16px;height:16px}
 
   /* ============================================================
@@ -319,6 +319,10 @@
   .media.is-filled svg{display:block;width:100%;height:100%}
   .media.is-filled img{display:block;width:100%;height:100%;object-fit:cover;object-position:top center}
   .media-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:22px}
+  /* a fixed-palette diagram: take the glare off it under the dark theme */
+  .media--diagram{padding:0;overflow:hidden}
+  .media--diagram img{width:100%;height:auto;object-fit:contain}
+  html[data-theme="dark"] .media--diagram img{filter:brightness(.86) saturate(.94)}
   a.card-link{
     text-decoration:none;border:1px solid var(--rule);border-radius:12px;
     background:var(--paper-2);display:grid;place-items:stretch;padding:0;overflow:hidden;
@@ -363,7 +367,7 @@
     text-transform:uppercase;cursor:pointer;border:1px solid var(--rule);border-radius:999px;
     padding:7px 15px;color:var(--muted);background:var(--paper-2);transition:.2s}
   .cv__tab:hover{color:var(--ink);border-color:var(--ink)}
-  .cv__tab.is-active{background:var(--accent);color:#fff;border-color:transparent}
+  .cv__tab.is-active{background:var(--accent);color:var(--paper);border-color:transparent}
   .cv__tab:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   .cv__list{margin-top:6px}
   .cv__row{display:grid;grid-template-columns:160px minmax(0,1fr);gap:18px;
@@ -402,6 +406,135 @@
   footer.foot a:hover{color:var(--accent)}
 
   /* ============================================================
+     SKIP LINK  ·  first stop for a keyboard or screen-reader visitor
+     ============================================================ */
+  .skip-link{
+    /* fixed, not absolute: it lands in the viewport no matter the scroll position */
+    position:fixed;left:0;top:0;z-index:100;
+    transform:translateY(-120%);
+    background:var(--accent);color:var(--paper);
+    font-family:"Fraunces",serif;font-size:15px;letter-spacing:.06em;
+    padding:12px 20px;border-radius:0 0 10px 0;text-decoration:none;
+  }
+  .skip-link:focus,.skip-link:focus-visible{transform:translateY(0)}
+  @media (prefers-reduced-motion:reduce){.skip-link{transition:none}}
+
+  /* ============================================================
+     DECK  ·  tabbed panels, so the page is never one long scroll
+     Styled as an editorial contents rule, not a UI widget.
+     ============================================================ */
+  .deck{position:relative;z-index:1;border-top:1px solid var(--rule);margin-top:8px}
+  .deck__tabs{
+    display:flex;gap:clamp(6px,2vw,30px);
+    overflow-x:auto;scrollbar-width:none;
+    border-bottom:1px solid var(--rule);
+    padding:2px 0 0;margin-bottom:4px;
+  }
+  .deck__tabs::-webkit-scrollbar{display:none}
+  .deck__tab{
+    flex:none;position:relative;cursor:pointer;
+    background:none;border:0;border-bottom:2px solid transparent;
+    font-family:"Fraunces",Georgia,serif;font-weight:600;
+    font-size:clamp(13px,1.5vw,15px);letter-spacing:.12em;text-transform:uppercase;
+    /* ink-soft, not muted: these are primary navigation and must stay readable */
+    color:var(--ink-soft);padding:18px 2px 15px;white-space:nowrap;
+    transition:color .2s ease,border-color .2s ease;
+  }
+  .deck__tab .tnum{
+    font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:.05em;
+    color:var(--rule);margin-right:7px;transition:color .2s ease;
+  }
+  .deck__tab:hover{color:var(--ink)}
+  .deck__tab:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+  .deck__tab[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+  .deck__tab[aria-selected="true"] .tnum{color:var(--accent)}
+  .deck__panel[hidden]{display:none}
+  .deck__panel:focus{outline:none}
+  /* the panel's own sections shouldn't repeat the deck's top rule */
+  .deck__panel > .section:first-child{border-top:none}
+
+  /* ============================================================
+     AT A GLANCE  ·  the scannable layer every reader gets first
+     ============================================================ */
+  .glance{
+    margin:2px 0 26px;padding:22px 0 4px;
+    border-top:1px solid var(--rule-soft);
+  }
+  .glance__label{
+    font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:.16em;
+    /* ink-soft rather than muted: small caps at 10.5px need the extra contrast */
+    text-transform:uppercase;color:var(--ink-soft);margin-bottom:16px;display:block;
+  }
+  /* statistics set like a printed table, not dashboard cards */
+  .stats{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:1px;background:var(--rule-soft);border:1px solid var(--rule-soft);
+    border-radius:10px;overflow:hidden;margin-bottom:22px;
+  }
+  .stat{background:var(--paper);padding:15px 18px}
+  .stat b{
+    display:block;font-family:"Fraunces",Georgia,serif;font-weight:600;
+    font-size:clamp(25px,3.4vw,33px);line-height:1.05;color:var(--accent);
+    letter-spacing:-0.015em;
+  }
+  .stat span{
+    display:block;margin-top:6px;font-family:"Inter",sans-serif;
+    font-size:12.5px;line-height:1.45;color:var(--ink-soft);
+  }
+
+  /* key points — the bulleted skim */
+  ul.keys{list-style:none;margin:0;padding:0;max-width:66ch}
+  ul.keys li{
+    position:relative;padding:0 0 0 26px;margin-bottom:11px;
+    font-size:16.5px;line-height:1.55;color:var(--ink-soft);
+  }
+  ul.keys li::before{
+    content:"";position:absolute;left:4px;top:.62em;
+    width:9px;height:2px;border-radius:1px;background:var(--accent);
+  }
+  ul.keys li b{color:var(--ink);font-weight:600}
+  ul.keys li:last-child{margin-bottom:0}
+
+  /* ============================================================
+     LAYERS  ·  optional depth for specialists and decision-makers
+     ============================================================ */
+  .layer{
+    border-top:1px solid var(--rule-soft);margin-top:20px;
+  }
+  .layer > summary{
+    cursor:pointer;list-style:none;padding:15px 0 14px;
+    display:flex;align-items:baseline;gap:12px;
+    font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:16px;
+    color:var(--accent);transition:color .2s ease;
+  }
+  .layer > summary::-webkit-details-marker{display:none}
+  .layer > summary:hover{color:var(--ink)}
+  .layer > summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:5px}
+  .layer__who{
+    font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:400;margin-left:auto;
+    flex:none;padding-left:14px;
+  }
+  /* chevron that turns as the layer opens */
+  .layer > summary .chev{
+    flex:none;width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;
+    transform:rotate(45deg) translate(-1px,-1px);transition:transform .25s ease;
+  }
+  .layer[open] > summary .chev{transform:rotate(-135deg) translate(-2px,-2px)}
+  .layer__body{padding:2px 0 20px}
+  .layer__body > .prose + .media,
+  .layer__body > .prose + .media-row{margin-top:20px}
+
+  /* impact callout — the line a decision-maker is scanning for */
+  .impact{
+    margin-top:20px;padding:15px 20px;border-radius:9px;
+    background:var(--highlight);border-left:3px solid var(--accent);
+    font-family:"Fraunces",Georgia,serif;font-size:17px;line-height:1.5;
+    color:var(--ink);max-width:62ch;
+  }
+  .impact b{color:var(--accent);font-weight:600}
+
+  /* ============================================================
      RESPONSIVE
      ============================================================ */
   @media (max-width:820px){
@@ -417,6 +550,15 @@
     .headshot{order:-1}
     .index__row{grid-template-columns:1fr}
     .cv__row{grid-template-columns:1fr;gap:4px}
+    /* tab strip scrolls sideways rather than wrapping into a block */
+    .deck__tabs{gap:20px;padding-left:2px;-webkit-overflow-scrolling:touch}
+    .deck__tab{padding:15px 2px 12px;letter-spacing:.09em}
+    .deck__tab .tnum{display:none}
+    .stats{grid-template-columns:repeat(auto-fit,minmax(118px,1fr))}
+    .stat{padding:13px 14px}
+    .glance{padding-top:18px;margin-bottom:22px}
+    .layer__who{display:none}
+    ul.keys li{font-size:16px}
   }
   @media (max-width:560px){
     .nav{top:14px;left:14px}
@@ -424,9 +566,31 @@
   @media (prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
   }
+  /* ============================================================
+     PRINT  ·  a recruiter saving a PDF gets everything, flattened
+     ============================================================ */
+  @media print{
+    .nav,.skip-link,.deck__tabs{display:none!important}
+    .deck__panel[hidden]{display:block!important}
+    .layer__body{display:block!important}
+    .layer > summary{color:var(--ink)}
+    .layer > summary .chev,.layer__who{display:none}
+    body::before,body::after{display:none}
+    .section{padding:24px 0;break-inside:avoid}
+    .entry{break-inside:avoid}
+    a[href^="http"]::after{content:" (" attr(href) ")";font-size:10px;color:#555}
+  }
 </style>
+<!-- Without JS there are no tabs: every panel simply shows, as one scroll. -->
+<noscript><style>
+  .deck__tabs{display:none}
+  .deck__panel[hidden]{display:block!important}
+  .layer__body{display:block!important}
+  .layer > summary .chev{display:none}
+</style></noscript>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ============================================================
      NAV BUBBLE
@@ -475,7 +639,7 @@
   </div>
 </nav>
 
-<main>
+<main id="main">
   <div class="wrap">
 
     <!-- ===========================  HOME  =========================== -->
@@ -496,13 +660,28 @@
       <div class="hero__grid">
         <div>
           <p class="lede">I turn complicated work into clear writing, then build the AI systems that help a team make more of it.</p>
-          <p class="hero__status"><span class="dot"></span> Open to content, editorial &amp; project roles</p>
+          <p class="hero__status"><span class="dot"></span> Available now &mdash; senior editorial, content strategy &amp; AI systems roles</p>
         </div>
         <figure class="headshot">
           <img src="assets/headshot.jpg" alt="Seph Hawkins" width="320" height="400" loading="lazy" decoding="async">
         </figure>
       </div>
     </section>
+
+    <!-- ============================================================
+         DECK  ·  tabbed panels. Every panel stays in the DOM so the
+         content is still crawlable; only visibility changes.
+         ============================================================ -->
+    <div class="deck" id="deck">
+      <div class="deck__tabs" role="tablist" aria-label="Portfolio sections">
+        <button class="deck__tab" type="button" role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true"  tabindex="0"><span class="tnum" aria-hidden="true">01</span>Overview</button>
+        <button class="deck__tab" type="button" role="tab" id="tab-content"  aria-controls="panel-content"  aria-selected="false" tabindex="-1"><span class="tnum" aria-hidden="true">02</span>Content Strategy</button>
+        <button class="deck__tab" type="button" role="tab" id="tab-ai"       aria-controls="panel-ai"       aria-selected="false" tabindex="-1"><span class="tnum" aria-hidden="true">03</span>AI Systems</button>
+        <button class="deck__tab" type="button" role="tab" id="tab-pm"       aria-controls="panel-pm"       aria-selected="false" tabindex="-1"><span class="tnum" aria-hidden="true">04</span>Project Management</button>
+        <button class="deck__tab" type="button" role="tab" id="tab-projects" aria-controls="panel-projects" aria-selected="false" tabindex="-1"><span class="tnum" aria-hidden="true">05</span>Projects</button>
+      </div>
+
+      <div class="deck__panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" tabindex="-1">
 
     <!-- ===========================  ABOUT  =========================== -->
     <section id="about" class="section">
@@ -512,6 +691,23 @@
       <div>
         <h2 class="section__title serif">An editor who builds his own tools.</h2>
         <p class="section__dek">Seven years of editorial work, plus a newer habit: building the automations that take the busywork out of content.</p>
+
+        <div class="glance">
+          <span class="glance__label">Career at a glance</span>
+          <div class="stats">
+            <div class="stat"><b>7+ yrs</b><span>Editorial, content strategy, and content operations</span></div>
+            <div class="stat"><b>200%+</b><span>Organic traffic growth at Home Solutions</span></div>
+            <div class="stat"><b>13,000+</b><span>Programmatic pages audited at moveBuddha</span></div>
+            <div class="stat"><b>50%</b><span>Faster production from the AI workflows I built</span></div>
+          </div>
+          <ul class="keys">
+            <li><b>Editorial lead.</b> Owned voice, calendar, and quality for a multi-brand team of 8+, holding a 95% accuracy rate with fewer than three major post-launch corrections.</li>
+            <li><b>Systems builder.</b> Agentic Claude and n8n workflows that cut content turnaround in half, plus custom models and prompt libraries that lifted research and production efficiency by 50%.</li>
+            <li><b>Measured by search.</b> SEO and AEO work across SEMrush, Ahrefs, and Google Search Console, from a 200% organic lift to closing gaps across 13,000+ pages.</li>
+            <li><b>Trained as a teacher.</b> A 4.0 master's in English and two years teaching college writing, which is where the habit of breaking hard things down started.</li>
+          </ul>
+        </div>
+
         <div class="prose">
           <p class="dropcap">I live to create. I'm Joseph Hawkins, and I go by Seph. I'm a content strategist and editor in Newnan, Georgia, and for seven years I've done two jobs at once. One is editorial: find the story, get the facts right, write it so a real person wants to read it. The other is operational: build the tools that let a small team ship more of that work without burning out.</p>
           <p>The editorial side runs deep. I've led content strategy at moveBuddha as Senior Editor and produced hundreds of home-services pieces through media partnerships at Home Solutions / Three Ships. In fact, I was so successful at growing the home services verticals that Home Solutions was spun out of Three Ships as a separate company to manage the revenue and performance we created. I like teaching, so I run a personal YouTube channel where I take academic theories and present them to a general audience that wants to become conscious media consumers. I also keep my analytical eye going as I review black metal and dungeon synth albums for Blacforje.</p>
@@ -532,18 +728,22 @@
 
         <!-- Education & experience -->
         <div class="cv" aria-label="Education and experience">
-          <div class="cv__tabs" role="tablist" aria-label="Filter by type">
-            <button class="cv__tab is-active" type="button" role="tab" aria-selected="true" data-filter="exp">Experience</button>
-            <button class="cv__tab" type="button" role="tab" aria-selected="false" data-filter="edu">Education</button>
-            <button class="cv__tab" type="button" role="tab" aria-selected="false" data-filter="add">Additional</button>
+          <div class="cv__tabs" role="tablist" aria-label="Filter the timeline by type">
+            <button class="cv__tab is-active" type="button" role="tab" id="cvtab-exp" aria-controls="cvList" aria-selected="true"  tabindex="0"  data-filter="exp">Experience</button>
+            <button class="cv__tab" type="button" role="tab" id="cvtab-edu" aria-controls="cvList" aria-selected="false" tabindex="-1" data-filter="edu">Education</button>
+            <button class="cv__tab" type="button" role="tab" id="cvtab-add" aria-controls="cvList" aria-selected="false" tabindex="-1" data-filter="add">Additional</button>
           </div>
-          <div class="cv__list">
+          <div class="cv__list" id="cvList" role="tabpanel" aria-live="polite">
+            <div class="cv__row" data-cat="exp">
+              <div class="when">Jun 2026 – Present</div>
+              <div class="what"><b>Managing Partner &amp; Strategist</b><span>MyPollenPal · Self-employed · Remote</span></div>
+            </div>
             <div class="cv__row" data-cat="exp">
               <div class="when">Sep 2025 – Jun 2026</div>
               <div class="what"><b>Senior Editor</b><span>moveBuddha · Remote</span></div>
             </div>
             <div class="cv__row" data-cat="add">
-              <div class="when">Feb 2024 – Present</div>
+              <div class="when">Feb 2024 – Aug 2026</div>
               <div class="what"><b>Contributing Writer</b><span>Blacforje Magazine · Remote</span></div>
             </div>
             <div class="cv__row" data-cat="exp">
@@ -579,6 +779,10 @@
       </div>
     </section>
 
+      </div><!-- /panel-overview -->
+
+      <div class="deck__panel" id="panel-content" role="tabpanel" aria-labelledby="tab-content" tabindex="-1" hidden>
+
     <!-- ===========================  CONTENT PRODUCER  =========================== -->
     <section id="content-producer" class="section">
       <div class="section__aside"><div class="sticky">
@@ -594,7 +798,27 @@
             <div>
               <h3 class="serif">Editorial Consistency System</h3>
               <p class="entry__dek">Quarterly blog health checks and shared Claude Cowork plug-ins that kept voice, facts, and pricing aligned across the whole site.</p>
-              <div class="prose">
+
+              <div class="glance">
+                <div class="stats">
+                  <div class="stat"><b>13,000+</b><span>Programmatic pages audited and optimized</span></div>
+                  <div class="stat"><b>0&ndash;1 &rarr; 7+</b><span>Average AI Overview appearances</span></div>
+                  <div class="stat"><b>+5</b><span>Average rank positions on priority pages, within a week</span></div>
+                  <div class="stat"><b>95%</b><span>Content accuracy rate held across all published work</span></div>
+                </div>
+                <ul class="keys">
+                  <li>Audited <b>13,000+ pages</b> of programmatic content across brand verticals, using competitor, SEO, and AI-extraction (GEO/AEO) analysis to find the gaps worth closing.</li>
+                  <li>Rewrote the internal style guide and turned its rules into <b>four Claude Cowork plug-ins</b> that check voice, SME accuracy, CRO, and data on every page.</li>
+                  <li>Ran quarterly blog health checks in ClickUp, picking targets by reading Google Search Console data against each page's SEO history.</li>
+                  <li>Directed the editorial calendar, brand voice, and production workflows for a multi-brand team of <b>8+</b>.</li>
+                  <li>Published across a proprietary Liquid CMS and WordPress, holding formatting, linking, and metadata consistent at scale.</li>
+                </ul>
+              </div>
+
+              <details class="layer">
+                <summary><span class="chev" aria-hidden="true"></span>How I built it<span class="layer__who">Full case study</span></summary>
+                <div class="layer__body">
+                <div class="prose">
                 <p>I inherited a static, blog-first site with real technical debt and editorial drift. Pricing and company details didn't match from one page to the next. That cost us a weaker Google rank, fewer and fuzzier mentions in AI Overviews, and a softer conversion rate.</p>
                 <p>I fixed it on two tracks. First came quarterly blog health checks in ClickUp, focused on the highest-value pages. I picked these by reading Google Search Console data against each page's SEO history. Second, I rewrote moveBuddha's internal style guide and turned its rules into four Claude Cowork plug-ins the whole team could run. Each one handled a single check: voice consistency, subject-matter expert (SME) input, conversion best practices (CRO), and data accuracy. Prices and company facts finally lined up across the site.</p>
                 <p>The brand reads as one clear authority on moving again. It now shows up more often, and more clearly, in AI search for both LLM chatbots and Google's AI Overviews, roughly from 0&ndash;1 average AIO appearances to 7+. Priority pages climbed in Google rank, increasing approximately 5 positions on average within a week. Consistent facts and one voice are what readers and AI engines trust, and trust is what lifts rank and conversions.</p>
@@ -657,6 +881,10 @@
                   <text x="320" y="322" text-anchor="middle" style="fill:var(--ink-soft)" font-family="Fraunces,serif" font-style="italic" font-size="13.5">Every page takes the same route to consistent voice, facts, and pricing.</text>
                 </svg>
               </div>
+                </div>
+              </details>
+
+              <p class="impact"><b>Why it mattered:</b> consistent facts and one voice are what readers and AI engines trust. That trust moved priority pages up about <b>5 rank positions</b> within a week and took the brand from <b>0&ndash;1 to 7+</b> average AI Overview appearances, which is where discovery is heading.</p>
             </div>
           </article>
 
@@ -665,13 +893,38 @@
             <div>
               <h3 class="serif">Solar &amp; Clean-Energy Explainers</h3>
               <p class="entry__dek">Plain-language guides on installation, costs, tax credits, and SRECs — built around real search demand and written to convert — that helped grow solar into a pillar category.</p>
-              <div class="prose">
+
+              <div class="glance">
+                <div class="stats">
+                  <div class="stat"><b>200%+</b><span>Growth in organic traffic and search rankings</span></div>
+                  <div class="stat"><b>80%</b><span>Lift in conversion and engagement from message testing</span></div>
+                  <div class="stat"><b>3,000+</b><span>Residential solar customers surveyed</span></div>
+                  <div class="stat"><b>10+</b><span>Subject-matter experts interviewed</span></div>
+                </div>
+                <ul class="keys">
+                  <li>Grew organic traffic and search rankings <b>200%+</b> by producing and optimizing technical home-services content readers trusted enough to act on.</li>
+                  <li>Lifted conversion and engagement <b>80%</b> by designing and running quarterly, structured message-testing programs, then using real performance data to decide what stayed and what got cut.</li>
+                  <li>Wrote hundreds of solar pieces across <b>5+ media partner sites</b>, covering installation, costs, federal and state tax credits, and SRECs.</li>
+                  <li>Sourced, briefed, and managed an on-demand team of <b>4 freelancers</b> across content, infographics, and video, holding one brand voice across contributors.</li>
+                  <li>Tracked organic performance and guided on-page SEO with SEMrush, Ahrefs, and Google Search Console.</li>
+                </ul>
+              </div>
+
+              <details class="layer">
+                <summary><span class="chev" aria-hidden="true"></span>How I built it<span class="layer__who">Full case study</span></summary>
+                <div class="layer__body">
+                <div class="prose">
                 <p>I built residential solar from a minor topic into a flagship vertical. Over my time here I wrote hundreds of solar pieces across five-plus media partner websites, including guides on installation, costs, federal and state tax credits, and SRECs, and grew the category into one of the top three we supplied to those partners.</p>
                 <p>Getting there meant turning dense, scattered information into something a homeowner could act on. I synthesized solar industry and incentive data that was technically public but hard to parse, ran surveys of 3,000+ residential solar customers, and interviewed 10+ subject-matter experts to ground every recommendation. I also helped develop programmatic local campaigns that adapted the category to specific markets and search demand.</p>
                 <p>The vertical drove enough qualified leads to our solar partners to stand on its own as a flagship category. Clear, trustworthy explainers are what turn a curious homeowner into a lead, and that's what moved solar from a side topic to a pillar of what we delivered.</p>
-                <p>Here are a few representative pieces:</p>
               </div>
-              <div class="media-row">
+                </div>
+              </details>
+
+              <p class="impact"><b>Why it mattered:</b> solar went from a minor topic to a flagship category, and Home Solutions was spun out of Three Ships as its own company to manage the revenue that home-services content created.</p>
+
+              <span class="glance__label" style="display:block;margin-top:26px">Selected published work</span>
+              <div class="media-row" style="margin-top:12px">
                 <a class="card-link" href="https://www.thisoldhouse.com/solar-alternative-energy/best-solar-companies" target="_blank" rel="noopener">
                   <span class="card-link__inner">
                     <span class="card-link__pub">This Old House</span>
@@ -705,11 +958,28 @@
             <div>
               <h3 class="serif">Reviews &amp; Roundups at Scale</h3>
               <p class="entry__dek">Brand-aligned, SEO-optimized articles across consumer verticals, with visual sourcing and QA.</p>
-              <div class="prose">
+
+              <div class="glance">
+                <div class="stats">
+                  <div class="stat"><b>$1M+</b><span>Revenue traced to the content line I produced on</span></div>
+                  <div class="stat"><b>2020&ndash;2023</b><span>Producing reviews and round-ups at volume</span></div>
+                </div>
+                <ul class="keys">
+                  <li>Wrote accurate, brand-aligned, SEO-optimized articles, reviews, and round-ups across consumer verticals, each tied to a question readers were already asking.</li>
+                  <li>Sourced the supporting visuals, loaded content onto partner sites, and QA'd every asset before publish.</li>
+                  <li>Kept older pieces current as pricing, promos, and retail partners changed.</li>
+                  <li>Worked copy and visual concepts with the editorial team and digital marketing partners, then made the case for which ideas were worth building.</li>
+                  <li>Learned each brand's standard from direct feedback, then revised until the work met it.</li>
+                </ul>
+              </div>
+
+              <details class="layer">
+                <summary><span class="chev" aria-hidden="true"></span>How I built it<span class="layer__who">Full case study</span></summary>
+                <div class="layer__body">
+                <div class="prose">
                 <p>This is where I learned to produce at volume. I wrote articles, reviews, and round-ups across consumer verticals. Each one was accurate, search-optimized, on brand, on time, tied to a real question a reader was already asking, and built to perform once it shipped. To hit that bar piece after piece, I built a tight, repeatable production process and held myself to it.</p>
                 <p>I took constructive feedback to learn each brand's standard, then revised until the work met it. I brainstormed copy and visual ideas with the editorial team and our digital marketing partners, and made the case for which new ideas were worth building. From there I sourced the supporting images, charts, graphs, and infographics, loaded everything onto the sites, and QA'd every asset before it went live. I also kept older pieces current as the facts moved, such as pricing, promotions, and retail partnerships, and helped with outreach to media, brands, and influencers.</p>
                 <p>The home-services verticals grew faster than anything else we ran. They grew enough that Home Solutions was spun out of Three Ships as its own company, built to manage the revenue and performance this content created. A disciplined line: write, revise, illustrate, publish, QA, and update. This is what turned a content program into a business.</p>
-                <p>Here's a representative piece:</p>
               </div>
               <div class="media ratio-16x9 is-filled" role="img" aria-label="Three Ships editorial production line: a brief moves through write, revise, source, and publish-and-QA stages, with an update loop, ending in a flag marking the result: one million-plus dollars in revenue.">
                 <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
@@ -779,7 +1049,13 @@
                   <text x="580" y="272" text-anchor="middle" style="fill:var(--ink)" font-family="Inter,sans-serif" font-size="12.5" font-weight="600">$1,000,000+</text>
                 </svg>
               </div>
-              <div class="media-row">
+                </div>
+              </details>
+
+              <p class="impact"><b>Why it mattered:</b> the home-services verticals outgrew everything else on the roster, enough that Home Solutions was spun out of Three Ships as its own company to manage the revenue and performance this content created.</p>
+
+              <span class="glance__label" style="display:block;margin-top:26px">Selected published work</span>
+              <div class="media-row" style="margin-top:12px">
                 <a class="card-link" href="https://www.thisoldhouse.com/windows/best-window-brands" target="_blank" rel="noopener">
                   <span class="card-link__inner">
                     <span class="card-link__pub">This Old House</span>
@@ -794,6 +1070,10 @@
         </div>
       </div>
     </section>
+
+      </div><!-- /panel-content -->
+
+      <div class="deck__panel" id="panel-ai" role="tabpanel" aria-labelledby="tab-ai" tabindex="-1" hidden>
 
     <!-- ===========================  AI SYSTEMS BUILDER  =========================== -->
     <section id="ai-systems" class="section">
@@ -812,11 +1092,30 @@
             <div>
               <h3 class="serif">Agentic Content Pipeline</h3>
               <p class="entry__dek">Claude agents and an n8n pipeline that turn reader-survey data into publishable rough drafts in minutes.</p>
-              <div class="prose">
+
+              <div class="glance">
+                <div class="stats">
+                  <div class="stat"><b>50%</b><span>Cut in content production turnaround time</span></div>
+                  <div class="stat"><b>$100K</b><span>Backing behind the Better Moves Project</span></div>
+                  <div class="stat"><b>400,000+</b><span>Annual site visitors reached</span></div>
+                  <div class="stat"><b>Days &rarr; hours</b><span>Press release turnaround</span></div>
+                </div>
+                <ul class="keys">
+                  <li>Architected agentic Claude and n8n workflows that automate research, drafting, SME integration, and QA, cutting production turnaround <b>50%</b> without adding headcount.</li>
+                  <li>Built an automated press release workflow for company-wide announcements, taking release turnaround from <b>days to hours</b> while holding brand voice and accuracy.</li>
+                  <li>Produced editorial for the <b>Better Moves Project</b>, a $100K-backed consumer transparency initiative reaching 400,000+ annual site visitors.</li>
+                  <li>Raised Better Moves output to <b>two or three articles a week</b>, up from one every couple of weeks.</li>
+                  <li>Kept a person on the final piece. The system removes the blank page; the writer still owns the draft.</li>
+                </ul>
+              </div>
+
+              <details class="layer">
+                <summary><span class="chev" aria-hidden="true"></span>How I built it<span class="layer__who">Full case study</span></summary>
+                <div class="layer__body">
+                <div class="prose">
                 <p>Some editorial work is judgment. A lot of it is assembly. It's the same shape of article, built from the same kinds of inputs, over and over. I built agents to take the assembly off people's plates so the judgment got more time and effort.</p>
                 <p>Two systems came out of this at moveBuddha. The first sits behind the Editorial Consistency System in Content Producer above: Claude agents standing in for fixed points in our review process, which is what let us push roughly twice the volume of revised pages per week during the site recovery. The second is the one drawn here. It's an n8n pipeline for our Better Moves project. Readers submit their move details through a survey that lands in a Google Sheet. The automation pulls each submission, runs consistency checks across the fields, and hands the data to a set of Claude agents that draft against a fixed article outline and our style guide in markdown. A few minutes later there's a rough draft. A writer takes it from there, with a human read, QA, and the visual elements.</p>
                 <p>The point was never to publish on autopilot. It was to skip the blank page. With the structure, the survey data, and the checks doing the first pass, we turned out Better Moves articles at two to three a week, up from one every couple of weeks. The writer still owns the final piece. They just start from a real draft instead of a blank document.</p>
-                <p>Here's a representative piece:</p>
               </div>
               <div class="media ratio-16x9 is-filled" role="img" aria-label="moveBuddha Better Moves pipeline: a reader survey lands in a Google Sheet, n8n pulls each submission, consistency checks run across the fields, Claude agents draft against a style guide and fixed outline in minutes, then a writer QAs and the piece is published — two to three articles a week, up from one every couple of weeks.">
                 <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
@@ -901,7 +1200,13 @@
                   <text x="320" y="328" text-anchor="middle" style="fill:var(--ink-soft)" font-family="Fraunces,serif" font-style="italic" font-size="13.5">2&#8211;3 Better Moves articles a week &#8212; up from one every couple of weeks.</text>
                 </svg>
               </div>
-              <div class="media-row">
+                </div>
+              </details>
+
+              <p class="impact"><b>Why it mattered:</b> press releases went from days to hours and Better Moves output tripled, so a team of eight covered ground that would otherwise have needed more hiring. The writer still owns the final piece.</p>
+
+              <span class="glance__label" style="display:block;margin-top:26px">Selected published work</span>
+              <div class="media-row" style="margin-top:12px">
                 <a class="card-link" href="https://www.movebuddha.com/blog/coleman-william-ne-co/" target="_blank" rel="noopener">
                   <span class="card-link__inner">
                     <span class="card-link__pub">moveBuddha &middot; Better Moves</span>
@@ -919,10 +1224,29 @@
             <div>
               <h3 class="serif">Custom Claude &amp; GPT Models</h3>
               <p class="entry__dek">Purpose-built models and prompt workflows that scaled content production and cut manual overhead.</p>
-              <div class="prose">
+
+              <div class="glance">
+                <div class="stats">
+                  <div class="stat"><b>50%</b><span>Gain in editorial research and production efficiency</span></div>
+                  <div class="stat"><b>5,000+</b><span>Consumer survey responses the models read from</span></div>
+                  <div class="stat"><b>3</b><span>Verticals covered: solar, moving, replacement windows</span></div>
+                </div>
+                <ul class="keys">
+                  <li>Built custom Claude and ChatGPT models plus prompt libraries that lifted research and production efficiency <b>50%</b>, scaling output without scaling headcount.</li>
+                  <li>Wired those models straight into a database of <b>5,000+ consumer survey responses</b> so writers could pull defensible pricing in seconds.</li>
+                  <li>Replaced a manual research slog with near-instant synthesis: averages, breakdowns, and scaled cost data a writer could stand behind.</li>
+                  <li>Gave new writers a grounded read on each customer cohort&mdash;needs, budgets, pain points&mdash;so they could start writing instead of guessing.</li>
+                  <li>Produced the first-hand, data-backed pages Google's E-E-A-T guidelines reward.</li>
+                </ul>
+              </div>
+
+              <details class="layer">
+                <summary><span class="chev" aria-hidden="true"></span>How I built it<span class="layer__who">Full case study</span></summary>
+                <div class="layer__body">
+                <div class="prose">
                 <p>Good home-services content lives or dies on numbers most writers can't get: what a solar install actually runs, what people really pay movers, what a window replacement costs once the quote is in. We worked to get those numbers. They sat in a database of more than 5,000 consumer survey responses across solar, moving, and replacement windows. The problem was using them fast enough to matter.</p>
                 <p>So I built custom GPT and Claude models that read straight from that survey data. A writer could ask for the average cost in a category, run the formulas behind it, and pull real, defensible pricing in the time it used to take to track down a single figure. That last part is the hard part in home services, where honest pricing is tough to source at all. The models did the synthesis, such as calculating averages, breakdowns, and scaled cost data, and the prompt workflows behind them turned a slow manual research slog into something close to instant. They replaced hours of digging through spreadsheets for one stat.</p>
-                <p>Two things came out of it. The data-backed pages were the kind that Google's E-E-A-T guidelines reward. We could rapidly share first-hand experience and numbers a reader can trust, and we saw it in the rankings and in higher conversion, as readers believed what they read. The second was that a new writer could open a category and get an immediate, grounded read on where each customer cohort actually sits — their needs, their budgets, and their pain points. They could get straight to work rather than guessing their way in. Here's a published piece built on that synthesized survey data:</p>
+                <p>Two things came out of it. The data-backed pages were the kind that Google's E-E-A-T guidelines reward. We could rapidly share first-hand experience and numbers a reader can trust, and we saw it in the rankings and in higher conversion, as readers believed what they read. The second was that a new writer could open a category and get an immediate, grounded read on where each customer cohort actually sits — their needs, their budgets, and their pain points. They could get straight to work rather than guessing their way in.</p>
               </div>
               <div class="media ratio-16x9 is-filled" role="img" aria-label="Custom models at Home Solutions: a database of more than 5,000 consumer survey responses across solar, moving, and replacement windows feeds custom GPT and Claude models that synthesize averages, formulas, and hard-to-source cost data. The output is data-backed pages that earn Google E-E-A-T trust signals, lifting rankings and conversion, plus a fast, grounded baseline for new writers entering a category.">
                 <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
@@ -1000,7 +1324,13 @@
                   <text x="510" y="284" text-anchor="middle" style="fill:var(--muted)" font-family="Inter,sans-serif" font-size="10.5">rank + conv. &#8593;</text>
                 </svg>
               </div>
-              <div class="media-row">
+                </div>
+              </details>
+
+              <p class="impact"><b>Why it mattered:</b> honest pricing is hard to source in home services. Pages built on 5,000+ real survey responses ranked better and converted better, because readers believed the numbers.</p>
+
+              <span class="glance__label" style="display:block;margin-top:26px">Selected published work</span>
+              <div class="media-row" style="margin-top:12px">
                 <a class="card-link" href="https://www.thisoldhouse.com/moving/moving-survey" target="_blank" rel="noopener">
                   <span class="card-link__inner">
                     <span class="card-link__pub">This Old House &middot; Survey study</span>
@@ -1018,12 +1348,37 @@
             <div>
               <h3 class="serif">Reporting Automations</h3>
               <p class="entry__dek">Zapier flows that turn GSC and CRO performance data into a plain-language synthesis email — KPI movement, personalized per team, built on the automation tooling that powers lifecycle email.</p>
-              <div class="prose">
+
+              <div class="glance">
+                <div class="stats">
+                  <div class="stat"><b>Weekly</b><span>Automated performance brief to each vertical team</span></div>
+                  <div class="stat"><b>Same week</b><span>Reaction time, down from roughly a month</span></div>
+                  <div class="stat"><b>2 sources</b><span>Search Console and CRO tables, stitched automatically</span></div>
+                </div>
+                <ul class="keys">
+                  <li>Built vertical-specific Zapier automations that pull Google Search Console data and CRO tables into one working sheet.</li>
+                  <li>Added a ChatGPT step to synthesize raw rows into a handful of clear datapoints, then a <b>Claude</b> model to translate those into a plain read on what changed and what to do about it.</li>
+                  <li>Scheduled the finished synthesis as an email to each vertical's team, replacing a dashboard nobody opened.</li>
+                  <li>Cut reaction time from about a month to <b>the same week</b> the data surfaced the trend.</li>
+                  <li>Covered the analytics layer end to end: KPI tracking, week-over-week reads, and A/B-test calls.</li>
+                </ul>
+              </div>
+
+              <details class="layer">
+                <summary><span class="chev" aria-hidden="true"></span>How I built it<span class="layer__who">Full case study</span></summary>
+                <div class="layer__body">
+                <div class="prose">
                 <p>Performance data for a vertical never lives in one place. Search numbers sit in Google Search Console, conversion numbers sit in a stack of CRO tables, and the vertical-specific teams who need to act on them don't have time to stitch it all together every week. By the time a trend was obvious enough to notice on its own, the best moment to react to it had often already passed.</p>
                 <p>Toward the end of my time at Home Solutions I learned Zapier and built a set of vertical-specific reporting automations to close that gap. Each one pulled from a sheet linked to GSC data, plus the CRO tables, and pushed everything into a fresh working sheet. There a ChatGPT step synthesized the raw rows into a handful of clear datapoints, and a Claude model translated those datapoints one step further, into a precise, plain-language read on what had changed and what to do about it. The finished synthesis went out as a scheduled email to each vertical's team.</p>
-                <p>The point was speed of reaction. Instead of a dashboard nobody opened, each team got a short written brief that told them where performance was moving and handed them a concrete starting place, so they could devise plans and respond to trends in the same week the data surfaced them rather than a month later. It's the analytics-and-reporting layer of a marketing team (KPI tracking, week-over-week reads, and A/B-test calls), wired to run on automation instead of a manual weekly pull. Here's a simulated, anonymized example of what landed in a team's inbox:</p>
+                <p>The point was speed of reaction. Instead of a dashboard nobody opened, each team got a short written brief that told them where performance was moving and handed them a concrete starting place, so they could devise plans and respond to trends in the same week the data surfaced them rather than a month later. It's the analytics-and-reporting layer of a marketing team (KPI tracking, week-over-week reads, and A/B-test calls), wired to run on automation instead of a manual weekly pull.</p>
               </div>
-              <div class="media ratio-16x9 is-filled" role="img" aria-label="A simulated, anonymized weekly performance synthesis email for one vertical. It reports organic clicks up 12 percent week over week and average position up 1.8 spots on priority pages, both from Google Search Console, and quote-form conversion rate down 0.4 points from the CRO tables. A Claude-written 'what it means, do this' panel adds two actions: double down on the three pages driving the click lift and refresh their internal links, and A/B test the new hero CTA before spend ramps up because the quote form slipped. The flow runs Zapier into GSC and CRO sheets, ChatGPT synthesis, Claude actions, then the team inbox.">
+                </div>
+              </details>
+
+              <p class="impact"><b>Why it mattered:</b> teams stopped finding out about a trend a month late. The brief arrived in the same week the data moved, with a concrete starting place instead of a dashboard nobody opened.</p>
+
+              <span class="glance__label" style="display:block;margin-top:26px">Sample output &middot; simulated and anonymized</span>
+              <div class="media ratio-16x9 is-filled" style="margin-top:12px" role="img" aria-label="A simulated, anonymized weekly performance synthesis email for one vertical. It reports organic clicks up 12 percent week over week and average position up 1.8 spots on priority pages, both from Google Search Console, and quote-form conversion rate down 0.4 points from the CRO tables. A Claude-written 'what it means, do this' panel adds two actions: double down on the three pages driving the click lift and refresh their internal links, and A/B test the new hero CTA before spend ramps up because the quote form slipped. The flow runs Zapier into GSC and CRO sheets, ChatGPT synthesis, Claude actions, then the team inbox.">
                 <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
                   <title>Sample anonymized synthesis report emailed to a vertical team</title>
                   <desc>A simulated weekly performance synthesis email for an anonymized vertical. It pulls organic clicks and average position from Google Search Console and quote-form conversion rate from the CRO tables, then a Claude step adds a plain-language what-it-means and do-this set of actions. Produced by a Zapier flow into GSC and CRO sheets, synthesized by ChatGPT, translated by Claude, and sent to the team inbox.</desc>
@@ -1076,6 +1431,10 @@
       </div>
     </section>
 
+      </div><!-- /panel-ai -->
+
+      <div class="deck__panel" id="panel-pm" role="tabpanel" aria-labelledby="tab-pm" tabindex="-1" hidden>
+
     <!-- ===========================  PROJECT MANAGER  =========================== -->
     <section id="project-management" class="section">
       <div class="section__aside"><div class="sticky">
@@ -1091,12 +1450,37 @@
             <div>
               <h3 class="serif">Editorial Calendar &amp; OKR Planning</h3>
               <p class="entry__dek">Quarterly calendars mapped to business OKRs, with weekly tracking and structured A/B tests against measurable KPIs.</p>
-              <div class="prose">
+
+              <div class="glance">
+                <div class="stats">
+                  <div class="stat"><b>Quarterly</b><span>OKR sets proposed, with the calendar built to serve them</span></div>
+                  <div class="stat"><b>Weekly</b><span>Tracking against target numbers, not publish dates</span></div>
+                  <div class="stat"><b>8+</b><span>Multi-brand team whose calendar and voice I directed</span></div>
+                </div>
+                <ul class="keys">
+                  <li>Proposed a quarterly OKR set, then built the editorial calendar to serve it. A pillar refresh mapped to a ranking goal; a conversion test mapped to a lead goal.</li>
+                  <li>Tracked progress <b>weekly against those numbers</b> rather than publish dates, so a piece that wasn't pulling its weight got caught early.</li>
+                  <li>Ran structured A/B tests with measurable KPIs and surfaced the results to leadership.</li>
+                  <li>Cut or rethought any work that didn't ladder up to an objective.</li>
+                  <li>Carried the same method into moveBuddha, directing calendar, brand voice, and production workflows for a team of <b>8+</b>.</li>
+                </ul>
+              </div>
+
+              <details class="layer">
+                <summary><span class="chev" aria-hidden="true"></span>How I built it<span class="layer__who">Full case study</span></summary>
+                <div class="layer__body">
+                <div class="prose">
                 <p>Most editorial calendars are just a list of due dates. They tell you what publishes and when, not whether any of it moves the business. I plan the other way around. The calendar starts from the goals leadership actually measures, and every planned piece has to earn its slot.</p>
                 <p>At Home Solutions the operating rhythm was OKRs, the objectives and key results a team commits to for a quarter. I proposed a set each quarter, then built the editorial calendar to serve them. A pillar refresh mapped to a ranking goal. A conversion test mapped to a lead goal. Each week I tracked progress against those numbers instead of against publish dates, so a piece that wasn't pulling its weight got caught early. I carried the same method into moveBuddha, where the planning ran across thousands of programmatic pages rather than a handful of posts.</p>
                 <p>Run this way, the calendar becomes a decision tool instead of a wish list. Weekly tracking shows what's off target while there's still time to fix it. Quarterly review keeps the team pointed at what leadership cares about, and any work that doesn't ladder up to an objective gets cut or rethought. That's how content stops being busywork and starts being accountable.</p>
               </div>
-              <div class="media ratio-16x9 is-filled" role="img" aria-label="A sanitized sample planning board. One objective sits at the top with two key results, color-coded ivy green for the ranking goal and gold for the conversion goal. Below, a three-month quarter grid lays out four content initiatives as horizontal timeline bars, each colored to the key result it serves, over light weekly gridlines that stand for weekly tracking.">
+                </div>
+              </details>
+
+              <p class="impact"><b>Why it mattered:</b> the calendar became a decision tool instead of a wish list. Work that missed its target got caught inside the week, and anything that didn't ladder up to an objective got cut.</p>
+
+              <span class="glance__label" style="display:block;margin-top:26px">Planning artifact &middot; sanitized</span>
+              <div class="media ratio-16x9 is-filled" style="margin-top:12px" role="img" aria-label="A sanitized sample planning board. One objective sits at the top with two key results, color-coded ivy green for the ranking goal and gold for the conversion goal. Below, a three-month quarter grid lays out four content initiatives as horizontal timeline bars, each colored to the key result it serves, over light weekly gridlines that stand for weekly tracking.">
                 <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
                   <title>Quarterly editorial calendar mapped to OKRs</title>
                   <desc>A sanitized sample planning board. One objective at the top has two key results, ivy for the ranking goal and gold for the conversion goal. A three-month grid shows four content initiatives as timeline bars colored to the key result each serves, over light weekly gridlines.</desc>
@@ -1150,10 +1534,33 @@
             <div>
               <h3 class="serif">Special Attention Reviews (SARs)</h3>
               <p class="entry__dek">A review process to find the root cause of underperformance and hand leadership clear next steps.</p>
-              <div class="prose">
+
+              <div class="glance">
+                <ul class="keys">
+                  <li><b>Trigger.</b> Leads or conversions slipping, a KPI or OKR target getting missed, or content losing ground on search intent or first-hand expertise (EEAT).</li>
+                  <li><b>Evidence.</b> Search Console numbers, the conversion tables, and the page's own history, traced to a root cause instead of stopping at the surface number.</li>
+                  <li><b>People.</b> The writers whose pages were in scope, because the people who made the content know things the analytics don't.</li>
+                  <li><b>Output.</b> The cause, the fix, and the order to do it in, on leadership's desk the same day.</li>
+                  <li><b>Second effect.</b> The reviews taught the team to spot the warning signs on their own.</li>
+                </ul>
+              </div>
+
+              <details class="layer">
+                <summary><span class="chev" aria-hidden="true"></span>How the review works<span class="layer__who">Full case study</span></summary>
+                <div class="layer__body">
+                <div class="prose">
                 <p>A Special Attention Review (SAR) is the process I ran at Home Solutions when a page or vertical stopped performing. Something specific set it off: leads or conversions slipping, a KPI or OKR target getting missed, or content losing ground because it no longer matched search intent or showed enough first-hand experience and expertise (EEAT). Rather than patch the symptom, I opened a review.</p>
                 <p>I owned the review end to end. First I pulled the data: Search Console numbers, the conversion tables, and the page's own history. From there I traced the drop to a root cause instead of stopping at the surface number. Then I brought in the writers whose pages were in scope, because the people who made the content know things the analytics don't. The result was never a list of complaints. It was a clear read on what went wrong, why, and what to do first.</p>
                 <p>Leadership got something they could act on the same day: the cause, the fix, and the order to do it in. Because every SAR traced back to a real root cause, whether an intent mismatch, thin expertise, a conversion problem, or a gap in the process, the fixes addressed the actual issue and the same failure was less likely to return. The reviews did double duty, too. They taught the team how to spot the warning signs on their own.</p>
+              </div>
+                </div>
+              </details>
+
+              <p class="impact"><b>Why it mattered:</b> because every review traced back to a real root cause, the fix addressed the actual problem and the same failure was less likely to come back.</p>
+
+              <span class="glance__label" style="display:block;margin-top:26px">The method</span>
+              <div class="media media--diagram is-filled" style="margin-top:12px">
+                <img src="special-attention-review-method.png" alt="The Special Attention Review method in three stages. One: the trigger, when leads or conversions slip, a KPI or OKR is missed, or there is an EEAT or intent gap. Two: the root-cause review, which I own, using Search Console, conversion data, and page history to find the cause rather than the symptom. Three: the findings, a ranked set of next steps covering what is wrong, why, and what to do first. Findings go to leadership as a decision they can act on, and to writers to apply and learn from." width="2120" height="1150" loading="lazy" decoding="async">
               </div>
             </div>
           </article>
@@ -1163,12 +1570,38 @@
             <div>
               <h3 class="serif">Launch Coordination</h3>
               <p class="entry__dek">Work across product, SEO, analytics, and vendors to land messaging and CRO goals together.</p>
-              <div class="prose">
+
+              <div class="glance">
+                <div class="stats">
+                  <div class="stat"><b>5+</b><span>Media partner sites aligned before launch</span></div>
+                  <div class="stat"><b>3,000+</b><span>Customer survey responses in the shared fact base</span></div>
+                  <div class="stat"><b>10+</b><span>Interviews with installers and other experts</span></div>
+                  <div class="stat"><b>Top 3</b><span>Where clean energy landed among Home Solutions verticals</span></div>
+                </div>
+                <ul class="keys">
+                  <li>Settled positioning and conversion goals up front, so content, SEO, analytics, and <b>5+ partner sites</b> were building toward the same targets.</li>
+                  <li>Gave every team one shared foundation of facts: public solar cost and incentive data, <b>3,000+ survey responses</b>, and 10+ expert interviews.</li>
+                  <li>Ran the rollout to a clear sequence, so clean energy shipped as one coherent push instead of scattered posts.</li>
+                  <li>Coordinated subject-matter experts and vendors alongside the internal functions.</li>
+                  <li>Grew the vertical into one of <b>Home Solutions' top three</b> across the partner network.</li>
+                </ul>
+              </div>
+
+              <details class="layer">
+                <summary><span class="chev" aria-hidden="true"></span>How I ran it<span class="layer__who">Full case study</span></summary>
+                <div class="layer__body">
+                <div class="prose">
                 <p>Building a new vertical isn't a writing problem. It's a coordination problem. When Home Solutions made clean energy a priority, the work touched content, SEO, analytics, subject-matter experts, and more than five media partner sites. If those groups don't point the same direction, the launch ships as a pile of disconnected pages.</p>
                 <p>My job was to get everyone aligned before anything published. We settled the positioning and the conversion goals up front, so SEO, content, and the partner sites were all building toward the same targets. Then I gave every team one shared foundation of facts: dense public data on solar costs and incentives, more than 3,000 customer survey responses, and over ten interviews with installers and other experts. From there the rollout had a clear order. Lock the message and the KPIs, build the content and the programmatic local campaigns, ship across the partner sites, then measure against the lead and conversion goals.</p>
                 <p>Because the functions were aligned first, clean energy launched as one coherent push instead of scattered posts. It grew into one of Home Solutions' top three verticals across the partner network and brought in enough qualified leads to become a pillar of the business. The lesson stuck with me. The hard part of a launch is rarely the content. It's getting every team to agree on what "done" looks like before the work starts.</p>
               </div>
-              <div class="media ratio-16x9 is-filled" role="img" aria-label="A coordination diagram for the clean-energy vertical launch. Five functions on the left (content, SEO, analytics, subject-matter experts and vendors, and five-plus partner sites) feed converging lines into a shared align point. A shared brief built from public data, more than 3,000 surveys, and over ten expert interviews feeds the same point. From there a single timeline runs through four phases: align on the message and KPIs, build content and local campaigns, ship across partner sites, and measure against lead and conversion goals, ending in a flag marking the flagship vertical.">
+                </div>
+              </details>
+
+              <p class="impact"><b>Why it mattered:</b> the hard part of a launch is rarely the content. Getting five functions and five partner sites to agree on what "done" meant, before anything published, is what turned clean energy into a pillar of the business.</p>
+
+              <span class="glance__label" style="display:block;margin-top:26px">How the functions lined up</span>
+              <div class="media ratio-16x9 is-filled" style="margin-top:12px" role="img" aria-label="A coordination diagram for the clean-energy vertical launch. Five functions on the left (content, SEO, analytics, subject-matter experts and vendors, and five-plus partner sites) feed converging lines into a shared align point. A shared brief built from public data, more than 3,000 surveys, and over ten expert interviews feeds the same point. From there a single timeline runs through four phases: align on the message and KPIs, build content and local campaigns, ship across partner sites, and measure against lead and conversion goals, ending in a flag marking the flagship vertical.">
                 <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
                   <title>Cross-functional coordination for the clean-energy vertical launch</title>
                   <desc>Five functions on the left feed converging lines into a shared align point, joined by a shared brief of public data, 3,000-plus surveys, and 10-plus expert interviews. A single timeline then runs through align, build, ship, and measure, ending in a flag for the flagship vertical.</desc>
@@ -1225,6 +1658,10 @@
       </div>
     </section>
 
+      </div><!-- /panel-pm -->
+
+      <div class="deck__panel" id="panel-projects" role="tabpanel" aria-labelledby="tab-projects" tabindex="-1" hidden>
+
     <!-- ===========================  YOUTUBE  =========================== -->
     <section id="youtube" class="section">
       <div class="section__aside"><div class="sticky">
@@ -1233,6 +1670,20 @@
       <div>
         <h2 class="section__title serif">YouTube</h2>
         <p class="section__dek">The Seph Hawkins channel, running since 2020. Owned end to end, from script to upload.</p>
+
+        <div class="glance">
+          <div class="stats">
+            <div class="stat"><b>1,400+</b><span>Subscribers since launching in 2020</span></div>
+            <div class="stat"><b>6 yrs</b><span>Publishing on a cadence I set</span></div>
+            <div class="stat"><b>2</b><span>Formats: scripted video essays and book reviews</span></div>
+          </div>
+          <ul class="keys">
+            <li>Write and produce <b>scripted video essays</b> that make dense topics easy to follow, plus book reviews weighing a title's entertainment value against what it reaches for artistically.</li>
+            <li>Own every step alone: research, script, filming, editing in Adobe Creative Suite, thumbnails built to earn the click, and publishing.</li>
+            <li>Work the same through-line as the day job, taking research most people won't dig up and shaping it into something a general audience will actually sit through.</li>
+          </ul>
+        </div>
+
         <div class="prose">
           <p>Two formats share the channel: scripted video essays that make dense topics easy to follow, and book reviews that weigh a title's entertainment value against what it reaches for artistically. The thread tying them together is translation, taking research most people won't dig up on their own and shaping it into something a general audience will actually sit through.</p>
           <p>One person does all of it: research, script, filming, editing in Adobe Creative Suite, thumbnails built to earn the click, and publishing on a cadence I set. The channel has grown to <b>1,400+</b> subscribers since 2020.</p>
@@ -1256,10 +1707,26 @@
         <span class="eyebrow">Project</span>      </div></div>
       <div>
         <h2 class="section__title serif">Blacforje</h2>
-        <p class="section__dek">Contributing writer since 2024. Black metal and dungeon synth — interviews, reviews, and features.</p>
+        <p class="section__dek">Contributing writer, February 2024 to August 2026. Black metal and dungeon synth — interviews, reviews, and features.</p>
+
+        <div class="glance">
+          <div class="stats">
+            <div class="stat"><b>1,000+</b><span>Monthly readers of the publication</span></div>
+            <div class="stat"><b>2.5 yrs</b><span>Weekly cadence with no gap in publication</span></div>
+            <div class="stat"><b>10</b><span>Records written up for the year-end Top 20, annually</span></div>
+          </div>
+          <ul class="keys">
+            <li>Wrote album reviews and features at <b>one per week for over 2.5 years</b>, without a gap in publication.</li>
+            <li>Ran in-depth artist interviews with Lammoth, Mythráen, Henere, Dehors, Moonglow, and others, building direct relationships with musicians and labels.</li>
+            <li>Contributed <b>ten</b> black metal and dungeon synth records a year to the year-end Top 20 Albums list.</li>
+            <li>Worked to a detailed house style guide, covering formatting, title conventions, and a no-em-dash rule, while keeping each interviewee's own voice intact.</li>
+            <li>Applied SEO to reviews and interviews so they surfaced inside a niche, highly engaged audience.</li>
+          </ul>
+        </div>
+
         <div class="prose">
-          <p>This is the writing I do because I want to. It shows range a content résumé can't: a real beat, real opinions, and a voice that holds up next to other critics.</p>
-          <p>It's a beat that rewards people who actually know it. The pieces run on real familiarity with the genre's aesthetic, its lineage, and the ethos underneath the music, which is the line between writing about underground metal and writing for the people already inside it.</p>
+          <p>This was the writing I did because I wanted to. It shows range a content résumé can't: a real beat, real opinions, and a voice that holds up next to other critics.</p>
+          <p>It rewarded people who actually knew it. The pieces ran on real familiarity with the genre's aesthetic, its lineage, and the ethos underneath the music, which is the line between writing about underground metal and writing for the people already inside it.</p>
         </div>
         <div class="index">
           <div class="index__row">
@@ -1286,6 +1753,24 @@
       <div>
         <h2 class="section__title serif">MyPollenPal</h2>
         <p class="section__dek">Built with Shawn Hill and live at <a href="https://www.mypollenpal.com/" target="_blank" rel="noopener">mypollenpal.com</a>. Hyperlocal pollen counts and daily allergy alerts, covering every US state.</p>
+
+        <div class="glance">
+          <span class="glance__label">Managing partner &amp; strategist &middot; since June 2026</span>
+          <div class="stats">
+            <div class="stat"><b>1,500+</b><span>Subscribers to the daily alert email</span></div>
+            <div class="stat"><b>113</b><span>City pages built across 25 metros from one template</span></div>
+            <div class="stat"><b>56</b><span>Verified sources in the citation library</span></div>
+            <div class="stat"><b>50</b><span>States covered, plus hundreds of cities</span></div>
+          </div>
+          <ul class="keys">
+            <li>Designed the programmatic content system, scaling <b>113 city-level pages across 25 metros</b> from a single data-driven template.</li>
+            <li>Architected the data pipeline behind it&mdash;Next.js and Supabase, fed by Google's Pollen API plus WeatherAPI, NOAA, and EPA readings&mdash;powering real-time content across hundreds of pages.</li>
+            <li>Built agentic Claude workflows that draft, audit, and style-check every piece against a house style guide and citation database.</li>
+            <li>Maintain a <b>56-source</b> verified citations library and fact-check every health claim before it publishes.</li>
+            <li>Run automated reporting and QA on cron jobs, cache warming, and style linting, so errors get caught before production.</li>
+            <li>Keep the architecture honest: consolidated hubs over thin pages, plus sitemaps, internal linking, structured data, and canonical hygiene at scale.</li>
+          </ul>
+        </div>
 
         <div class="entries">
           <article class="entry">
@@ -1320,6 +1805,9 @@
       </div>
     </section>
 
+      </div><!-- /panel-projects -->
+    </div><!-- /deck -->
+
     <!-- ===========================  CONTACT  =========================== -->
     <section id="contact" class="section contact">
       <div class="section__aside"><div class="sticky">
@@ -1334,7 +1822,7 @@
           </a>
           <span>LinkedIn — Joseph Hawkins</span>
           <span style="color:var(--rule)">/</span>
-          <span>Open to content, editorial &amp; project roles</span>
+          <span>Available now &mdash; senior editorial, content strategy &amp; AI systems roles</span>
         </div>
       </div>
     </section>
@@ -1410,6 +1898,95 @@
   var yrEl = document.getElementById('yr');
   if (yrEl) yrEl.textContent = new Date().getFullYear();
 
+  /* ---- deck: tabbed panels ---------------------------------------------
+     Panels stay in the DOM; only the `hidden` attribute changes, so the
+     markup a crawler sees is the same one a reader gets.
+     ---------------------------------------------------------------------- */
+  var deck = document.getElementById('deck');
+  if (deck){
+    var tabs   = Array.prototype.slice.call(deck.querySelectorAll('.deck__tab'));
+    var panels = tabs.map(function(t){ return document.getElementById(t.getAttribute('aria-controls')); });
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function selectTab(tab, focusTab){
+      tabs.forEach(function(t, i){
+        var on = (t === tab);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        if (panels[i]) panels[i].hidden = !on;
+      });
+      if (focusTab) tab.focus();
+    }
+
+    /* which tab owns a given #hash, if any */
+    function tabForHash(hash){
+      if (!hash || hash.length < 2) return null;
+      var el;
+      try { el = document.getElementById(decodeURIComponent(hash.slice(1))); } catch(e){ return null; }
+      if (!el || !el.closest) return null;
+      var panel = el.closest('.deck__panel');
+      if (!panel) return null;
+      var idx = panels.indexOf(panel);
+      return idx > -1 ? tabs[idx] : null;
+    }
+
+    function firstSectionId(tab){
+      var panel = panels[tabs.indexOf(tab)];
+      var sec = panel && panel.querySelector('section[id]');
+      return sec ? sec.id : null;
+    }
+
+    tabs.forEach(function(tab){
+      tab.addEventListener('click', function(){
+        selectTab(tab);
+        /* only pull the reader back if the tab strip has scrolled out of view */
+        var top = deck.getBoundingClientRect().top;
+        if (top < 0) window.scrollTo({ top: top + window.pageYOffset - 12, behavior: reduce ? 'auto' : 'smooth' });
+        var id = firstSectionId(tab);
+        if (id && history.replaceState) history.replaceState(null, '', '#' + id);
+      });
+
+      /* full keyboard model for a tablist: arrows, Home, End */
+      tab.addEventListener('keydown', function(e){
+        var i = tabs.indexOf(tab), n = tabs.length, j = -1;
+        if (e.key === 'ArrowRight' || e.key === 'Right')     j = (i + 1) % n;
+        else if (e.key === 'ArrowLeft' || e.key === 'Left')  j = (i - 1 + n) % n;
+        else if (e.key === 'Home')                            j = 0;
+        else if (e.key === 'End')                             j = n - 1;
+        if (j > -1){ e.preventDefault(); selectTab(tabs[j], true); }
+      });
+    });
+
+    /* in-page links (nav bubble included) open the owning tab first */
+    document.addEventListener('click', function(e){
+      var a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+      if (!a) return;
+      var hash = a.getAttribute('href');
+      if (!hash || hash === '#' || hash === '#main') return;
+      var tab = tabForHash(hash);
+      if (!tab) return;
+      var target = document.getElementById(hash.slice(1));
+      if (!target) return;
+      e.preventDefault();
+      selectTab(tab);
+      target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      if (history.replaceState) history.replaceState(null, '', hash);
+    });
+
+    /* arriving on a deep link, or using back/forward */
+    function syncToHash(scroll){
+      var tab = tabForHash(window.location.hash);
+      if (!tab) return;
+      selectTab(tab);
+      if (scroll){
+        var target = document.getElementById(window.location.hash.slice(1));
+        if (target) target.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+    }
+    syncToHash(true);
+    window.addEventListener('hashchange', function(){ syncToHash(true); });
+  }
+
   /* ---- CV filter (experience + education + additional) ---- */
   var cv = document.querySelector('.cv');
   if (cv){
@@ -1422,20 +1999,31 @@
         if (show){ row.style.animation = 'none'; void row.offsetWidth; row.style.animation = ''; }
       });
     }
+    var cvList = document.getElementById('cvList');
+    function selectCvTab(tab, focusTab){
+      cvTabs.forEach(function(t){
+        var on = (t === tab);
+        t.classList.toggle('is-active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+      });
+      if (cvList) cvList.setAttribute('aria-labelledby', tab.id);
+      applyFilter(tab.getAttribute('data-filter'));
+      if (focusTab) tab.focus();
+    }
     cvTabs.forEach(function(tab){
-      tab.addEventListener('click', function(){
-        cvTabs.forEach(function(t){
-          t.classList.remove('is-active');
-          t.setAttribute('aria-selected','false');
-        });
-        tab.classList.add('is-active');
-        tab.setAttribute('aria-selected','true');
-        applyFilter(tab.getAttribute('data-filter'));
+      tab.addEventListener('click', function(){ selectCvTab(tab); });
+      tab.addEventListener('keydown', function(e){
+        var i = cvTabs.indexOf(tab), n = cvTabs.length, j = -1;
+        if (e.key === 'ArrowRight' || e.key === 'Right')     j = (i + 1) % n;
+        else if (e.key === 'ArrowLeft' || e.key === 'Left')  j = (i - 1 + n) % n;
+        else if (e.key === 'Home')                            j = 0;
+        else if (e.key === 'End')                             j = n - 1;
+        if (j > -1){ e.preventDefault(); selectCvTab(cvTabs[j], true); }
       });
     });
     /* match the default active tab (Experience) on load */
-    var initial = cv.querySelector('.cv__tab.is-active');
-    applyFilter(initial ? initial.getAttribute('data-filter') : 'exp');
+    selectCvTab(cv.querySelector('.cv__tab.is-active') || cvTabs[0]);
   }
 })();
 </script>

@@ -1,64 +1,40 @@
 # Content TODO
 
-The structure is finished. The site needs your real material to launch. Work this list top to bottom. Each item maps to a marked placeholder in `index.html`.
+What's left. Last updated August 21, 2026, after the tabbed-deck restructure.
 
-## High impact — do these first
+The site is no longer a shell. Every section has real copy, real metrics, and real artifacts. The list below is what would still make it stronger, roughly in order of payoff.
 
-These three turn the site from a shell into a portfolio.
+## High impact
 
-- [ ] **Add the headshot.** Save it to `assets/headshot.jpg` (4:5 ratio, well lit) and swap the `.headshot` figure in `#home` for an `<img>`.
-- [ ] **Write one full case study.** Pick the strongest one — likely the moveBuddha lifecycle editorial system or the agentic Claude pipeline. Problem, what you built, result. Replace its `.entry__todo` note with the prose.
-- [ ] **Add real metrics.** The profile flags this as the biggest gap. Traffic numbers, engagement lifts, time saved, volume handled. One real figure per case study beats ten adjectives, and the style guide rewards specifics.
+- [ ] **Link the remaining Blacforje interviews.** The LinkedIn summary names Lammoth, Mythráen, Henere, and Dehors. Only Moonglow, the 2025 Top 20, and the One of Nine review are linked on the site. Each one is a `.index__row` in `#blacforje`.
+- [ ] **Add the social card.** `assets/social-card.jpg`, then uncomment the `og:image` tag in `<head>`. Right now a shared link previews with no image, which costs clicks on LinkedIn.
+- [ ] **Pull quotes from the two LinkedIn recommendations.** Rebekah Young and Allison Rosa. A single sentence from each, dropped into `#about` as a `.pull`, would be the strongest social proof on the site. The full text is still only on LinkedIn.
 
-## Per-section gaps
+## Worth doing
 
-### Content Producer (`#content-producer`)
-- [ ] Link 2–3 solar / clean-energy explainers from Home Solutions, if shareable.
-- [ ] Add a cover image or screen recording for the moveBuddha entry.
-- [ ] Optional: link a Three Ships roundup if any are still live.
+- [ ] **More moveBuddha and Home Solutions clips.** Three This Old House pieces and one moveBuddha piece are linked. Two or three more across the Better Moves work would round out the "Selected published work" rows.
+- [ ] **A Three Ships clip beyond the windows guide.** Only one is linked.
+- [ ] **Confirm the Three Ships end date.** The site says Nov 2020 – Feb 2023; `professional-profile.md` says Mar 2023.
 
-### AI Systems Builder (`#ai-systems`)
-- [ ] Draw a system diagram for the agentic content pipeline (trigger → steps → output).
-- [ ] Show one prompt system from Home Solutions: a redacted prompt, the model's job, what it replaced.
-- [ ] Add a sample reporting output (anonymized).
+## Profile gaps
 
-### Project Manager (`#project-management`)
-- [ ] Add a sanitized editorial calendar or planning artifact.
-- [ ] Outline the SAR method: trigger, who's involved, what comes out.
-- [ ] Pick one launch to document end to end.
-
-### Digital Marketer (`#digital-marketing`)
-- [ ] Add a before/after for one CRO or landing-page change.
-- [ ] Document one email or lifecycle campaign.
-- [ ] Add one clean performance chart.
-
-### YouTube (`#youtube`)
-- [ ] Confirm the channel niche and subscriber count.
-- [ ] Pick the 2–3 videos to feature.
-- [ ] Replace the media slots with real embeds (pattern is in the section, commented out).
-
-### Blacforje (`#blacforje`)
-- [ ] Confirm the full genre scope (black metal — also dungeon synth? other?).
-- [ ] Link your published pieces with headline, date, and a one-line hook each.
-
-### MyPollenPal (`#mypollenpal`)
-- [ ] Write the one-line description: what it is and who it's for.
-- [ ] Fill in what it does, why you built it, and the stack.
-- [ ] Add screenshots and a live link if there is one.
-
-## Profile gaps to resolve
-
-Pulled from the open questions in `professional-profile.md`. Surface these so About and the case studies can use them.
+Still unresolved from `professional-profile.md`. None of these block anything.
 
 - [ ] Third education entry (LinkedIn shows three).
 - [ ] Third honor/award.
 - [ ] Third and fourth publications.
-- [ ] Full text of the Rebekah Young and Allison Rosa recommendations (a short quote each would strengthen About or Contact).
 
-## Polish before launch
+## Kept current
 
-- [ ] Add a `favicon.ico`.
-- [ ] Create the social card image and point the `og:image` tag at it.
-- [ ] Proofread every section out loud against the style-guide checklist.
-- [ ] Test the theme toggle, nav, and all links on a phone and a laptop.
-- [ ] Run the style-check skill on any new prose before it ships.
+Check these whenever the work changes:
+
+- [ ] The **career timeline** in `#about` — add or close roles as they change.
+- [ ] The **stat figures** in each `.glance`. They're the first thing a recruiter reads, so a stale number is worse than no number.
+- [ ] The **availability line** in the hero and in `#contact`. Both say the same thing; change both together.
+
+## Before any content ships
+
+- [ ] Run the style-check skill on new prose.
+- [ ] Read it out loud against `STYLE_GUIDE_GENERAL.md`.
+- [ ] If you add a colour, add a token. Anything on `--accent` uses `color:var(--paper)`, never `#fff`.
+- [ ] Re-check contrast in both themes if you touch a colour.
